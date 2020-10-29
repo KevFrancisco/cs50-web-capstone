@@ -1,0 +1,30 @@
+{% extends "films/layout.html" %}
+
+{% block body %}
+<div>
+    <h1>
+        {{greeting}}
+    </h1>
+    <h3>
+        {{api_str}}
+    </h3>
+    <br><br>
+    <h5>
+        Discover:
+    </h5>
+
+    <div class="text-center">
+        <script>
+            let url = "https://api.themoviedb.org/3/discover/movie?api_key={{api_key}}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1"
+            fetch(url, {
+                method: "GET",
+            })
+            .then(Response => Response.json())
+            .then(r =>{
+                console.log(r)
+            })
+        </script>
+    </div>
+</div>
+
+{% endblock %}

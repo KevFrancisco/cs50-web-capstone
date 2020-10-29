@@ -1,0 +1,26 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        {# Livereload, as per usual. Isn't there a better way to use this? #}
+        <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
+
+        {# Bootstrap V5! #}
+        <script src="{% static 'films/js/bootstrap.bundle.min.js' %}"></script>
+        <link rel="stylesheet" href="{% static 'films/css/bootstrap.min.css' %}">
+        
+        {# Font Awesome #}
+        <link rel="stylesheet" href="{% static 'films/css/bootstrap.min.css' %}">
+        {% block script%}
+        {% endblock %}
+    </head>
+    <body class="">
+        {# Navbar :D #}
+        <div>
+            
+        </div>
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>
