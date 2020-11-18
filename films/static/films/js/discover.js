@@ -14,28 +14,33 @@ function discover(api_key) {
         
         console.log(r.results);
 
+        // let posters = document.getElementById('posters');
         let posters = document.getElementById('posters');
         let ea_item = r.results;
         // Let's try to display the images
         for (var key in ea_item) {
             if (ea_item.hasOwnProperty(key)) {
-                console.log(ea_item[key].original_title);
-                console.log(ea_item[key].poster_path);
+                // console.log(ea_item[key].original_title);
+                // console.log(ea_item[key].poster_path);
                 
                 let title = ea_item[key].original_title;
                 let img_url = `https://image.tmdb.org/t/p/original${ea_item[key].poster_path}`;
-                console.log(img_url);
+                // console.log(img_url);
 
                 let img_div = document.createElement('div');
-                img_div.classList.add('col-3');
-                img_div.innerHTML = `
-                    <div class="position-relative text-center">
-                    <div class="position-absolute bottom-0 text-white mx-auto"><span class="text-center h3">${title}</span></div>
-                    <div class="vh-50"><img class="img-fluid" src="${img_url}" alt="${title}"></div>
-                    </div>`
+                img_div.classList.add('w-10', 'm-3', 'h-100');
+                img_div.innerHTML = `<img src="${img_url}" class="img-fluid" alt="${title}"><div class='h6 text-center text-white p-3 h-100 mb-0'>${title}</div>`;
                 posters.append(img_div);
             }
-        }
+        };
+        // OverlayScrollbars(document.querySelectorAll(".poster-container"), { });
+        $('#posters').slick({
+            slidesToShow: 7,
+            infinite: true,
+            slidesToScroll: 7,
+            arrows: true,
+        });
+
     })
 
 }

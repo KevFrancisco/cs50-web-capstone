@@ -1,6 +1,13 @@
 {% extends "films/layout.html" %} {% load static %}
 
 {% block body %}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        discover('{{api_key}}');
+    });
+</script>
+
 <div>
     <h1>
         {{heading_title}}
@@ -12,29 +19,18 @@
     <h5>
         Discover:
     </h5>
-    
-    {# <div class="d-flex flex-wrap" id="posters"></div> #}
+   
+    <div class="p-5">
+        <div class="poster-container p-3">
+            <div id="posters"></div>
+        </div>
+    </div>   
 
-    {# <div class="small"> #}
-    {#     <pre id="json-raw"></pre> #}
-    {#    <script src="{% static 'films/js/discover.js' %}"></script> #}
-    {#     <button class="btn btn-primary btn-lg" onClick="discover('{{api_key}}')">LOAD!</button> #}
-    {# </div> #}
-    
-    {# REACT TUT #}
-    
-    <div id="like_button_container"></div>
-    <!-- Load React. -->
-    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
-    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
-    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
-    
-    <!-- Load our React component. -->
-    <script src="{% static 'films/js/react_sample.js' %}"></script>    
-    <link rel="stylesheet" href="{% static 'films/css/bootstrap.min.css' %}">
-    
-    {# END REACT TUT #}
-
+    <div class="small d-none">
+        <pre id="json-raw"></pre>
+       <script src="{% static 'films/js/discover.js' %}"></script>
+        <button class="btn btn-primary btn-lg" onClick="discover('{{api_key}}')">LOAD!</button>
+    </div>
 </div>
 
 {% endblock %}
