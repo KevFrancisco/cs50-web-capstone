@@ -29,16 +29,49 @@ function discover(api_key) {
 
                 let img_div = document.createElement('div');
                 img_div.classList.add('w-10', 'm-3', 'h-100');
-                img_div.innerHTML = `<img src="${img_url}" class="img-fluid" alt="${title}"><div class='h6 text-center text-white p-3 h-100 mb-0'>${title}</div>`;
+                img_div.innerHTML = `<img src="${img_url}" class="img-fluid" alt="${title}">` + 
+                                    `<div class='small text-center text-white h5 pt-3 h-100 mb-0'>${title}</div>`;
                 posters.append(img_div);
             }
         };
         // OverlayScrollbars(document.querySelectorAll(".poster-container"), { });
         $('#posters').slick({
-            slidesToShow: 7,
+            slidesToShow: 9,
             infinite: true,
-            slidesToScroll: 7,
+            slidesToScroll: 5,
             arrows: true,
+            nextArrow: '<button class="slick-custom-next"><i class="fas sc-arrow fa-chevron-circle-right fa-3x"></i></button>',
+            prevArrow: '<button class="slick-custom-prev"><i class="fas sc-arrow fa-chevron-circle-left fa-3x"></i></button>',
+            responsive: [
+                {
+                  breakpoint: 1200,
+                  settings: {
+                    slidesToShow: 7,
+                    slidesToScroll: 5,
+                  }
+                },
+                {
+                  breakpoint: 992,
+                  settings: {
+                    slidesToShow: 5,
+                    slidesToScroll: 3,
+                  }
+                },
+                {
+                  breakpoint: 768,
+                  settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                  }
+                },
+                {
+                  breakpoint: 576,
+                  settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                  }
+                },
+            ]
         });
 
     })

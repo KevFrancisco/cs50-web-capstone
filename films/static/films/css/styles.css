@@ -14,3 +14,80 @@
 .hide-me {
     opacity: 0;
 }
+
+/* SLICK CAROUSEL STYLE */
+.sc-container {
+    padding: 0px 20px;
+}
+/* Arrows */
+.slick-custom-prev,
+.slick-custom-next
+{
+    font-size: .8rem;
+    line-height: 1;
+
+    position: absolute;
+    top: 50%;
+
+    display: block;
+
+    padding: 0;
+    -webkit-transform: translate(0, -50%);
+    -ms-transform: translate(0, -50%);
+    transform: translate(0, -50%);
+
+    cursor: pointer;
+
+    color: white;
+    border: none;
+    outline: none;
+    background: transparent;
+}
+.slick-custom-prev
+{
+    left: -20px;
+}
+
+.slick-custom-next
+{
+    right: -20px;
+}
+.sc-arrow {
+    opacity: 1;
+}
+.sc-arrow:hover {
+    color: orange;
+}
+
+/* FONTS */
+
+@font-face {
+font-family: "Calistoga";
+src: url("../webfonts/Calistoga-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Bebas Neue";
+    src: url("../webfonts/BebasNeue-Regular.ttf")
+}
+
+@font-face {
+font-family: "Encode Sans Semi Condensed";
+src: url("../webfonts/EncodeSansSemiCondensed-Medium.ttf");
+src: url("../webfonts/EncodeSansSemiCondensed-Bold.ttf");
+}
+
+.font-brand {
+    font-family: 'Bebas Neue', cursive;
+}
+
+.font-body {
+    font-family: 'Encode Sans Semi Condensed', sans-serif;
+    font-weight: medium;
+}
+
+
+/* LOGO */
+.showbox-b {
+    font-size: 2rem;
+}

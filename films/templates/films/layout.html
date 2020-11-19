@@ -2,7 +2,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-    <head>
+    <head#>
         {# Livereload, as per usual. Isn't there a better way to use this? #}
         <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 
@@ -38,20 +38,49 @@
         {% block script%}
         {% endblock %}
     </head>
-    <body class="p-3 overlayscrollbar bg-dark">
-        {# Navbar :D #}
-        <div>
-            <ul>
-                <li>Home</li>
-                <li>Search</li>
-                <li>Profile</li>
-                <li>Discover!</li>
-            </ul>         
-        </div>
+    <body class="p-3 overlayscrollbar text-white bg-dark font-body">
+
+        {# ############################################################################## #}
+        {# ##############################      NAVBAR      ############################## #}
+        {# ############################################################################## #}
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-secondary">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-box-open ml-3 mr-1 showbox-b"></i>
+                <span class="font-brand h1 mb-0">ShowBox</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+              <ul class="navbar-nav mr-auto mb-2 mb-md-0">
+                <li class="nav-item active">
+                  <a class="nav-link" aria-current="page" href="#">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Discover</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Browse</a>
+                </li>
+              </ul>
+              <form class="d-flex">
+                <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-success" type="submit">Search</button>
+              </form>
+            </div>
+          </div>
+        </nav>
+
+        {# ############################################################################ #}
+        {# ##############################      BODY      ############################## #}
+        {# ############################################################################ #}
         {% block body %}
         {% endblock %}
 
-        {# Slick Carousell #}
+        {# ####################################### #}
+        {# #####       SLICK CAROUSELL       ##### #}
+        {# ####################################### #}
         <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
     </body>
