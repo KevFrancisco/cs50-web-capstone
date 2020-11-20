@@ -4,7 +4,15 @@
 }
 
 .bottom-fade {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.0), rgba(33, 33, 33, 1));
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.0), rgba(00, 00, 00, 1));
+}
+
+.bg-darker {
+    background: rgba(0, 0, 0, 0.8);
+}
+
+.border-darker {
+    border: solid 1px rgba(0, 0, 0, 0.8);
 }
 
 .bgs-100 {
@@ -38,7 +46,7 @@
 
     cursor: pointer;
 
-    color: white;
+    color: #f8f9fa;
     border: none;
     outline: none;
     background: transparent;
@@ -62,6 +70,11 @@
 /* FONTS */
 
 @font-face {
+font-family: "Farro";
+src: url("../webfonts/Farro-Regular.ttf");
+}
+
+@font-face {
 font-family: "Calistoga";
 src: url("../webfonts/Calistoga-Regular.ttf");
 }
@@ -74,20 +87,52 @@ src: url("../webfonts/Calistoga-Regular.ttf");
 @font-face {
 font-family: "Encode Sans Semi Condensed";
 src: url("../webfonts/EncodeSansSemiCondensed-Medium.ttf");
+}
+@font-face {
+font-family: "Encode Sans Semi Condensed-Bold";
 src: url("../webfonts/EncodeSansSemiCondensed-Bold.ttf");
+}
+@font-face {
+font-family: "Encode Sans Semi Condensed-Light";
+src: url("../webfonts/EncodeSansSemiCondensed-Light.ttf");
+}
+@font-face {
+font-family: "Encode Sans Semi Condensed-ExtraLight";
+src: url("../webfonts/EncodeSansSemiCondensed-ExtraLight.ttf");
 }
 
 .font-brand {
     font-family: 'Bebas Neue', cursive;
 }
 
+.font-title {
+    font-family: 'Farro', sans-serif;
+}
+
 .font-body {
     font-family: 'Encode Sans Semi Condensed', sans-serif;
     font-weight: medium;
+}
+.font-body-b {
+    font-family: 'Encode Sans Semi Condensed-Bold', sans-serif;
+}
+.font-body-l {
+    font-family: 'Encode Sans Semi Condensed-Light', sans-serif;
+}
+.font-body-el {
+    font-family: 'Encode Sans Semi Condensed-ExtraLight', sans-serif;
 }
 
 
 /* LOGO */
 .showbox-b {
     font-size: 2rem;
+}
+
+/* HERO */
+.hero-main {
+    max-height: 80vh;
+    position: relative;
+    margin: 0;
+    overflow: hidden;
 }

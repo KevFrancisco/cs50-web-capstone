@@ -1,34 +1,40 @@
 {% extends "films/layout.html" %} {% load static %}
 
-{% block body %}
+{% block script %}
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         discover('{{api_key}}');
+        hero('{{api_key}}');
     });
 </script>
+<script src="{% static 'films/js/discover.js' %}"></script>
+<script src="{% static 'films/js/hero.js' %}"></script>
 
-<div>
-    <h1>
-        {{heading_title}}
-    </h1>
-    <h3>
-        {{api_str}}
-    </h3>
-    <br><br>
-    <h5>
-        Discover:
-    </h5>
-   
-    <div class="border border-light px-5 py-3">
+{% endblock %}
+
+{% block body %}
+
+<div class="bg-darker">
+    <div class="w-100 h-auto container">
+        <div class="hero-main overflow-hidden position-relative" id="hero">
+        </div>
+    </div>
+</div>
+
+<div class="mx-5 my-3 border-darker">
+    <div class="bg-darker p-2 font-title h5 text-center">
+        DISCOVER
+    </div>
+
+    <div class="px-5">
         <div class="sc-container" id="posters"></div>
     </div>   
+</div>
 
-    <div class="small d-none">
-        <pre id="json-raw"></pre>
-       <script src="{% static 'films/js/discover.js' %}"></script>
-        <button class="btn btn-primary btn-lg" onClick="discover('{{api_key}}')">LOAD!</button>
-    </div>
+<div class="small d-none">
+    <pre id="json-raw"></pre>
+    <button class="btn btn-primary btn-lg" onClick="discover('{{api_key}}')">LOAD!</button>
 </div>
 
 {% endblock %}
