@@ -1,0 +1,23 @@
+{% extends "films/layout.html" %} {% load static %}
+
+{% block script %}
+
+
+
+{% endblock %}
+
+{% block body %}
+<h6>{{api_key}}</h6>
+<h6>{{req_id}}</h6>
+<h6>{{req_type}}</h6>
+<div id="url"></div>
+<pre id="response" class="small font-body-b"></pre>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        detail('{{api_key}}', '{{req_type}}', '{{req_id}}');
+    });
+</script>
+<script src="{% static 'films/js/detail.js' %}"></script>
+
+{% endblock %}

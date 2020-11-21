@@ -9,7 +9,6 @@ function discover(api_key) {
     .then(r =>{
         console.log(r);
         el = document.getElementById('json-raw');
-
         el.innerText = JSON.stringify(r, undefined, 2);
         
         console.log(r.results);
@@ -29,8 +28,10 @@ function discover(api_key) {
 
                 let img_div = document.createElement('div');
                 img_div.classList.add('w-10', 'm-3', 'h-100');
-                img_div.innerHTML = `<img src="${img_url}" class="img-fluid" alt="${title}">` + 
-                                    `<div class='small text-center text-white font-body-b h5 pt-3 h-100 mb-0'>${title}</div>`;
+                img_div.innerHTML = `<a href='detail/movie/${ea_item[key].id}' class="text-decoration-none">` +
+                                    `<img src="${img_url}" class="img-fluid" alt="${title}">` + 
+                                    `<div class='small text-center text-white font-body-b h5 pt-3 h-100 mb-0'>${title}</div>` +
+                                    `</a>`;
                 posters.append(img_div);
             }
         };
