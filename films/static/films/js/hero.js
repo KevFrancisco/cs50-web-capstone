@@ -27,10 +27,10 @@ function hero(api_key) {
                     hero_img.innerHTML = `<img src="${img_url}" class="img-fluid" alt="${title}">` + 
                                          `<div class="bottom-fade w-100 h-100 position-absolute top-0 left-0"></div>`;
                 let hero_text = document.createElement('div');
-                    hero_text.classList.add('position-absolute', 'left-0', 'bottom-0', 'm-3', 'p-3');
+                    hero_text.classList.add('position-absolute', 'left-0', 'bottom-0', 'mx-5', 'mb-3', 'px-5', 'pb-3');
                     hero_text.innerHTML =   `<div class="h1 mb-2 font-title w-100">${title}</div>` +
                                             `<div class="font-body mb-3">${overview}</div>` +
-                                            `<div class="text-muted small">${vote_average} from ${vote_count} votes | Popularity: ${parseInt(popularity)}</div>` +
+                                            `<div class="text-muted small">Rating: ${vote_average} from ${vote_count} votes | Popularity: ${parseInt(popularity)}</div>` +
                                             `<div class="text-dark small ">Released: ${release_date}</div>`; 
                 hero_img.append(hero_text);
                 // Append to the HERO div

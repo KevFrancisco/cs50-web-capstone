@@ -43,7 +43,7 @@
         {# ############################################################################## #}
         {# ##############################      NAVBAR      ############################## #}
         {# ############################################################################## #}
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-secondary">
+        <nav class="navbar navbar-expand-md navbar-dark navbar-fixed-top bg-secondary">
           <div class="container-fluid">
               <a class="navbar-brand" href="{% url 'index' %}">
                 <i class="fas fa-box-open ml-3 mr-1 showbox-b"></i>
@@ -55,7 +55,7 @@
             <div class="collapse navbar-collapse" id="navbarCollapse">
               <ul class="navbar-nav mr-auto mb-2 mb-md-0">
                 <li class="nav-item active">
-                  <a class="nav-link" aria-current="page" href="#">Home</a>
+                  <a class="nav-link" aria-current="page" href="{% url 'index' %}">Home</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="#">Discover</a>
