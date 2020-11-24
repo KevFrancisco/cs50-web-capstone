@@ -3,6 +3,10 @@
     flex: 0 0 auto;
 }
 
+.mvh-50 {
+    max-height: 50vh;
+}
+
 .bottom-fade {
     background: linear-gradient(to bottom, rgba(0, 0, 0, 0.0) 30%, rgba(00, 00, 00, 1));
 }
@@ -131,7 +135,6 @@ src: url("../webfonts/EncodeSansSemiCondensed-ExtraLight.ttf");
 
 /* HERO */
 .hero-main {
-    max-height: 80vh;
     position: relative;
     margin: 0;
 }

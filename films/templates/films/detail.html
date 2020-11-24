@@ -9,7 +9,7 @@
 {% block body %}
 
 {# ############### HERO SECTION ############### #}
-<div class="bg-darker position-relative vw-100 vh-100 overflow-hidden container-fluid hero-main" id="hero-main">
+<div class="bg-darker position-relative container-fluid hero-main mb-5" id="hero-main">
     <div class="position-absolute left-50 top-50 hide-loader">
         <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
             <span class="sr-only">Loading...</span>
@@ -18,17 +18,28 @@
     <div id="details"></div>
 </div>
 
-<h6>{{api_key}}</h6>
-<h6>{{req_id}}</h6>
-<h6>{{req_type}}</h6>
-<div id="url"></div>
+{# ############### BODY SECTION ############### #}
+<div class="container">
+    <div class="mb-3">
+        <div class="font-title h3">Cast</div>
+        <div id="cast" class="font-body"></div>
+    </div>
+
+</div>
+
+{# <h6>{{api_key}}</h6> #}
+{# <h6>{{req_id}}</h6> #}
+{# <h6>{{req_type}}</h6> #}
+{# <div id="url"></div> #}
 <pre id="response" class="small font-body-b"></pre>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         detail('{{api_key}}', '{{req_type}}', '{{req_id}}');
+        get_cast('{{api_key}}', '{{req_type}}', '{{req_id}}');
     });
 </script>
 <script src="{% static 'films/js/detail.js' %}"></script>
+<script src="{% static 'films/js/cast.js' %}"></script>
 
 {% endblock %}
