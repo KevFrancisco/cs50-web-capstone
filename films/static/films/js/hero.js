@@ -27,7 +27,7 @@ function hero(api_key) {
                     hero_img.innerHTML = `<img src="${img_url}" class="img-fluid" alt="${title}">` + 
                                          `<div class="bottom-fade w-100 h-100 position-absolute top-0 left-0"></div>`;
                 let hero_text = document.createElement('div');
-                    hero_text.classList.add('position-absolute', 'left-0', 'bottom-0', 'mx-5', 'mb-3', 'px-5', 'pb-3');
+                    hero_text.classList.add('position-absolute', 'left-0', 'bottom-0', 'mx-5', 'mb-5', 'px-5', 'pb-3', 'text-shadow-1');
                     hero_text.innerHTML =   `<div class="h1 mb-2 font-title w-100">${title}</div>` +
                                             `<div class="font-body mb-3">${overview}</div>` +
                                             `<div class="text-muted small">Rating: ${vote_average} from ${vote_count} votes | Popularity: ${parseInt(popularity)}</div>` +
@@ -42,10 +42,15 @@ function hero(api_key) {
             slidesToShow: 1,
             infinite: true,
             autoplay: true,
-            autoplaySpeed: 3000,
+            autoplaySpeed: 5000,
             slidesToScroll: 1,
-            arrows: false,
+            fade: true,
+            cssEase: 'linear',
+            arrows: true,
+            nextArrow: '<button class="slick-hero-next slick-custom-next"><i class="fas sc-arrow fa-chevron-right fa-3x"></i></button>',
+            prevArrow: '<button class="slick-hero-prev slick-custom-prev"><i class="fas sc-arrow fa-chevron-left fa-3x"></i></button>',
         });
+        document.title = "ShowBox: Home";
 
     })
 

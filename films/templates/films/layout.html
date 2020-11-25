@@ -3,6 +3,9 @@
 <!DOCTYPE html>
 <html lang="en">
     <head#>
+        {# Favicon #}
+        <link rel="shortcut icon" href="{%  static 'films/favicon.ico' %}">
+
         {# Livereload, as per usual. Isn't there a better way to use this? #}
         <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 
@@ -35,8 +38,12 @@
         {# Jquery #}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-        {% block script%}
+        {% block script %}
         {% endblock %}
+
+        {# TITLE #}
+        <title>{% block title %} ShowBox: Loading {% endblock %}</title>
+
     </head>
     <body class=" overlayscrollbar text-white bg-dark font-body">
 

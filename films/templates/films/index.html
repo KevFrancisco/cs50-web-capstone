@@ -4,37 +4,51 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        discover('{{api_key}}');
         hero('{{api_key}}');
+        discover('{{api_key}}');
+        upcoming('{{api_key}}');
     });
 </script>
-<script src="{% static 'films/js/discover.js' %}"></script>
 <script src="{% static 'films/js/hero.js' %}"></script>
+<script src="{% static 'films/js/discover.js' %}"></script>
+<script src="{% static 'films/js/upcoming.js' %}"></script>
 
 {% endblock %}
 
 {% block body %}
 
-<div class="bg-darker">
+<div class="bg-darker mb-5">
     <div class="w-100 h-auto container">
-        <div class="hero-main overflow-hidden position-relative" id="hero">
+        <div class="hero-main position-relative" id="hero">
         </div>
     </div>
 </div>
 
+{# ########## DISCOVER SECTION ########## #}
 <div class="mx-5 my-3 border-darker">
     <div class="bg-darker p-2 font-title h5 text-center">
         DISCOVER
     </div>
 
     <div class="px-5">
-        <div class="sc-container" id="posters"></div>
+        <div class="sc-container" id="discover"></div>
     </div>   
 </div>
 
-<div class="small d-none">
+{# ########## UPCOMING SECTION ########## #}
+<div class="mx-5 my-3 border-darker">
+    <div class="bg-darker p-2 font-title h5 text-center">
+        UPCOMING
+    </div>
+
+    <div class="px-5">
+        <div class="sc-container" id="upcoming"></div>
+    </div>   
+</div>
+
+<div class="small">
     <pre id="json-raw"></pre>
-    <button class="btn btn-primary btn-lg" onClick="discover('{{api_key}}')">LOAD!</button>
+    {# <button class="btn btn-primary btn-lg" onClick="discover('{{api_key}}')">LOAD!</button> #}
 </div>
 
 {% endblock %}

@@ -2,9 +2,9 @@
 
 {% block script %}
 
-
-
 {% endblock %}
+
+{% block title %}  {% endblock %}
 
 {% block body %}
 
@@ -20,9 +20,23 @@
 
 {# ############### BODY SECTION ############### #}
 <div class="container">
+
+    {# Cast #}
     <div class="mb-3">
         <div class="font-title h3">Cast</div>
         <div id="cast" class="font-body"></div>
+    </div>
+
+    {# Trailers #}
+    <div class="mb-3">
+        <div class="font-title h3">Trailers</div>
+        <div id="trailers"></div>
+    </div>
+
+    {# Reviews #}
+    <div class="mb-3">
+        <div class="font-title h3">Reviews</div>
+        <div id="reviews"></div>
     </div>
 
 </div>
@@ -35,11 +49,19 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
+        {# Fetch the Hero section #}
         detail('{{api_key}}', '{{req_type}}', '{{req_id}}');
+        {# Fetch the Cast #}
         get_cast('{{api_key}}', '{{req_type}}', '{{req_id}}');
+        {# Fetch Trailers #}
+        get_trailers('{{api_key}}', '{{req_type}}', '{{req_id}}');
+        {# Fetch Reviews #}
+        get_reviews('{{api_key}}', '{{req_type}}', '{{req_id}}');
     });
 </script>
 <script src="{% static 'films/js/detail.js' %}"></script>
 <script src="{% static 'films/js/cast.js' %}"></script>
+<script src="{% static 'films/js/trailers.js' %}"></script>
+<script src="{% static 'films/js/reviews.js' %}"></script>
 
 {% endblock %}

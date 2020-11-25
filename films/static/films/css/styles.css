@@ -8,7 +8,13 @@
 }
 
 .bottom-fade {
-    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.0) 30%, rgba(00, 00, 00, 1));
+    background: linear-gradient(to bottom,
+                                rgba(0, 0, 0, 0.0) 45%,
+                                rgba(00, 00, 00, 1));
+}
+
+.text-shadow-1 {
+    text-shadow: 1px 1px 2px black;
 }
 
 .bg-darker {
@@ -54,16 +60,31 @@
     border: none;
     outline: none;
     background: transparent;
+    z-index: 1;
 }
 .slick-custom-prev
 {
     left: -20px;
 }
-
 .slick-custom-next
 {
     right: -20px;
 }
+.slick-hero-prev,
+.slick-hero-next {
+    font-size: 1.5rem;
+    opacity: 0.5;
+    text-shadow: 2px 2px 3px black;
+    height: 100%;
+    padding: 0px 10px;
+}
+.slick-hero-prev {
+    left: 0px;
+}
+.slick-hero-next {
+    right: 0px;
+}
+
 .sc-arrow {
     opacity: 1;
 }

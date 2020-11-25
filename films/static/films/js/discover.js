@@ -7,40 +7,37 @@ function discover(api_key) {
     })
     .then(Response => Response.json())
     .then(r =>{
-        console.log(r);
-        el = document.getElementById('json-raw');
-        el.innerText = JSON.stringify(r, undefined, 2);
-        
-        console.log(r.results);
+        // ### DEBUGGING ### //
+        // console.log(r);
+        // el = document.getElementById('json-raw');
+        // el.innerText = JSON.stringify(r, undefined, 2);
+        // console.log(r.results);
 
-        // let posters = document.getElementById('posters');
-        let posters = document.getElementById('posters');
+        let discover = document.getElementById('discover');
         let ea_item = r.results;
+      
         // Let's try to display the images
         for (var key in ea_item) {
             if (ea_item.hasOwnProperty(key)) {
-                // console.log(ea_item[key].original_title);
-                // console.log(ea_item[key].poster_path);
-                
-                let title = ea_item[key].original_title;
+                let title = ea_item[key].title;
                 let img_url = `https://image.tmdb.org/t/p/original${ea_item[key].poster_path}`;
                 // console.log(img_url);
 
                 let img_div = document.createElement('div');
-                img_div.classList.add('w-10', 'm-3', 'h-100');
+                img_div.classList.add('w-10', 'mx-3', 'p-3', 'h-100');
                 img_div.innerHTML = `<a href='detail/movie/${ea_item[key].id}' class="text-decoration-none">` +
                                     `<img src="${img_url}" class="img-fluid" alt="${title}">` + 
                                     `<div class='small text-center text-white font-body-b h5 pt-3 h-100 mb-0'>${title}</div>` +
                                     `</a>`;
-                posters.append(img_div);
+                discover.append(img_div);
             }
         };
         // OverlayScrollbars(document.querySelectorAll(".poster-container"), { });
-        $('#posters').slick({
-            slidesToShow: 9,
+        $('#discover').slick({
+            slidesToShow: 7,
             infinite: true,
             autoplay: true,
-            autoplaySpeed: 1100,
+            autoplaySpeed: 1500,
             arrows: true,
             nextArrow: '<button class="slick-custom-next"><i class="fas sc-arrow fa-chevron-right fa-3x"></i></button>',
             prevArrow: '<button class="slick-custom-prev"><i class="fas sc-arrow fa-chevron-left fa-3x"></i></button>',
@@ -48,7 +45,7 @@ function discover(api_key) {
                 {
                   breakpoint: 1200,
                   settings: {
-                    slidesToShow: 7,
+                    slidesToShow: 5,
                     slidesToScroll: 5,
                   }
                 },
