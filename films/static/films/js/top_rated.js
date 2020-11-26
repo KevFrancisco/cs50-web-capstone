@@ -19,7 +19,7 @@ function top_rated(api_key, req_type) {
         for (var key in ea_item) {
             if (ea_item.hasOwnProperty(key)) {
                 let title = ea_item[key].title;
-                let img_url = `https://image.tmdb.org/t/p/original${ea_item[key].poster_path}`;
+                let img_url = `https://image.tmdb.org/t/p/w154${ea_item[key].poster_path}`;
                 let img_div = document.createElement('div');
 
                 img_div.classList.add('w-10', 'mx-3', 'p-3', 'h-100');
@@ -28,7 +28,7 @@ function top_rated(api_key, req_type) {
                             <div class='small text-center bg-darker text-muted font-body-l py-1'>
                                 ${ea_item[key].vote_average}
                             </div>
-                            <img src="${img_url}" class="img-fluid" alt="${title}">
+                            <img src="${img_url}" class="mx-auto img-fluid" alt="${title}">
                             <div class='small text-center text-white font-body-b h5 pt-3 h-100 mb-0'>${title}</div>
                         </a>
                                 `;
@@ -73,6 +73,7 @@ function top_rated(api_key, req_type) {
                 },
             ]
         });
+        document.getElementById('top_rated-section').classList.add('wow');
 
     })
 

@@ -21,14 +21,14 @@ function upcoming(api_key, req_type) {
                 // console.log(ea_item[key].poster_path);
                 
                 let title = ea_item[key].title;
-                let img_url = `https://image.tmdb.org/t/p/original${ea_item[key].poster_path}`;
+                let img_url = `https://image.tmdb.org/t/p/w154${ea_item[key].poster_path}`;
                 // console.log(img_url);
 
                 let img_div = document.createElement('div');
                 img_div.classList.add('w-10', 'mx-3', 'p-3', 'h-100');
                 img_div.innerHTML = `<a href='detail/movie/${ea_item[key].id}' class="text-decoration-none">` +
                                     `<div class='small text-center bg-darker text-muted font-body-l py-1'>${ea_item[key].release_date}</div>` +
-                                    `<img src="${img_url}" class="img-fluid" alt="${title}">` + 
+                                    `<img src="${img_url}" class="mx-auto img-fluid" alt="${title}">` + 
                                     `<div class='small text-center text-white font-body-b h5 pt-3 h-100 mb-0'>${title}</div>` +
                                     `</a>`;
                 upcoming.append(img_div);

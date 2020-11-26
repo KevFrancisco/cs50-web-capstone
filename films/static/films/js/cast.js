@@ -29,7 +29,7 @@ function get_cast(api_key, req_type, req_id) {
                     img_url = 'http://via.placeholder.com/300x450'
                     profile_picture = `
                                 <div class="w-100 h-auto bg-primary position-relative">
-                                    <div class="profile-placeholder bg-darker w-100 h-100 position-absolute">
+                                    <div class="w-100 h-100 bg-darker position-absolute">
                                         <div class="position-absolute top-50 left-50 translate-middle">
                                             <i class="far fa-user fa-5x text-light"></i>
                                         </div>

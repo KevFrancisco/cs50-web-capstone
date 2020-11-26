@@ -33,6 +33,19 @@
     opacity: 0;
 }
 
+.slow-internet-gradient {
+    background-color: #000000;
+    background-image: linear-gradient(315deg, #000000 0%, #b82e1f 74%);
+}
+
+.labor-worker-gradient {
+    background-color: #000000;
+    background-image: linear-gradient(147deg, #000000 0%, #2c3e50 74%);
+}
+.night-shift-gradient {
+    background-color: #2b4162;
+    background-image: linear-gradient(148deg, #2b4162 0%, #12100e 74%);
+}
 
 /* PROFILE PLACEHOLDER */
 .profile-placeholder {
@@ -165,4 +178,18 @@ src: url("../webfonts/EncodeSansSemiCondensed-ExtraLight.ttf");
 .hero-main {
     position: relative;
     margin: 0;
+}
+
+
+/* WOW Animation */
+.wow {
+  visibility: hidden;
+}
+
+.mw-154px {
+    width: 154px;
+}
+
+.mh-231px {
+    height: 231px;
 }

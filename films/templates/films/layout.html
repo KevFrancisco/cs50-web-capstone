@@ -10,7 +10,6 @@
         <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 
         {# Bootstrap V5! #}
-        <script src="{% static 'films/js/bootstrap.bundle.min.js' %}"></script>
         <link rel="stylesheet" href="{% static 'films/css/bootstrap.min.css' %}">
         
         {# Font Awesome #}
@@ -35,8 +34,8 @@
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 
-        {# Jquery #}
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        {# MDB Bootstrap #}
+        <link rel="stylesheet" href="{% static 'films/css/mdb.min.css' %}">
 
         {% block script %}
         {% endblock %}
@@ -45,12 +44,12 @@
         <title>{% block title %} ShowBox: Loading {% endblock %}</title>
 
     </head>
-    <body class=" overlayscrollbar text-white bg-dark font-body">
+    <body class=" overlayscrollbar text-white night-shift-gradient font-body">
 
         {# ############################################################################## #}
         {# ##############################      NAVBAR      ############################## #}
         {# ############################################################################## #}
-        <nav class="navbar navbar-expand-md navbar-dark navbar-fixed-top bg-secondary">
+        <nav class="navbar navbar-expand-md navbar-dark navbar-fixed-top orange darken-4">
           <div class="container-fluid">
               <a class="navbar-brand" href="{% url 'index' %}">
                 <i class="fas fa-box-open ml-3 mr-1 showbox-b"></i>
@@ -71,24 +70,30 @@
                   <a class="nav-link" href="#">Browse</a>
                 </li>
               </ul>
-              <form class="d-flex mr-3">
-                <input class="form-control mr-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-success" type="submit">Search</button>
-              </form>
+                <form class="form-inline">
+                  <div class="md-form my-0 mr-5">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                  </div>
+                </form>
             </div>
           </div>
         </nav>
 
-        {# ############################################################################ #}
         {# ##############################      BODY      ############################## #}
-        {# ############################################################################ #}
         {% block body %}
         {% endblock %}
 
-        {# ####################################### #}
         {# #####       SLICK CAROUSELL       ##### #}
-        {# ####################################### #}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-
+        <script src="{% static 'films/js/bootstrap.bundle.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'films/js/mdb.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'films/js/wow.min.js' %}"></script>
+        <script type="text/javascript">
+            $( document ).ready(function() {
+                  new WOW().init();
+            });
+            $( ".wow" ).addClass( "fadeInDown" );
+        </script>
     </body>
 </html>

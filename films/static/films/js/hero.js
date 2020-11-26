@@ -9,6 +9,7 @@ function hero(api_key) {
     .then(r =>{
         let hero = document.getElementById('hero');
         let ea_item = r.results;
+
         // Let's try to display the images
         for (var key in ea_item) {
             if (ea_item.hasOwnProperty(key)) {

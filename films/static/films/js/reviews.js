@@ -14,6 +14,10 @@ function get_reviews(api_key, req_type, req_id) {
 
         let reviews = document.getElementById('reviews');
         let ea_item = r.results;
+        if (ea_item.length < 1) {
+            reviews.innerHTML = `No reviews available.`;
+            return
+        };
 
         // Let's try to display the images
         for (var key in ea_item) {
@@ -33,7 +37,7 @@ function get_reviews(api_key, req_type, req_id) {
                                     <div class="border border-light p-3">
                                         <div>
                                             ${trimmedString}
-                                            <a href="${rev_url}" class="badge bg-primary">
+                                            <a href="${rev_url}" class="badge badge-primary">
                                                 <span>
                                                     Read More
                                                 </span>
@@ -43,8 +47,8 @@ function get_reviews(api_key, req_type, req_id) {
                                     <div class="bg-darker d-flex">
                                         <div class="p-2">Rating: ${rating}</div>
                                         <div class="p-2 ml-auto">${author}</div>
-                                    <a class="btn btn-secondary" href="${rev_url}">View in TMDB</a>
                                     </div>
+                                    <a class="btn btn-orange btn-sm" href="${rev_url}">View in TMDB</a>
                                 `;
                 reviews.append(trailer_div);
             }
