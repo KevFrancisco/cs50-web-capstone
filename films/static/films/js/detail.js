@@ -27,20 +27,21 @@ function detail(api_key, req_type, req_id) {
                     `rgb(11,11,11) url(${backdrop_img_url}) no-repeat scroll center/100%`);
         let details = document.getElementById('details');
             details.classList.add('d-flex', 'container', 'py-5');
-            details.innerHTML= 
-                `<div class="col-auto py-5 pr-5">` +
-                    `<div class="mx-auto">` + 
-                        `<img src="${poster_img_url}" class="d-block mx-auto w-auto mvh-50" alt="${r.title}">` +
-                    `</div>` +
-                `</div>` +
-                `<div class="col mr-5 my-5">` +
-                    `<div class="display-1 pb-3 font-title">${r.title}</div>` +
-                    `<div class="pb-5 h5">${r.overview}</div>` +
-                    `<div id="hero-genres" class="pb-1"></div>` +
-                    `<div class="pt-3 small text-muted">Rating: ${r.vote_average} from ${r.vote_count} votes</div>` +
-                    `<div class="small text-muted">Popularity: ${r.popularity}</div>` +
-                    `<div class="pb-3 small text-muted">${r.status}: ${r.release_date}</div>` +
-                `</div>`;
+            details.innerHTML= ` 
+                    <div class="col-auto py-5 pr-5">
+                        <div class="mx-auto"> 
+                            <img src="${poster_img_url}" class="d-block mx-auto w-auto mvh-50" alt="${r.title}">
+                        </div>
+                    </div>
+                    <div class="col mr-5 my-5">
+                        <div class="display-1 pb-3 font-title">${r.title}</div>
+                        <div class="pb-5 h5">${r.overview}</div>
+                        <div id="hero-genres" class="pb-1"></div>
+                        <div class="pt-3 small text-muted">Rating: ${r.vote_average} from ${r.vote_count} votes</div>
+                        <div class="small text-muted">Popularity: ${r.popularity}</div>
+                        <div class="pb-3 small text-muted">${r.status}: ${r.release_date}</div>
+                    </div>
+                `;
                 r.genres.forEach( (genre, index) => {
                         function toPipe(i) {
                             if (i != 0) {

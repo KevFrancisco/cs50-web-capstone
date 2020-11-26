@@ -8,10 +8,9 @@ function get_reviews(api_key, req_type, req_id) {
     .then(Response => Response.json())
     .then(r =>{
         // ### DEBUGGING ### //
-        console.log(r);
-        el = document.getElementById('response');
-        el.innerText = JSON.stringify(r, undefined, 2);
-        // console.log(r.results);
+        // console.log(r);
+        // el = document.getElementById('response');
+        // el.innerText = JSON.stringify(r, undefined, 2);
 
         let reviews = document.getElementById('reviews');
         let ea_item = r.results;
@@ -21,13 +20,32 @@ function get_reviews(api_key, req_type, req_id) {
             if (ea_item.hasOwnProperty(key)) {
                 let trailer_div = document.createElement('div');
                 trailer_div.classList.add('mx-3', 'p-3');
-                trailer_div.innerHTML = `<div class="border border-light p-3">` + 
-                                            `<div>${ea_item[key].content}</div>` +
-                                        `</div>` +
-                                        `<div class="bg-darker d-flex">` + 
-                                            `<div class="p-2">Rating: ${ea_item[key].author_details.rating}</div>` +
-                                            `<div class="p-2 ml-auto">${ea_item[key].author}</div>` +
-                                        `</div>`
+
+                let rating = ea_item[key].author_details.rating;
+                // Trim the review to 250 chars, then add ellipses
+                let content = ea_item[key].content;
+                let length = 500;
+                let trimmedString = content.length > length ? content.substring(0, length - 3) + "..." : content.substring(0, length);
+
+                let author = ea_item[key].author;
+                let rev_url = ea_item[key].url;
+                trailer_div.innerHTML = `
+                                    <div class="border border-light p-3">
+                                        <div>
+                                            ${trimmedString}
+                                            <a href="${rev_url}" class="badge bg-primary">
+                                                <span>
+                                                    Read More
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="bg-darker d-flex">
+                                        <div class="p-2">Rating: ${rating}</div>
+                                        <div class="p-2 ml-auto">${author}</div>
+                                    <a class="btn btn-secondary" href="${rev_url}">View in TMDB</a>
+                                    </div>
+                                `;
                 reviews.append(trailer_div);
             }
         };

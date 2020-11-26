@@ -1,6 +1,6 @@
-function upcoming(api_key) {
+function upcoming(api_key, req_type) {
     // API Url from test documentation
-    let url = `https://api.themoviedb.org/3/movie/upcoming?api_key=${api_key}&language=en-US&page=1`
+    let url = `https://api.themoviedb.org/3/${req_type}/upcoming?api_key=${api_key}&language=en-US&page=1`
     
     fetch(url, {
         method: "GET",
@@ -9,8 +9,8 @@ function upcoming(api_key) {
     .then(r =>{
         // console.log(r);
         // console.log(r.results);
-        el = document.getElementById('json-raw');
-        el.innerText = JSON.stringify(r, undefined, 2);
+        // el = document.getElementById('json-raw');
+        // el.innerText = JSON.stringify(r, undefined, 2);
 
         let upcoming = document.getElementById('upcoming');
         let ea_item = r.results;
@@ -38,8 +38,6 @@ function upcoming(api_key) {
         $('#upcoming').slick({
             slidesToShow: 7,
             infinite: true,
-            autoplay: true,
-            autoplaySpeed: 3000,
             arrows: true,
             nextArrow: '<button class="slick-custom-next"><i class="fas sc-arrow fa-chevron-right fa-3x"></i></button>',
             prevArrow: '<button class="slick-custom-prev"><i class="fas sc-arrow fa-chevron-left fa-3x"></i></button>',

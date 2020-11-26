@@ -8,10 +8,13 @@ TMDB_REQ_URL = "https://api.themoviedb.org/3/"
 def index(request):
     heading_title = "ShowPot!"
     api_key = os.environ.get("TMDB_API_KEY")
+    # TODO for now movies only
+    req_type = "movie"
 
     context =  {
         'heading_title': heading_title,
         'api_key': api_key,
+        'req_type': req_type,
         # 'data': data,
     }
     

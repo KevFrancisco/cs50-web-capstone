@@ -5,18 +5,23 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         hero('{{api_key}}');
-        discover('{{api_key}}');
-        upcoming('{{api_key}}');
+        discover('{{api_key}}', '{{req_type}}');
+        popular('{{api_key}}', '{{req_type}}');
+        top_rated('{{api_key}}', '{{req_type}}');
+        upcoming('{{api_key}}', '{{req_type}}');
     });
 </script>
 <script src="{% static 'films/js/hero.js' %}"></script>
 <script src="{% static 'films/js/discover.js' %}"></script>
+<script src="{% static 'films/js/popular.js' %}"></script>
+<script src="{% static 'films/js/top_rated.js' %}"></script>
 <script src="{% static 'films/js/upcoming.js' %}"></script>
 
 {% endblock %}
 
 {% block body %}
 
+{# ########## HERO SECTION ########## #}
 <div class="bg-darker mb-5">
     <div class="w-100 h-auto container">
         <div class="hero-main position-relative" id="hero">
@@ -32,6 +37,28 @@
 
     <div class="px-5">
         <div class="sc-container" id="discover"></div>
+    </div>   
+</div>
+
+{# ########## POPULAR SECTION ########## #}
+<div class="mx-5 my-3 border-darker">
+    <div class="bg-darker p-2 font-title h5 text-center">
+        POPULAR
+    </div>
+
+    <div class="px-5">
+        <div class="sc-container" id="popular"></div>
+    </div>   
+</div>
+
+{# ########## TOP RATED SECTION ########## #}
+<div class="mx-5 my-3 border-darker">
+    <div class="bg-darker p-2 font-title h5 text-center">
+        TOP RATED
+    </div>
+
+    <div class="px-5">
+        <div class="sc-container" id="top_rated"></div>
     </div>   
 </div>
 
