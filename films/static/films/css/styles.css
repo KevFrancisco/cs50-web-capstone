@@ -35,8 +35,8 @@
 
 .visions-of-grandeur-gradient {
     background: #141E30;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to bottom, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to bottom, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: -webkit-linear-gradient(to bottom, #243B55, #141E30) no-repeat center/100%;  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #243B55, #141E30) no-repeat center/100%; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 .main-bg-darker {
     background: rgba(15, 15, 15, 1) linear-gradient(40deg, #45cafc, #303f9f);
@@ -45,7 +45,7 @@
 /* Carousel Hover */
 .hoverable { 
     cursor: pointer !important;
-    opacity: 0.85;
+    opacity: 0.8;
 }
 
 .hoverable:hover {
@@ -100,7 +100,7 @@
 .slick-hero-prev,
 .slick-hero-next {
     font-size: 1.5rem;
-    opacity: 0.5;
+    opacity: 0.8;
     text-shadow: 2px 2px 3px black;
     /* height: 100%; */
     padding: 0px 10px;
@@ -117,6 +117,7 @@
 }
 .sc-arrow:hover {
     color: orange;
+    stroke: orange;
 }
 
 /* FONTS */
@@ -200,26 +201,43 @@ src: url("../webfonts/EncodeSansSemiCondensed-ExtraLight.ttf");
     bottom: 0%;
 }
 
-.translate-middle {
+.top-0 {
+    top: 0%;
+}
+.top-10 {
+    top: 10%;
+}
+.top-20 {
+    top: 20%;
+}
+.top-50 {
+    top:50%
+}
+
+.right-0 {
+    right: 0%;
+}
+
+.opacity-50 {
+    opacity: 0.5;
+}
+.opacity-80 {
+    opacity: 0.8;
+}
+.z-index-1 {
+    z-index: 1;
+}
+
+.translate-middle-x {
     transform: translate(-50%, 0%);
+}
+.translate-middle {
+    transform: translate(-50%, -50%);
 }
 
 /* LOGO */
 .showbox-b {
     font-size: 2rem;
-}
-
-/* WOW Animation */
-.wow {
-  visibility: hidden;
-}
-
-.mw-154px {
-    width: 154px;
-}
-
-.mh-231px {
-    height: 231px;
 }
 
 .letter-space-5 {

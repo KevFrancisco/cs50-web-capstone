@@ -34,7 +34,7 @@ function detail(api_key, req_type, req_id) {
                         </div>
                     </div>
                     <div class="col mr-5 my-5">
-                        <div class="display-1 pb-3 font-title">${r.title}</div>
+                        <div class="display-3 pb-3 font-title">${r.title}</div>
                         <div class="pb-5 h5">${r.overview}</div>
                         <div id="hero-genres" class="pb-1"></div>
                         <div class="pt-3 small text-muted">Rating: ${r.vote_average} from ${r.vote_count} votes</div>

@@ -1,6 +1,11 @@
 function get_carousel(api_key, req_type, section) {
     // API Url from test documentation
-    let url = `https://api.themoviedb.org/3/${req_type}/${section}?api_key=${api_key}&language=en-US&page=1`
+    let url;
+    if (section === "discover") {
+        url =`https://api.themoviedb.org/3/discover/${req_type}?api_key=${api_key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1`
+    } else {
+        url = `https://api.themoviedb.org/3/${req_type}/${section}?api_key=${api_key}&language=en-US&page=1`
+    }
     
     fetch(url, {
         method: "GET",
@@ -23,28 +28,37 @@ function get_carousel(api_key, req_type, section) {
                 let title = ea_item[key].title;
                 let img_url = `https://image.tmdb.org/t/p/w185${ea_item[key].poster_path}`;
                 let img_div = document.createElement('div');
+                let rating = `<i class="fas fa-star"></i> ${ea_item[key].vote_average}`;
 
-                img_div.classList.add('w-10', 'mx-3', 'p-3', 'h-100');
+                img_div.classList.add('w-10', 'mx-4', 'p-3', 'h-100');
                 let addtl_detail;
-                switch (section) {
+                switch (section) { 
+                    case "discover":
+                        addtl_detail = `Lorem Ipsum Dolor Sit Amet`;
+                        break;
                     case "popular":
-                        addtl_detail = ea_item[key].popularity;
+                        addtl_detail = parseInt(ea_item[key].popularity);
+                        break;
                     case "upcoming":
                         addtl_detail = ea_item[key].release_date;
-
+                        break;
                     case "top_rated":
-                        addtl_detail = ea_item[key].vote_average;
+                        addtl_detail = `<i class="fas fa-star"></i> ${ea_item[key].vote_average}`;
+                        break;
 
                 }
+
                 let temp_str = `
-                    <a href='detail/movie/${ea_item[key].id}' class="text-decoration-none">
-                        <div class='small text-center bg-darker text-muted font-body-l py-1'>
-                            ${addtl_detail}
+                    <a href='detail/movie/${ea_item[key].id}' class="zoom text-decoration-none">
+                        <div class="position-relative">
+                            <div class='small position-absolute top-0 right-0 text-white mt-3 px-2 py-1 rgba-stylish-strong opacity-90 z-index-1'>${rating}</div>
+                            <div class="view overlay hoverable">
+                                <img src="${img_url}" class="mx-auto img-fluid" alt="${title}">
+                            </div>
+                            <div class='text-white font-body-b pt-3'>${title}</div>
+                            <div class='text-white font-body-el mb-4'>${addtl_detail}</div>
+
                         </div>
-                        <div class="view overlay hoverable">
-                            <img src="${img_url}" class="mx-auto img-fluid" alt="${title}">
-                        </div>
-                        <div class='small text-center text-white font-body-b h5 pt-3 h-100 mb-0'>${title}</div>
                     </a>
                         `;
                 
@@ -55,12 +69,21 @@ function get_carousel(api_key, req_type, section) {
             }
         };
 
+        let chev_right = `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left sc-arrow" width="80" height="80" viewBox="0 0 24 24" stroke-width="0.5" stroke="#dddddd" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                              <polyline points="15 6 9 12 15 18" />
+                            </svg>`
+        let chev_left = `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right sc-arrow" width="80" height="80" viewBox="0 0 24 24" stroke-width="0.5" stroke="#dddddd" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                              <polyline points="9 6 15 12 9 18" />
+                            </svg>`
+
         section_div.slick({
             slidesToShow: 7,
             infinite: true,
             arrows: true,
-            nextArrow: '<button class="slick-custom-next"><i class="fas sc-arrow fa-chevron-right fa-3x"></i></button>',
-            prevArrow: '<button class="slick-custom-prev"><i class="fas sc-arrow fa-chevron-left fa-3x"></i></button>',
+            nextArrow: `<button class="slick-custom-next translat-middle">${chev_left}</button>`,
+            prevArrow: `<button class="slick-custom-prev translat-middle">${chev_right}</button>`,
             responsive: [
                 {
                   breakpoint: 1200,
@@ -92,6 +115,7 @@ function get_carousel(api_key, req_type, section) {
                 },
             ]
         });
+        AOS.refresh();
 
     })
 

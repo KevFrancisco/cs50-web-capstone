@@ -28,8 +28,8 @@ function get_cast(api_key, req_type, req_id) {
                 if (ea_item[key].profile_path === null) {
                     img_url = 'http://via.placeholder.com/300x450'
                     profile_picture = `
-                                <div class="w-100 h-auto bg-primary position-relative">
-                                    <div class="w-100 h-100 bg-darker position-absolute">
+                                <div class="w-100 h-auto bg-primary position-relative" >
+                                    <div class="w-100 h-100 stylish-color position-absolute">
                                         <div class="position-absolute top-50 left-50 translate-middle">
                                             <i class="far fa-user fa-5x text-light"></i>
                                         </div>
@@ -90,6 +90,7 @@ function get_cast(api_key, req_type, req_id) {
             ]
         });
 
+        AOS.refresh();
     })
 
 }

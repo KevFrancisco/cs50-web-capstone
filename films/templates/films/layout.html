@@ -20,27 +20,15 @@
         <link rel="stylesheet" href="{% static 'films/css/styles.css' %}">
 
         {# Overlay Scrollbars #}
-        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.0/js/OverlayScrollbars.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.0/css/OverlayScrollbars.min.css">
-
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                //The first argument are the elements to which the plugin shall be initialized
-                //The second argument has to be at least a empty object or a object with your desired options
-                OverlayScrollbars(document.querySelectorAll(".overlayscrollbar"), { });
-            });
-        </script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.0/js/OverlayScrollbars.min.js"></script>
         
         {# Slick Carousel CSS #}
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 
-        {# Animations #}
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-        <link rel="stylesheet" href="{% static 'films/css/animations-extended.min.css' %}">
-
-        {# MDB Bootstrap #}
         <link rel="stylesheet" href="{% static 'films/css/mdb.min.css' %}">
+        <link rel="stylesheet" href="{% static 'films/css/aos.css' %}">
 
         {% block script %}
         {% endblock %}
@@ -88,29 +76,17 @@
         {% block body %}
         {% endblock %}
 
-        {# #####       SLICK CAROUSELL       ##### #}
+        {# SCRIPTS #}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script type="text/javascript" src="{% static 'films/js/wow.min.js' %}"></script>
         <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-        {# Bootstrap local #}
-        {# <script src="{% static 'films/js/bootstrap.bundle.min.js' %}"></script> #}
-        {# Bootstrap 4 #}
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+        <script src="{% static 'films/js/bootstrap.bundle.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'films/js/aos.js' %}"></script>
         <script type="text/javascript" src="{% static 'films/js/mdb.min.js' %}"></script>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                var wow = new WOW(
-                      {
-                      boxClass:     'wow',      // default
-                      animateClass: 'animated', // default
-                      offset:       0,          // default
-                      mobile:       true,       // default
-                      live:         true        // default
-                    }
-                    )
-                    wow.init();
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // OverlayScrollbars(document.querySelectorAll(".overlayscrollbar"), { }); #}
+                AOS.init();
             });
-            {# $( ".wow" ).addClass( "fadeInDown" ); #}
         </script>
     </body>
 </html>

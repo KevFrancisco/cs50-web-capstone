@@ -24,14 +24,14 @@ function hero(api_key) {
 
                 // HERO
                 let hero_img = document.createElement('div');
-                hero_img.classList.add('overflow-hidden', 'position-relative', 'vh-100', 'vw-100', 'hero-animated');
+                hero_img.classList.add('overflow-hidden', 'position-relative', 'vh-100', 'vw-100');
                     hero_img.style.background = (
                         `linear-gradient(0deg, rgb(0, 0, 0) 5%, rgba(25, 25, 25, 0.5) 80%) no-repeat scroll center,` +
                         `rgb(11,11,11) url(${img_url}) no-repeat scroll center/cover`);
                     // hero_img.innerHTML = `<img src="${img_url}" class="img-fluid" alt="${title}">
                     //                       <div class="bottom-fade w-100 h-100 position-absolute top-0 left-0"></div>`;
                 let hero_text = document.createElement('div');
-                    hero_text.classList.add('position-absolute', 'translate-middle','left-50', 'bottom-10', 'px-5','text-shadow-1', 'col-xl-9');
+                    hero_text.classList.add('position-absolute', 'translate-middle-x','left-50', 'bottom-10', 'px-5','text-shadow-1', 'col-xl-9');
                     hero_text.innerHTML =   `<div class="h1 mb-2 font-title w-100">${title}</div>` +
                                             `<div class="font-body mb-3">${overview}</div>` +
                                             `<div class="text-muted small">Rating: ${vote_average} from ${vote_count} votes | Popularity: ${parseInt(popularity)}</div>` +
@@ -42,6 +42,14 @@ function hero(api_key) {
             }
         };
         // OverlayScrollbars(document.querySelectorAll(".poster-container"), { });
+        let chev_right = `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left sc-arrow" width="120" height="120" viewBox="0 0 24 24" stroke-width="1" stroke="#dddddd" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                              <polyline points="15 6 9 12 15 18" />
+                            </svg>`
+        let chev_left = `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right sc-arrow" width="120" height="120" viewBox="0 0 24 24" stroke-width="1" stroke="#dddddd" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                              <polyline points="9 6 15 12 9 18" />
+                            </svg>`
         $('#hero').slick({
             slidesToShow: 1,
             infinite: true,
@@ -51,8 +59,8 @@ function hero(api_key) {
             fade: true,
             cssEase: 'linear',
             arrows: true,
-            nextArrow: '<button class="slick-hero-next slick-custom-next"><i class="fas sc-arrow fa-chevron-right fa-3x"></i></button>',
-            prevArrow: '<button class="slick-hero-prev slick-custom-prev"><i class="fas sc-arrow fa-chevron-left fa-3x"></i></button>',
+            nextArrow: `<button class="slick-hero-next slick-custom-next">${chev_left}</button>`,
+            prevArrow: `<button class="slick-hero-prev slick-custom-prev">${chev_right}</button>`,
         });
         document.title = "ShowBox: Home";
         // $('#hero-loader').remove();
