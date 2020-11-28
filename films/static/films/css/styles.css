@@ -9,7 +9,7 @@
 
 .bottom-fade {
     background: linear-gradient(to bottom,
-                                rgba(0, 0, 0, 0.0) 45%,
+                                rgba(0, 0, 0, 0.5) 45%,
                                 rgba(00, 00, 00, 1));
 }
 
@@ -18,7 +18,7 @@
 }
 
 .bg-darker {
-    background: rgba(0, 0, 0, 0.8);
+    background: rgba(0, 0, 0, 0.3);
 }
 
 .border-darker {
@@ -33,19 +33,26 @@
     opacity: 0;
 }
 
-.slow-internet-gradient {
-    background-color: #000000;
-    background-image: linear-gradient(315deg, #000000 0%, #b82e1f 74%);
+.visions-of-grandeur-gradient {
+    background: #141E30;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to bottom, #243B55, #141E30);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #243B55, #141E30); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+.main-bg-darker {
+    background: rgba(15, 15, 15, 1) linear-gradient(40deg, #45cafc, #303f9f);
 }
 
-.labor-worker-gradient {
-    background-color: #000000;
-    background-image: linear-gradient(147deg, #000000 0%, #2c3e50 74%);
+/* Carousel Hover */
+.hoverable { 
+    cursor: pointer !important;
+    opacity: 0.85;
 }
-.night-shift-gradient {
-    background-color: #2b4162;
-    background-image: linear-gradient(148deg, #2b4162 0%, #12100e 74%);
+
+.hoverable:hover {
+    opacity: 1;
 }
+
+
 
 /* PROFILE PLACEHOLDER */
 .profile-placeholder {
@@ -168,18 +175,39 @@ src: url("../webfonts/EncodeSansSemiCondensed-ExtraLight.ttf");
     font-family: 'Encode Sans Semi Condensed-ExtraLight', sans-serif;
 }
 
+.carousel-hr {
+    background-image: radial-gradient(circle, rgba(210, 208, 208, 0.190914) 0%, rgba(210, 208, 208, 0) 90%);
+    border: none;
+    height: 3px;
+}
+
+/* POSITIONING */
+.loader-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+.left-50 {
+    left: 50%;
+}
+
+.bottom-10 {
+    bottom: 10%;
+}
+
+.bottom-0 {
+    bottom: 0%;
+}
+
+.translate-middle {
+    transform: translate(-50%, 0%);
+}
 
 /* LOGO */
 .showbox-b {
     font-size: 2rem;
 }
-
-/* HERO */
-.hero-main {
-    position: relative;
-    margin: 0;
-}
-
 
 /* WOW Animation */
 .wow {
@@ -192,4 +220,8 @@ src: url("../webfonts/EncodeSansSemiCondensed-ExtraLight.ttf");
 
 .mh-231px {
     height: 231px;
+}
+
+.letter-space-5 {
+    letter-spacing: 0.5rem;
 }

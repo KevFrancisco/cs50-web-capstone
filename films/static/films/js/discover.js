@@ -21,15 +21,18 @@ function discover(api_key, req_type) {
             if (ea_item.hasOwnProperty(key)) {
                 let title = ea_item[key].title;
                 // let img_url = `https://image.tmdb.org/t/p/original${ea_item[key].poster_path}`;
-                let img_url = `https://image.tmdb.org/t/p/w154${ea_item[key].poster_path}`;
+                let img_url = `https://image.tmdb.org/t/p/w185${ea_item[key].poster_path}`;
                 // console.log(img_url);
 
                 let img_div = document.createElement('div');
-                img_div.classList.add('w-10', 'mx-3', 'p-3', 'h-100');
-                img_div.innerHTML = `<a href='detail/movie/${ea_item[key].id}' class="text-decoration-none">` +
-                                    `<img src="${img_url}" class="mx-auto img-fluid" alt="${title}">` + 
-                                    `<div class='small text-center text-white font-body-b h5 pt-3 h-100 mb-0'>${title}</div>` +
-                                    `</a>`;
+                    img_div.classList.add('w-10', 'mx-3', 'p-3', 'h-100');
+                let temp_str = `
+                        <a href='detail/movie/${ea_item[key].id}' class="text-decoration-none zoom hoverable">
+                            <img src="${img_url}" class="mx-auto img-fluid" alt="${title}">
+                            <div class='small text-center text-white font-body-b pt-3 h-100 mb-3'>${title}</div>
+                        </a>
+                        `;
+                img_div.insertAdjacentHTML('beforeend', temp_str)
                 discover.append(img_div);
             }
         };

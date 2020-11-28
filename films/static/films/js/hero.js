@@ -14,7 +14,7 @@ function hero(api_key) {
         for (var key in ea_item) {
             if (ea_item.hasOwnProperty(key)) {
                 // Sane defaults, let's init vars
-                let title = ea_item[key].original_title;
+                let title = ea_item[key].title;
                 let overview = ea_item[key].overview;
                 let vote_average = ea_item[key].vote_average;
                 let vote_count = ea_item[key].vote_count;
@@ -24,11 +24,14 @@ function hero(api_key) {
 
                 // HERO
                 let hero_img = document.createElement('div');
-                    hero_img.classList.add('overflow-hidden', 'position-relative');
-                    hero_img.innerHTML = `<img src="${img_url}" class="img-fluid" alt="${title}">` + 
-                                         `<div class="bottom-fade w-100 h-100 position-absolute top-0 left-0"></div>`;
+                hero_img.classList.add('overflow-hidden', 'position-relative', 'vh-100', 'vw-100', 'hero-animated');
+                    hero_img.style.background = (
+                        `linear-gradient(0deg, rgb(0, 0, 0) 5%, rgba(25, 25, 25, 0.5) 80%) no-repeat scroll center,` +
+                        `rgb(11,11,11) url(${img_url}) no-repeat scroll center/cover`);
+                    // hero_img.innerHTML = `<img src="${img_url}" class="img-fluid" alt="${title}">
+                    //                       <div class="bottom-fade w-100 h-100 position-absolute top-0 left-0"></div>`;
                 let hero_text = document.createElement('div');
-                    hero_text.classList.add('position-absolute', 'left-0', 'bottom-0', 'mx-5', 'mb-5', 'px-5', 'pb-3', 'text-shadow-1');
+                    hero_text.classList.add('position-absolute', 'translate-middle','left-50', 'bottom-10', 'px-5','text-shadow-1', 'col-xl-9');
                     hero_text.innerHTML =   `<div class="h1 mb-2 font-title w-100">${title}</div>` +
                                             `<div class="font-body mb-3">${overview}</div>` +
                                             `<div class="text-muted small">Rating: ${vote_average} from ${vote_count} votes | Popularity: ${parseInt(popularity)}</div>` +
@@ -52,6 +55,7 @@ function hero(api_key) {
             prevArrow: '<button class="slick-hero-prev slick-custom-prev"><i class="fas sc-arrow fa-chevron-left fa-3x"></i></button>',
         });
         document.title = "ShowBox: Home";
+        // $('#hero-loader').remove();
 
     })
 

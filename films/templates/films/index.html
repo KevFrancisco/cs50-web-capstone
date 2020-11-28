@@ -6,32 +6,43 @@
     document.addEventListener("DOMContentLoaded", function() {
         hero('{{api_key}}');
         discover('{{api_key}}', '{{req_type}}');
-        popular('{{api_key}}', '{{req_type}}');
-        top_rated('{{api_key}}', '{{req_type}}');
-        upcoming('{{api_key}}', '{{req_type}}');
+        get_carousel('{{api_key}}', '{{req_type}}', 'popular');
+        get_carousel('{{api_key}}', '{{req_type}}', 'top_rated');
+        get_carousel('{{api_key}}', '{{req_type}}', 'upcoming');
     });
 </script>
 <script src="{% static 'films/js/hero.js' %}"></script>
 <script src="{% static 'films/js/discover.js' %}"></script>
-<script src="{% static 'films/js/popular.js' %}"></script>
-<script src="{% static 'films/js/top_rated.js' %}"></script>
-<script src="{% static 'films/js/upcoming.js' %}"></script>
+<script src="{% static 'films/js/get_carousel.js' %}"></script>
+{# <script src="{% static 'films/js/popular.js' %}"></script> #}
+{# <script src="{% static 'films/js/top_rated.js' %}"></script> #}
+{# <script src="{% static 'films/js/upcoming.js' %}"></script> #}
 
 {% endblock %}
 
 {% block body %}
 
 {# ########## HERO SECTION ########## #}
-<div class="wow fadeIn bg-darker mb-5">
-    <div class="w-100 h-auto container">
-        <div class="hero-main position-relative" id="hero">
+<div class="bg-darker mb-5 vh-100">
+    <div class="m-0">
+        <div class="position-absolute w-100">
+            <div id="hero-loader" class="position-relative vh-100">
+                <div class="loader-center">
+                    <div class="spinner-border" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="vh-100" id="hero">
         </div>
     </div>
 </div>
 
+
 {# ########## DISCOVER SECTION ########## #}
-<div class="wow mx-5 my-3 border-darker">
-    <div class="bg-darker p-2 font-title h5 text-center">
+<div class="wow fadeInLeftBig slower mx-5 my-3">
+    <div class="wow fadeInLeftBig p-2 font-body-el h3 letter-space-5 text-center elegant-color-dark">
         DISCOVER
     </div>
 
@@ -41,9 +52,11 @@
     </div>   
 </div>
 
+<hr class="carousel-hr">
+
 {# ########## POPULAR SECTION ########## #}
-<div class="wow mx-5 my-3 border-darker">
-    <div class="bg-darker p-2 font-title h5 text-center">
+<div class="wow fadeInLeftBig mx-5 my-3">
+    <div class="wow fadeInLeftBig p-2 font-body-el h3 letter-space-5 text-center">
         POPULAR
     </div>
 
@@ -52,16 +65,18 @@
     </div>   
 </div>
 
-
-<div class="wow">
+{# WOW DEBUGGING #}
+<div class="wow slideInLeft slower">
     <div class="bg-primary">
         <h1>I am animated!</h1>
     </div>
 </div>
 
+<hr class="carousel-hr">
+
 {# ########## TOP RATED SECTION ########## #}
-<div id="top_rated-section" class="wow mx-5 my-3 border-darker">
-    <div class="bg-darker p-2 font-title h5 text-center">
+<div class="wow fadeInLeftBig mx-5 my-3">
+    <div class="wow fadeInLeftBig p-2 font-body-el h3 letter-space-5 text-center">
         TOP RATED
     </div>
 
@@ -70,9 +85,12 @@
     </div>   
 </div>
 
+
+<hr class="carousel-hr">
+
 {# ########## UPCOMING SECTION ########## #}
-<div class="wow mx-5 my-3 border-darker">
-    <div class="bg-darker p-2 font-title h5 text-center">
+<div class="wow fadeInLeftBig mx-5 my-3">
+    <div class="wow fadeInLeftBig p-2 font-body-el h3 letter-space-5 text-center">
         UPCOMING
     </div>
 
@@ -85,5 +103,8 @@
     <pre id="json-raw"></pre>
     {# <button class="btn btn-primary btn-lg" onClick="discover('{{api_key}}')">LOAD!</button> #}
 </div>
+
+<hr class="carousel-hr">
+
 
 {% endblock %}

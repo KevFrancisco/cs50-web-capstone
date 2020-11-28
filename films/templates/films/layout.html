@@ -10,7 +10,8 @@
         <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 
         {# Bootstrap V5! #}
-        <link rel="stylesheet" href="{% static 'films/css/bootstrap.min.css' %}">
+        {# <link rel="stylesheet" href="{% static 'films/css/bootstrap.min.css' %}"> #}
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
         
         {# Font Awesome #}
         <link rel="stylesheet" href="{% static 'films/css/fontawesome-all.min.css' %}">
@@ -34,6 +35,10 @@
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
         <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
 
+        {# Animations #}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+        <link rel="stylesheet" href="{% static 'films/css/animations-extended.min.css' %}">
+
         {# MDB Bootstrap #}
         <link rel="stylesheet" href="{% static 'films/css/mdb.min.css' %}">
 
@@ -44,38 +49,38 @@
         <title>{% block title %} ShowBox: Loading {% endblock %}</title>
 
     </head>
-    <body class=" overlayscrollbar text-white night-shift-gradient font-body">
+    <body class="overlayscrollbar text-white visions-of-grandeur-gradient font-body">
 
-        {# ############################################################################## #}
         {# ##############################      NAVBAR      ############################## #}
-        {# ############################################################################## #}
-        <nav class="navbar navbar-expand-md navbar-dark navbar-fixed-top orange darken-4">
-          <div class="container-fluid">
-              <a class="navbar-brand" href="{% url 'index' %}">
-                <i class="fas fa-box-open ml-3 mr-1 showbox-b"></i>
-                <span class="font-brand h1 mb-0">ShowBox</span>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-              <ul class="navbar-nav mr-auto mb-2 mb-md-0">
-                <li class="nav-item active">
-                  <a class="nav-link" aria-current="page" href="{% url 'index' %}">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Discover</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Browse</a>
-                </li>
-              </ul>
-                <form class="form-inline">
-                  <div class="md-form my-0 mr-5">
-                    <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top orange darken-4">
+          <div class="container-fluid justify-content-center">
+              <div class="col-xl-9 d-flex align-items-center">
+                  <a class="navbar-brand" href="{% url 'index' %}">
+                      <i class="fas fa-box-open ml-3 mr-1 showbox-b"></i>
+                      <span class="font-brand h1 mb-0">ShowBox</span>
+                  </a>
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarCollapse">
+                      <ul class="navbar-nav mr-auto mb-2 mb-md-0">
+                          <li class="nav-item active">
+                              <a class="nav-link" aria-current="page" href="{% url 'index' %}">Home</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="#">Discover</a>
+                          </li>
+                          <li class="nav-item">
+                              <a class="nav-link" href="#">Browse</a>
+                          </li>
+                      </ul>
+                      <form class="form-inline">
+                          <div class="md-form my-0 mr-5">
+                              <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                          </div>
+                      </form>
                   </div>
-                </form>
-            </div>
+              </div>
           </div>
         </nav>
 
@@ -85,15 +90,27 @@
 
         {# #####       SLICK CAROUSELL       ##### #}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-        <script src="{% static 'films/js/bootstrap.bundle.min.js' %}"></script>
-        <script type="text/javascript" src="{% static 'films/js/mdb.min.js' %}"></script>
         <script type="text/javascript" src="{% static 'films/js/wow.min.js' %}"></script>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+        {# Bootstrap local #}
+        {# <script src="{% static 'films/js/bootstrap.bundle.min.js' %}"></script> #}
+        {# Bootstrap 4 #}
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="{% static 'films/js/mdb.min.js' %}"></script>
         <script type="text/javascript">
-            $( document ).ready(function() {
-                  new WOW().init();
+            $(document).ready(function() {
+                var wow = new WOW(
+                      {
+                      boxClass:     'wow',      // default
+                      animateClass: 'animated', // default
+                      offset:       0,          // default
+                      mobile:       true,       // default
+                      live:         true        // default
+                    }
+                    )
+                    wow.init();
             });
-            $( ".wow" ).addClass( "fadeInDown" );
+            {# $( ".wow" ).addClass( "fadeInDown" ); #}
         </script>
     </body>
 </html>

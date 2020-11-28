@@ -1,42 +1,61 @@
-function top_rated(api_key, req_type) {
+function get_carousel(api_key, req_type, section) {
     // API Url from test documentation
-    let url = `https://api.themoviedb.org/3/${req_type}/top_rated?api_key=${api_key}&language=en-US&page=1`
+    let url = `https://api.themoviedb.org/3/${req_type}/${section}?api_key=${api_key}&language=en-US&page=1`
     
     fetch(url, {
         method: "GET",
     })
     .then(Response => Response.json())
     .then(r =>{
-        console.log(r);
+        // DEBUGGING
+        // console.log(r);
         // console.log(r.results);
         // el = document.getElementById('json-raw');
         // el.innerText = JSON.stringify(r, undefined, 2);
-
-        let top_rated = document.getElementById('top_rated');
+        
+        // Sane names
+        let section_div = $(`#${section}`);
         let ea_item = r.results;
 
-        // Let's try to display the images
+        // Add the items to the carousel
         for (var key in ea_item) {
             if (ea_item.hasOwnProperty(key)) {
                 let title = ea_item[key].title;
-                let img_url = `https://image.tmdb.org/t/p/w154${ea_item[key].poster_path}`;
+                let img_url = `https://image.tmdb.org/t/p/w185${ea_item[key].poster_path}`;
                 let img_div = document.createElement('div');
 
                 img_div.classList.add('w-10', 'mx-3', 'p-3', 'h-100');
-                img_div.innerHTML = `
-                        <a href='detail/movie/${ea_item[key].id}' class="text-decoration-none">
-                            <div class='small text-center bg-darker text-muted font-body-l py-1'>
-                                ${ea_item[key].vote_average}
-                            </div>
+                let addtl_detail;
+                switch (section) {
+                    case "popular":
+                        addtl_detail = ea_item[key].popularity;
+                    case "upcoming":
+                        addtl_detail = ea_item[key].release_date;
+
+                    case "top_rated":
+                        addtl_detail = ea_item[key].vote_average;
+
+                }
+                let temp_str = `
+                    <a href='detail/movie/${ea_item[key].id}' class="text-decoration-none">
+                        <div class='small text-center bg-darker text-muted font-body-l py-1'>
+                            ${addtl_detail}
+                        </div>
+                        <div class="view overlay hoverable">
                             <img src="${img_url}" class="mx-auto img-fluid" alt="${title}">
-                            <div class='small text-center text-white font-body-b h5 pt-3 h-100 mb-0'>${title}</div>
-                        </a>
-                                `;
-                top_rated.append(img_div);
+                        </div>
+                        <div class='small text-center text-white font-body-b h5 pt-3 h-100 mb-0'>${title}</div>
+                    </a>
+                        `;
+                
+                // Why use insertAdjacentHTML instead of innerHTML
+                // https://stackoverflow.com/questions/11515383/why-is-element-innerhtml-bad-code
+                img_div.insertAdjacentHTML('beforeend', temp_str)
+                section_div.append(img_div);
             }
         };
-        // OverlayScrollbars(document.querySelectorAll(".poster-container"), { });
-        $('#top_rated').slick({
+
+        section_div.slick({
             slidesToShow: 7,
             infinite: true,
             arrows: true,
@@ -73,7 +92,6 @@ function top_rated(api_key, req_type) {
                 },
             ]
         });
-        document.getElementById('top_rated-section').classList.add('wow');
 
     })
 
