@@ -57,8 +57,8 @@
                                 <input id="nav-search" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
                           </div>
                     </form>
-                    <button type="button" class="btn btn-purple btn-sm">Movies</button>
-                    <button type="button" class="btn btn-cyan btn-sm mr-auto">TV Shows</button>
+                    <a href="{% url 'req_type' 'movie' %}" class="btn btn-purple btn-sm">Movies</a>
+                    <a href="{% url 'req_type' 'tv' %}" class="btn btn-cyan btn-sm mr-auto">TV Shows</a>
                     <ul class="navbar-nav nav-flex-icons">
                         <li class="nav-item active">
                             <a class="nav-link" aria-current="page" href="{% url 'index' %}">
