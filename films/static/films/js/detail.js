@@ -19,27 +19,33 @@ function detail(api_key, req_type, req_id) {
         // Get the backdrop and poster image
         let backdrop_img_url = `https://image.tmdb.org/t/p/original${r.backdrop_path}`;
         let poster_img_url = `https://image.tmdb.org/t/p/original${r.poster_path}`;
+        let title;
+            if (req_type === "movie") {
+                title = r.title;
+            } else {
+                title = r.name;
+            }
 
         // Set the Hero Backdrop
         let heromain = document.getElementById('hero-main');
             heromain.style.background = (
-                    `linear-gradient(0deg, rgb(0, 0, 0) 5%, rgba(25, 25, 25, 0.95) 80%) no-repeat scroll center center,` +
-                    `rgb(11,11,11) url(${backdrop_img_url}) no-repeat scroll center/100%`);
+                    `linear-gradient(0deg, rgba(21, 21, 21, 0.90) 5%, rgba(21, 21, 21, 0.90) 80%) no-repeat scroll center center,
+                     rgb(11,11,11) url(${backdrop_img_url}) no-repeat scroll center/100%`);
         let details = document.getElementById('details');
             details.classList.add('d-flex', 'container', 'py-5');
             details.innerHTML= ` 
                     <div class="col-auto py-5 pr-5">
-                        <div class="mx-auto"> 
-                            <img src="${poster_img_url}" class="d-block mx-auto w-auto mvh-50" alt="${r.title}">
+                        <div class="mx-auto z-depth-3"> 
+                            <img src="${poster_img_url}" class="d-block mx-auto w-auto mvh-50" alt="${title}">
                         </div>
                     </div>
-                    <div class="col mr-5 my-5">
-                        <div class="display-3 pb-3 font-title">${r.title}</div>
+                    <div class="col mr-5 my-5 text-shadow-1">
+                        <div class="display-3 pb-3 font-title">${title}</div>
                         <div class="pb-5 h5">${r.overview}</div>
                         <div id="hero-genres" class="pb-1"></div>
-                        <div class="pt-3 small text-muted">Rating: ${r.vote_average} from ${r.vote_count} votes</div>
-                        <div class="small text-muted">Popularity: ${r.popularity}</div>
-                        <div class="pb-3 small text-muted">${r.status}: ${r.release_date}</div>
+                        <div class="pt-3 small opacity-50 grey-text">Rating: ${r.vote_average} from ${r.vote_count} votes</div>
+                        <div class="small opacity-50 grey-text">Popularity: ${r.popularity}</div>
+                        <div class="pb-3 small opacity-50 grey-text">${r.status}: ${r.release_date}</div>
                     </div>
                 `;
                 r.genres.forEach( (genre, index) => {

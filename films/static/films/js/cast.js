@@ -51,13 +51,22 @@ function get_cast(api_key, req_type, req_id) {
                                     `;
                 cast.append(img_div);
         };
-        // OverlayScrollbars(document.querySelectorAll(".poster-container"), { });
+
+        let chev_right = `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left sc-arrow" width="80" height="80" viewBox="0 0 24 24" stroke-width="0.5" stroke="#dddddd" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                              <polyline points="15 6 9 12 15 18" />
+                            </svg>`
+        let chev_left = `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right sc-arrow" width="80" height="80" viewBox="0 0 24 24" stroke-width="0.5" stroke="#dddddd" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                              <polyline points="9 6 15 12 9 18" />
+                            </svg>`
+
         $('#cast').slick({
             slidesToShow: 9,
             infinite: true,
             arrows: true,
-            nextArrow: '<button class="slick-custom-next"><i class="fas sc-arrow fa-chevron-right fa-3x"></i></button>',
-            prevArrow: '<button class="slick-custom-prev"><i class="fas sc-arrow fa-chevron-left fa-3x"></i></button>',
+            prevArrow: `<button class="slick-custom-prev slick-cast-prev translate-middle-y">${chev_right}</button>`,
+            nextArrow: `<button class="slick-custom-next slick-cast-next translate-middle-y">${chev_left}</button>`,
             responsive: [
                 {
                   breakpoint: 1200,
@@ -89,8 +98,8 @@ function get_cast(api_key, req_type, req_id) {
                 },
             ]
         });
-
         AOS.refresh();
+
     })
 
 }

@@ -16,9 +16,6 @@
         {# Font Awesome #}
         <link rel="stylesheet" href="{% static 'films/css/fontawesome-all.min.css' %}">
 
-        {# Styles #}
-        <link rel="stylesheet" href="{% static 'films/css/styles.css' %}">
-
         {# Overlay Scrollbars #}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.0/css/OverlayScrollbars.min.css">
         <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.0/js/OverlayScrollbars.min.js"></script>
@@ -30,6 +27,9 @@
         <link rel="stylesheet" href="{% static 'films/css/mdb.min.css' %}">
         <link rel="stylesheet" href="{% static 'films/css/aos.css' %}">
 
+        {# Styles #}
+        <link rel="stylesheet" href="{% static 'films/css/styles.css' %}">
+
         {% block script %}
         {% endblock %}
 
@@ -37,7 +37,7 @@
         <title>{% block title %} ShowBox: Loading {% endblock %}</title>
 
     </head>
-    <body class="overlayscrollbar text-white visions-of-grandeur-gradient font-body">
+    <body class="overlayscrollbar text-white unique-color-dark font-body">
 
         {# ##############################      NAVBAR      ############################## #}
         <nav class="navbar navbar-expand-md navbar-dark fixed-top orange darken-4">
@@ -51,22 +51,43 @@
                       <span class="navbar-toggler-icon"></span>
                   </button>
                   <div class="collapse navbar-collapse" id="navbarCollapse">
-                      <ul class="navbar-nav mr-auto mb-2 mb-md-0">
-                          <li class="nav-item active">
-                              <a class="nav-link" aria-current="page" href="{% url 'index' %}">Home</a>
-                          </li>
-                          <li class="nav-item">
-                              <a class="nav-link" href="#">Discover</a>
-                          </li>
-                          <li class="nav-item">
-                              <a class="nav-link" href="#">Browse</a>
-                          </li>
-                      </ul>
-                      <form class="form-inline">
-                          <div class="md-form my-0 mr-5">
-                              <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                    <form class="form-inline ml-auto mr-2">
+                          <div class="md-form input-with-pre-icon my-0">
+                                <i class="fas fa-search text-white input-prefix"></i>
+                                <input id="nav-search" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
                           </div>
-                      </form>
+                    </form>
+                    <button type="button" class="btn btn-purple btn-sm">Movies</button>
+                    <button type="button" class="btn btn-cyan btn-sm mr-auto">TV Shows</button>
+                    <ul class="navbar-nav nav-flex-icons">
+                        <li class="nav-item active">
+                            <a class="nav-link" aria-current="page" href="{% url 'index' %}">
+                                <i class="fas fa-home fa-lg"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{% url 'index' %}">
+                                <i class="fas fa-compass fa-lg"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown mr-2">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                    <i class="fas fa-user"></i>
+                                    Hi, Kevin
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+                                <a class="dropdown-item" href="#">My account</a>
+                                <a class="dropdown-item" href="#">Log out</a>
+                            </div>
+                        </li>
+                        <li class="nav-item avatar">
+                            <a class="nav-link p-0" href="#">
+                                <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-5.jpg" class="rounded-circle z-depth-0"
+                                alt="avatar image" height="35">
+                            </a>
+                        </li>
+                    </ul>
                   </div>
               </div>
           </div>
@@ -75,6 +96,47 @@
         {# ##############################      BODY      ############################## #}
         {% block body %}
         {% endblock %}
+
+        {# ##############################      FOOTER      ############################## #}
+        <!-- Footer -->
+        <footer class="page-footer font-small cyan darken-4 z-depth-1-half">
+          <div class="container-fluid text-center text-md-left p-5">
+            <div class="row">
+              <div class="col-md-6 mt-md-0 mt-3">
+                <!-- Content -->
+                <h5 class="text-uppercase font-weight-bold">Footer text 1</h5>
+                <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Expedita sapiente sint, nulla, nihil
+                  repudiandae commodi voluptatibus corrupti animi sequi aliquid magnam debitis, maxime quam recusandae
+                  harum esse fugiat. Itaque, culpa?</p>
+
+              </div>
+              <hr class="clearfix w-100 d-md-none pb-3">
+              <div class="col-md-3 mb-md-0 mb-3">
+                <!-- Content -->
+                <h5 class="text-uppercase font-weight-bold">Footer text 2</h5>
+                <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Optio deserunt fuga perferendis modi earum
+                  commodi aperiam temporibus quod nulla nesciunt aliquid debitis ullam omnis quos ipsam, aspernatur id
+                  excepturi hic.</p>
+              </div>
+              <hr class="clearfix w-100 d-md-none pb-3">
+              <div class="col-md-3 mb-md-0 mb-3">
+                  <div class="px-5">
+                      <div class="font-body-el pb-2">
+                          Powered by:
+                      </div>
+                      <div>
+                          <img src="{% static 'films/images/tmdb_logo.svg' %}" class="img-fluid" alt="Powered by TMDB">
+                      </div>
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright text-center py-3">© 2020 Copyright:
+            <a href="https://kevfrancisco.dev/">John Kevin Francisco. See more of my work at KevFrancisco.Dev</a>
+          </div>
+        </footer>
+        <!-- Footer -->
+
 
         {# SCRIPTS #}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>

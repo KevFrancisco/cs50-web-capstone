@@ -4,14 +4,14 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        hero('{{api_key}}');
+        get_main_hero('{{api_key}}','{{req_type}}');
         get_carousel('{{api_key}}', '{{req_type}}', 'discover');
         get_carousel('{{api_key}}', '{{req_type}}', 'popular');
         get_carousel('{{api_key}}', '{{req_type}}', 'top_rated');
         get_carousel('{{api_key}}', '{{req_type}}', 'upcoming');
     });
 </script>
-<script src="{% static 'films/js/hero.js' %}"></script>
+<script src="{% static 'films/js/get_main_hero.js' %}"></script>
 <script src="{% static 'films/js/get_carousel.js' %}"></script>
 
 {% endblock %}
@@ -31,7 +31,30 @@
                 </div>
             </div>
         </div>
-        <div class="vh-100" id="hero">
+        <div id="hero" class="vh-100 carousel slide carousel-fade" data-ride="carousel">
+            <ol class="carousel-indicators opacity-50" id="hero-indicators">
+            </ol>
+            <div id="hero-items" class="carousel-inner">
+                {# Add Hero Items Here #}
+            </div>
+            <a class="carousel-control-prev d-none d-sm-flex" href="#hero" role="button" data-slide="prev">
+                <svg xmlns="http://www.w3.org/2000/svg" 
+                          class="icon icon-tabler icon-tabler-chevron-right sc-arrow"
+                          width="100" height="100" viewBox="0 0 24 24" stroke-width="1" 
+                          stroke="#dddddd" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                              <polyline points="15 6 9 12 15 18" />
+                </svg>
+            </a>
+            <a class="carousel-control-next d-none d-sm-flex" href="#hero" role="button" data-slide="next">
+                <svg xmlns="http://www.w3.org/2000/svg"
+                           class="icon icon-tabler icon-tabler-chevron-left sc-arrow" 
+                           width="100" height="100" viewBox="0 0 24 24" stroke-width="1" 
+                           stroke="#dddddd" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                              <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                              <polyline points="9 6 15 12 9 18" />
+                </svg>
+            </a>
         </div>
     </div>
 </div>
@@ -40,13 +63,13 @@
 {# ########## DISCOVER SECTION ########## #}
 <div class="mx-5 my-3">
     <div class="p-2 font-body-el h3 letter-space-5 text-center mt-3"
-     data-aos="fade-right"
-     data-aos-anchor-placement="top-center"
+     data-aos="zoom-up"
+     data-aos-duration="1500"
     >
         DISCOVER
     </div>
 
-    <div class="px-5">
+    <div class="px-5" data-aos="fade-up">
         <div class="sc-container position-relative" id="discover">
         </div>
     </div>   
@@ -57,52 +80,45 @@
 {# ########## POPULAR SECTION ########## #}
 <div class="mx-5 my-3">
     <div class="p-2 font-body-el h3 letter-space-5 text-center mt-3"
-     data-aos="fade-right"
-     data-aos-anchor-placement="top-center"
+     data-aos="zoom-up"
+     data-aos-duration="1500"
     >
         POPULAR
     </div>
 
-    <div class="px-5">
+    <div class="px-5" data-aos="fade-up">
         <div class="sc-container" id="popular"></div>
     </div>   
 </div>
-
-{# AOS DEBUGGING #}
-{# <div class="red p-5 m-5" data-aos="fade-up" #}
-     {# data-aos-anchor-placement="center-center"> #}
-    {# <h1>ANIMATE ME BABY</h1> #}
-{# </div> #}
 
 <hr class="carousel-hr">
 
 {# ########## TOP RATED SECTION ########## #}
 <div class="mx-5 my-3">
     <div class="p-2 font-body-el h3 letter-space-5 text-center mt-3"
-     data-aos="fade-right"
-     data-aos-anchor-placement="top-center"
+     data-aos="zoom-up"
+     data-aos-duration="1500"
     >
         TOP RATED
     </div>
 
-    <div class="px-5">
+    <div class="px-5" data-aos="fade-up">
         <div class="sc-container" id="top_rated"></div>
     </div>   
 </div>
-
 
 <hr class="carousel-hr">
 
 {# ########## UPCOMING SECTION ########## #}
 <div class="mx-5 my-3">
     <div class="p-2 font-body-el h3 letter-space-5 text-center mt-3"
-     data-aos="fade-right"
-     data-aos-anchor-placement="top-center"
+     data-aos="zoom-up"
+     data-aos-duration="1500"
     >
         UPCOMING
     </div>
 
-    <div class="px-5">
+    <div class="px-5" data-aos="fade-up">
         <div class="sc-container" id="upcoming"></div>
     </div>   
 </div>
@@ -112,7 +128,6 @@
     {# <button class="btn btn-primary btn-lg" onClick="discover('{{api_key}}')">LOAD!</button> #}
 </div>
 
-<hr class="carousel-hr">
 
 
 {% endblock %}

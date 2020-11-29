@@ -53,6 +53,7 @@ function get_reviews(api_key, req_type, req_id) {
                 reviews.append(trailer_div);
             }
         };
+        AOS.refresh();
 
     })
 

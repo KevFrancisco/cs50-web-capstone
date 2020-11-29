@@ -13,7 +13,7 @@ function get_carousel(api_key, req_type, section) {
     .then(Response => Response.json())
     .then(r =>{
         // DEBUGGING
-        // console.log(r);
+        console.log(r);
         // console.log(r.results);
         // el = document.getElementById('json-raw');
         // el.innerText = JSON.stringify(r, undefined, 2);
@@ -25,12 +25,17 @@ function get_carousel(api_key, req_type, section) {
         // Add the items to the carousel
         for (var key in ea_item) {
             if (ea_item.hasOwnProperty(key)) {
-                let title = ea_item[key].title;
-                let img_url = `https://image.tmdb.org/t/p/w185${ea_item[key].poster_path}`;
+                let title;
+                    if (req_type === "movie") {
+                        title = ea_item[key].title;
+                    } else {
+                        title = ea_item[key].name;
+                    }
+                let img_url = `https://image.tmdb.org/t/p/w342${ea_item[key].poster_path}`;
                 let img_div = document.createElement('div');
                 let rating = `<i class="fas fa-star"></i> ${ea_item[key].vote_average}`;
 
-                img_div.classList.add('w-10', 'mx-4', 'p-3', 'h-100');
+                img_div.classList.add('p-3', 'h-100', 'mx-xl-4');
                 let addtl_detail;
                 switch (section) { 
                     case "discover":
@@ -43,13 +48,14 @@ function get_carousel(api_key, req_type, section) {
                         addtl_detail = ea_item[key].release_date;
                         break;
                     case "top_rated":
-                        addtl_detail = `<i class="fas fa-star"></i> ${ea_item[key].vote_average}`;
+                        // addtl_detail = `<i class="fas fa-star"></i> ${ea_item[key].vote_average}`;
+                        addtl_detail = '';
                         break;
 
                 }
 
                 let temp_str = `
-                    <a href='detail/movie/${ea_item[key].id}' class="zoom text-decoration-none">
+                    <a href='detail/${req_type}/${ea_item[key].id}' class="zoom text-decoration-none">
                         <div class="position-relative">
                             <div class='small position-absolute top-0 right-0 text-white mt-3 px-2 py-1 rgba-stylish-strong opacity-90 z-index-1'>${rating}</div>
                             <div class="view overlay hoverable">
@@ -82,8 +88,8 @@ function get_carousel(api_key, req_type, section) {
             slidesToShow: 7,
             infinite: true,
             arrows: true,
-            nextArrow: `<button class="slick-custom-next translat-middle">${chev_left}</button>`,
-            prevArrow: `<button class="slick-custom-prev translat-middle">${chev_right}</button>`,
+            nextArrow: `<button class="slick-custom-next slick-cast-next translate-middle-y">${chev_left}</button>`,
+            prevArrow: `<button class="slick-custom-prev slick-cast-prev translate-middle-y">${chev_right}</button>`,
             responsive: [
                 {
                   breakpoint: 1200,

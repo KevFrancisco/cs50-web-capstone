@@ -9,13 +9,13 @@
 {% block body %}
 
 {# ############### HERO SECTION ############### #}
-<div class="bg-darker position-relative container-fluid hero-main mb-5" id="hero-main">
+<div class="bg-darker position-relative container-fluid hero-main mb-5 z-depth-1" id="hero-main">
     <div class="position-absolute left-50 top-50 hide-loader">
         <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
             <span class="sr-only">Loading...</span>
         </div>
     </div>
-    <div id="details"></div>
+    <div id="details" class="d-flex container py-5 mt-5"></div>
 </div>
 
 {# ############### BODY SECTION ############### #}
@@ -23,23 +23,37 @@
 
     {# Cast #}
     <div class="mb-3">
-        <div class="font-title h3"
-         data-aos="fade-right"
-         data-aos-anchor-placement="center-center"
-            >Cast</div>
-        <div id="cast" class="font-body"></div>
+        <div class="p-2 font-body-el h3 letter-space-5 mt-3 text-uppercase"
+            data-aos="fade-right"
+        >
+            Cast
+        </div>
+        <div id="cast" class="font-body"
+            data-aos="fade-up"
+        >
+        </div>
     </div>
 
     {# Trailers #}
     <div class="mb-3">
-        <div class="font-title h3">Trailers</div>
-        <div id="trailers"></div>
+        <div class="p-2 font-body-el h3 letter-space-5 mt-3 text-uppercase"
+            data-aos="fade-up"
+            data-aos-anchor-placement="bottom-bottom"
+        >Trailers</div>
+        <div id="trailers"
+             data-aos="fade-up"
+             data-aos-anchor-placement="top-center"
+        ></div>
     </div>
 
     {# Reviews #}
     <div class="mb-3">
-        <div class="font-title h3">Reviews</div>
-        <div id="reviews"></div>
+        <div class="p-2 font-body-el h3 letter-space-5 mt-3 text-uppercase"
+            data-aos="fade-right"
+        >Reviews</div>
+        <div id="reviews" class="p-3"
+            data-aos="fade-right"
+        ></div>
     </div>
 
 </div>

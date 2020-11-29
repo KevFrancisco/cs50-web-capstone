@@ -9,7 +9,8 @@ def index(request):
     heading_title = "ShowPot!"
     api_key = os.environ.get("TMDB_API_KEY")
     # TODO for now movies only
-    req_type = "movie"
+    # Substiting this with TV works mostly! nice!
+    req_type = "tv"
 
     context =  {
         'heading_title': heading_title,
