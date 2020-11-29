@@ -8,7 +8,11 @@
         get_carousel('{{api_key}}', '{{req_type}}', 'discover');
         get_carousel('{{api_key}}', '{{req_type}}', 'popular');
         get_carousel('{{api_key}}', '{{req_type}}', 'top_rated');
-        get_carousel('{{api_key}}', '{{req_type}}', 'upcoming');
+        if ('{{req_type}}' === 'movie') {
+            get_carousel('{{api_key}}', '{{req_type}}', 'upcoming');
+        } else {
+            get_carousel('{{api_key}}', '{{req_type}}', 'on_the_air');
+        }
     });
 </script>
 <script src="{% static 'films/js/get_main_hero.js' %}"></script>
@@ -111,15 +115,15 @@
 
 {# ########## UPCOMING SECTION ########## #}
 <div class="mx-5 my-3">
-    <div class="p-2 font-body-el h3 letter-space-5 text-center mt-3"
+    <div class="p-2 font-body-el h3 letter-space-5 text-center mt-3 text-uppercase"
      data-aos="zoom-up"
      data-aos-duration="1500"
     >
-        UPCOMING
+        {% if req_type == 'movie' %}UPCOMING{% else %}ON THE AIR{% endif %}
     </div>
 
     <div class="px-5" data-aos="fade-up">
-        <div class="sc-container" id="upcoming"></div>
+        <div class="sc-container" id="{% if req_type == 'movie' %}upcoming{% else %}on_the_air{% endif %}"></div>
     </div>   
 </div>
 
