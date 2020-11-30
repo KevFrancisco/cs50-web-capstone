@@ -16,6 +16,9 @@ def index(request):
 
     # TODO for now movies only
     # Substiting this with TV works mostly! nice!
+    if 'req_type' not in request.session:
+        request.session["req_type"] = "movie"
+
     req_type = request.session["req_type"]
 
     context =  {

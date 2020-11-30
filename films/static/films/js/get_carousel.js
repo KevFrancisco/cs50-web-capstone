@@ -34,9 +34,8 @@ function get_carousel(api_key, req_type, section) {
                     }
                 let img_url = `https://image.tmdb.org/t/p/w342${ea_item[key].poster_path}`;
                 let img_div = document.createElement('div');
+                    img_div.classList.add('p-3', 'h-100', 'mx-xl-4');
                 let rating = `<i class="fas fa-star"></i> ${ea_item[key].vote_average}`;
-
-                img_div.classList.add('p-3', 'h-100', 'mx-xl-4');
                 let addtl_detail;
                 switch (section) { 
                     case "discover":
@@ -59,7 +58,7 @@ function get_carousel(api_key, req_type, section) {
                     <a href='detail/${req_type}/${ea_item[key].id}' class="zoom text-decoration-none">
                         <div class="position-relative">
                             <div class='small position-absolute top-0 right-0 text-white mt-3 px-2 py-1 rgba-stylish-strong opacity-90 z-index-1'>${rating}</div>
-                            <div class="view overlay hoverable">
+                            <div class="view overlay hoverable z-depth-1">
                                 <img src="${img_url}" class="mx-auto img-fluid" alt="${title}">
                             </div>
                             <div class='text-white font-body-b pt-3'>${title}</div>
@@ -77,12 +76,22 @@ function get_carousel(api_key, req_type, section) {
         };
 
         let chev_right = `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left sc-arrow" width="80" height="80" viewBox="0 0 24 24" stroke-width="0.5" stroke="#dddddd" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <defs>
+                                <filter id="shadow">
+                                  <feDropShadow dx="0" dy="0" stdDeviation="0.9"/>
+                                </filter>
+                            </defs>
                               <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                              <polyline points="15 6 9 12 15 18" />
+                              <polyline points="15 6 9 12 15 18" style="filter:url(#shadow);" />
                             </svg>`
         let chev_left = `<svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right sc-arrow" width="80" height="80" viewBox="0 0 24 24" stroke-width="0.5" stroke="#dddddd" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <defs>
+                                <filter id="shadow">
+                                  <feDropShadow dx="0" dy="0" stdDeviation="0.9"/>
+                                </filter>
+                            </defs>
                               <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                              <polyline points="9 6 15 12 9 18" />
+                              <polyline points="9 6 15 12 9 18" style="filter:url(#shadow);" />
                             </svg>`
 
         section_div.slick({
