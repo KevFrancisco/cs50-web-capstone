@@ -6,6 +6,7 @@ function get_carousel(api_key, req_type, section) {
     } else {
         url = `https://api.themoviedb.org/3/${req_type}/${section}?api_key=${api_key}&language=en-US&page=1`
     }
+    console.log(url);
     
     fetch(url, {
         method: "GET",

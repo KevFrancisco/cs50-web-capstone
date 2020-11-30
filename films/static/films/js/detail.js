@@ -59,7 +59,7 @@ function detail(api_key, req_type, req_id) {
                         document.getElementById('hero-genres').innerHTML += 
                                 `${toPipe(index)}<span class="">${genre["name"]}</span>`;
                 });
-        document.title = `ShowBox: ${r.title}`
+        document.title = `ShowBox: ${title}`
         // linear-gradient(0deg, rgb(0, 0, 0) 5%, rgba(0, 0, 0, 0.45) 92%) no-repeat scroll center center, 
         // rgb(255, 255, 255) url("https://image.tmdb.org/t/p/original/eCIvqa3QVCx6H09bdeOS8Al2Sqy.jpg") no-repeat scroll center top
     });

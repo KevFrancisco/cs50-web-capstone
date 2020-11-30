@@ -114,62 +114,6 @@
     stroke: orange;
 }
 
-/* FONTS */
-
-@font-face {
-font-family: "Farro";
-src: url("../webfonts/Farro-Regular.ttf");
-}
-
-@font-face {
-font-family: "Calistoga";
-src: url("../webfonts/Calistoga-Regular.ttf");
-}
-
-@font-face {
-    font-family: "Bebas Neue";
-    src: url("../webfonts/BebasNeue-Regular.ttf")
-}
-
-@font-face {
-font-family: "Encode Sans Semi Condensed";
-src: url("../webfonts/EncodeSansSemiCondensed-Medium.ttf");
-}
-@font-face {
-font-family: "Encode Sans Semi Condensed-Bold";
-src: url("../webfonts/EncodeSansSemiCondensed-Bold.ttf");
-}
-@font-face {
-font-family: "Encode Sans Semi Condensed-Light";
-src: url("../webfonts/EncodeSansSemiCondensed-Light.ttf");
-}
-@font-face {
-font-family: "Encode Sans Semi Condensed-ExtraLight";
-src: url("../webfonts/EncodeSansSemiCondensed-ExtraLight.ttf");
-}
-
-.font-brand {
-    font-family: 'Bebas Neue', cursive;
-}
-
-.font-title {
-    font-family: 'Farro', sans-serif;
-}
-
-.font-body {
-    font-family: 'Encode Sans Semi Condensed', sans-serif;
-    font-weight: medium;
-}
-.font-body-b {
-    font-family: 'Encode Sans Semi Condensed-Bold', sans-serif;
-}
-.font-body-l {
-    font-family: 'Encode Sans Semi Condensed-Light', sans-serif;
-}
-.font-body-el {
-    font-family: 'Encode Sans Semi Condensed-ExtraLight', sans-serif;
-}
-
 .carousel-hr {
     background-image: radial-gradient(circle, rgba(210, 208, 208, 0.190914) 0%, rgba(210, 208, 208, 0) 90%);
     border: none;
@@ -212,6 +156,9 @@ src: url("../webfonts/EncodeSansSemiCondensed-ExtraLight.ttf");
     right: 0%;
 }
 
+.opacity-30 {
+    opacity: 0.3;
+}
 .opacity-50 {
     opacity: 0.5;
 }
@@ -275,4 +222,22 @@ src: url("../webfonts/EncodeSansSemiCondensed-ExtraLight.ttf");
 	border-bottom: 10px solid transparent;
 	opacity: .5;
 	transition: opacity .6s ease;
+}
+
+.carousel-control-next, .carousel-control-prev {
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	z-index: 1;
+	display: -ms-flexbox;
+	display: flex;
+	-ms-flex-align: center;
+	align-items: center;
+	-ms-flex-pack: center;
+	justify-content: center;
+	width: 5%;
+	color: #fff;
+	text-align: center;
+	opacity: .5;
+	transition: opacity .15s ease;
 }

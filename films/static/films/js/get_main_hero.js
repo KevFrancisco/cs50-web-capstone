@@ -42,9 +42,14 @@ function get_main_hero(api_key, req_type) {
                             rgb(11,11,11) url(${img_url}) no-repeat scroll center/cover`);
 
                 let hero_text = document.createElement('div');
-                    hero_text.classList.add('position-absolute', 'translate-middle-x','left-50', 'bottom-10', 'mx-n5','text-shadow-1');
+                    hero_text.classList.add('position-absolute', 'left-0', 'bottom-0',
+                                            'm-xl-5', 'p-xl-5',
+                                            'm-4', 'p-4',
+                                            'text-shadow-1');
                     let temp_str = `
-                            <div class="h1 mb-2 font-title w-100">${title}</div>
+                            <a href='detail/${req_type}/${ea_item[key].id}' class="text-decoration-none text-white">
+                                <div class="display-2 mb-3 font-title w-100">${title}</div>
+                            </a>
                             <div class="font-body mb-3">${overview}</div>
                             <div class="grey-text opacity-50 small">Rating: ${vote_average} from ${vote_count} votes | Popularity: ${parseInt(popularity)}</div>
                             <div class="blue-grey-text opacity-50 small ">Released: ${release_date}</div>

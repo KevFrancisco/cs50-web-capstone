@@ -6,7 +6,11 @@
     document.addEventListener("DOMContentLoaded", function() {
         get_main_hero('{{api_key}}','{{req_type}}');
         get_carousel('{{api_key}}', '{{req_type}}', 'discover');
-        get_carousel('{{api_key}}', '{{req_type}}', 'popular');
+        if ('{{req_type}}' === 'movie') {
+            get_carousel('{{api_key}}', '{{req_type}}', 'now_playing');
+        } else {
+            get_carousel('{{api_key}}', '{{req_type}}', 'airing_today');
+        }
         get_carousel('{{api_key}}', '{{req_type}}', 'top_rated');
         if ('{{req_type}}' === 'movie') {
             get_carousel('{{api_key}}', '{{req_type}}', 'upcoming');
@@ -36,7 +40,7 @@
             </div>
         </div>
         <div id="hero" class="vh-100 carousel slide carousel-fade" data-ride="carousel">
-            <ol class="carousel-indicators opacity-50" id="hero-indicators">
+            <ol class="carousel-indicators opacity-30" id="hero-indicators">
             </ol>
             <div id="hero-items" class="carousel-inner">
                 {# Add Hero Items Here #}
@@ -81,17 +85,17 @@
 
 <hr class="carousel-hr">
 
-{# ########## POPULAR SECTION ########## #}
+{# ########## NOW PLAYING SECTION ########## #}
 <div class="mx-5 my-3">
     <div class="p-2 font-body-el h3 letter-space-5 text-center mt-3"
      data-aos="zoom-up"
      data-aos-duration="1500"
     >
-        POPULAR
+        {% if req_type == 'movie' %}NOW PLAYING{% else %}AIRING TODAY{% endif %}
     </div>
 
     <div class="px-5" data-aos="fade-up">
-        <div class="sc-container" id="popular"></div>
+        <div class="sc-container" id="{% if req_type == 'movie' %}now_playing{% else %}airing_today{% endif %}"></div>
     </div>   
 </div>
 

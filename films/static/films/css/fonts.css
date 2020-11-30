@@ -1,0 +1,66 @@
+/* FONTS */
+
+@font-face {
+font-family: "Farro";
+src: url("../webfonts/Farro-Regular.ttf");
+}
+@font-face {
+font-family: "Farro Light";
+src: url("../webfonts/Farro-Light.ttf");
+}
+
+@font-face {
+font-family: "Manrope";
+src: url("../webfonts/Manrope-VariableFont_wght.ttf");
+}
+
+@font-face {
+    font-family: "Bebas Neue";
+    src: url("../webfonts/BebasNeue-Regular.ttf")
+}
+
+@font-face {
+font-family: "Encode Sans Semi Condensed";
+src: url("../webfonts/EncodeSansSemiCondensed-Medium.ttf");
+}
+@font-face {
+font-family: "Encode Sans Semi Condensed-Bold";
+src: url("../webfonts/EncodeSansSemiCondensed-Bold.ttf");
+}
+@font-face {
+font-family: "Encode Sans Semi Condensed-Light";
+src: url("../webfonts/EncodeSansSemiCondensed-Light.ttf");
+}
+@font-face {
+font-family: "Encode Sans Semi Condensed-ExtraLight";
+src: url("../webfonts/EncodeSansSemiCondensed-ExtraLight.ttf");
+}
+
+.font-brand {
+    font-family: 'Bebas Neue', cursive;
+}
+
+.font-title-l {
+    font-family: 'Farro Light', sans-serif;
+}
+.font-title {
+    font-family: 'Farro', sans-serif;
+}
+
+.font-alt-title {
+    font-family: 'Manrope', sans-serif;
+}
+
+.font-body {
+    font-family: 'Encode Sans Semi Condensed', sans-serif;
+    font-weight: medium;
+}
+.font-body-b {
+    font-family: 'Encode Sans Semi Condensed-Bold', sans-serif;
+}
+.font-body-l {
+    font-family: 'Encode Sans Semi Condensed-Light', sans-serif;
+}
+.font-body-el {
+    font-family: 'Encode Sans Semi Condensed-ExtraLight', sans-serif;
+}

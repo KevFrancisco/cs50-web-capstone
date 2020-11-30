@@ -42,7 +42,7 @@ function get_cast(api_key, req_type, req_id) {
                     profile_picture = `<img src="${img_url}" class="img-fluid" alt="${cast_name}">`
                 };
 
-                img_div.classList.add('w-10', 'm-3', 'h-100');
+                img_div.classList.add('w-10','m-3','h-100','img-thumbnail','bg-darker','border-dark');
                 img_div.innerHTML = `
                                     <a href='detail/movie/' class="text-decoration-none">
                                         ${profile_picture}
