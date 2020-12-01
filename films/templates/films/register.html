@@ -4,37 +4,95 @@
 
 {# Header #}
 
+{# <div class="position-relative vh-100"> #}
+{#     <div class="position-absolute translate-middle left-50 top-50"> #}
+{#         <div class="container p-3"> #}
+
+{#             <h1 class="font-title">Register</h1> #}
+
+{#             {% if message %} #}
+{#             <div>{{ message }}</div> #}
+{#             {% endif %} #}
+
+{#             <form action="{% url 'register' %}" method="post"> #}
+{#                 {% csrf_token %} #}
+{#                 <div class="form-group"> #}
+{#                     <input class="form-control" autofocus type="text" name="username" placeholder="Username"> #}
+{#                 </div> #}
+{#                 <div class="form-group"> #}
+{#                     <input class="form-control" type="email" name="email" placeholder="Email Address"> #}
+{#                 </div> #}
+{#                 <div class="form-group"> #}
+{#                     <input class="form-control" type="password" name="password" placeholder="Password"> #}
+{#                 </div> #}
+{#                 <div class="form-group"> #}
+{#                     <input class="form-control" type="password" name="confirmation" placeholder="Confirm Password"> #}
+{#                 </div> #}
+{#                 <input class="btn btn-success w-100 mt-3" type="submit" value="Register"> #}
+{#             </form> #}
+
+{#             <div class="text-center mt-2"> #}
+{#                 Already have an account? <a href="{% url 'login' %}">Log In here.</a> #}
+{#             </div> #}
+{#         </div> #}
+{#     </div> #}
+{# </div> #}
+
 <div class="position-relative vh-100">
     <div class="position-absolute translate-middle left-50 top-50">
-        <div class="container p-3">
+        {# Default form register #}
+        <form class="text-center border border-light p-5" action="{% url 'register' %}">
 
-            <h1 class="font-title">Register</h1>
+            <p class="h4 mb-4">Sign up</p>
 
-            {% if message %}
-            <div>{{ message }}</div>
-            {% endif %}
-
-            <form action="{% url 'register' %}" method="post">
-                {% csrf_token %}
-                <div class="form-group">
-                    <input class="form-control" autofocus type="text" name="username" placeholder="Username">
+            <div class="form-row mb-4">
+                <div class="col">
+                    {# First name #}
+                    <input type="text" id="defaultRegisterFormFirstName" class="form-control" placeholder="First name">
                 </div>
-                <div class="form-group">
-                    <input class="form-control" type="email" name="email" placeholder="Email Address">
+                <div class="col">
+                    {# Last name #}
+                    <input type="text" id="defaultRegisterFormLastName" class="form-control" placeholder="Last name">
                 </div>
-                <div class="form-group">
-                    <input class="form-control" type="password" name="password" placeholder="Password">
-                </div>
-                <div class="form-group">
-                    <input class="form-control" type="password" name="confirmation" placeholder="Confirm Password">
-                </div>
-                <input class="btn btn-success w-100 mt-3" type="submit" value="Register">
-            </form>
-
-            <div class="text-center mt-2">
-                Already have an account? <a href="{% url 'login' %}">Log In here.</a>
             </div>
-        </div>
+
+            {# E-mail #}
+            <input type="email" id="RegisterFormEmail" class="form-control mb-4" placeholder="E-mail" name="email">
+
+            {# Password #}
+            <input type="password" id="RegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="PasswordHelpBlock" name="password">
+            <small id="PasswordHelpBlock" class="form-text text-muted mb-4">
+                At least 8 characters and 1 digit
+            </small>
+
+            {# Confirmation #}
+            <input type="password" id="RegisterFormPassword" class="form-control" placeholder="Confirm Password" aria-describedby="PasswordHelpBlock" name="confirmation">
+
+            {# Sign up button #}
+            <button class="btn btn-light-green my-4 btn-block" type="submit">Sign in</button>
+
+            {# Register #}
+            <p>
+                Already have an account? <a class="deep-orange-text" href="{% url 'login' %}">Log In here.</a>
+            </p>
+
+            {# Social register #}
+            <p>or sign up with:</p>
+
+            <a href="#" class="mx-2" role="button"><i class="fab fa-facebook-f deep-orange-text"></i></a>
+            <a href="#" class="mx-2" role="button"><i class="fab fa-twitter deep-orange-text"></i></a>
+            <a href="#" class="mx-2" role="button"><i class="fab fa-linkedin-in deep-orange-text"></i></a>
+            <a href="#" class="mx-2" role="button"><i class="fab fa-github deep-orange-text"></i></a>
+
+            <hr>
+
+            {# Terms of service #}
+            <p>By clicking
+                <em>Sign up</em> you agree to our
+                <a class="deep-orange-text" href="" target="_blank">terms of service</a>
+
+        </form>
+        {# Default form register #}
     </div>
 </div>
 

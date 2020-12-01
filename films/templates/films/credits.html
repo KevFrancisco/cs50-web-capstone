@@ -1,0 +1,32 @@
+{% extends "films/layout.html" %} {% load static %}
+
+{% block script %}
+
+{% endblock %}
+
+{% block title %}  {% endblock %}
+
+{% block body %}
+<div id="spacer" class="pt-5 m-5"></div>
+
+<div id="cast_details">
+</div>
+
+<div class="container">
+    <div id="credits">
+        {# <pre id="response" class="small text-white"></pre> #}
+    </div>
+</div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        {# Fetch Combined Credits #}
+        get_credits('{{api_key}}', '{{req_type}}', '{{req_id}}');
+        get_bio('{{api_key}}', '{{req_type}}', '{{req_id}}');
+    });
+</script>
+<script src="{% static 'films/js/get_credits.js' %}"></script>
+<script src="{% static 'films/js/get_bio.js' %}"></script>
+
+{% endblock %}

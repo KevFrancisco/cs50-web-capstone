@@ -44,7 +44,7 @@ function get_cast(api_key, req_type, req_id) {
 
                 img_div.classList.add('w-10','m-3','h-100','img-thumbnail','bg-darker','border-dark');
                 img_div.innerHTML = `
-                                    <a href='detail/movie/' class="text-decoration-none">
+                                    <a href='/credits/person/${ea_item[key].id}' class="text-decoration-none">
                                         ${profile_picture}
                                         <div class='small text-center text-white pt-3 h-100 mb-0'>${cast_name}</div>
                                     </a>

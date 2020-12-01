@@ -43,6 +43,15 @@ def detail(request, req_type, req_id):
     
     return render(request, "films/detail.html", context)
 
+def credits(request, req_type, req_id):
+    api_key = os.environ.get("TMDB_API_KEY")
+    context = {
+            'req_type': req_type,
+            'req_id': req_id,
+            'api_key': api_key,
+    }
+    return render(request, "films/credits.html", context)
+
 def req_type(request, new_req_type):
     request.session["req_type"] = new_req_type
     return HttpResponseRedirect(reverse('index'))
