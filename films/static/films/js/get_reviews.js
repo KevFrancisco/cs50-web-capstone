@@ -16,7 +16,7 @@ function get_reviews(api_key, req_type, req_id) {
         let ea_item = r.results;
         if (ea_item.length < 1) {
             reviews.innerHTML = `No reviews available.`;
-            return
+            return;
         };
 
         // Let's try to display the images
@@ -25,7 +25,12 @@ function get_reviews(api_key, req_type, req_id) {
                 let trailer_div = document.createElement('div');
                 trailer_div.classList.add('mx-3', 'p-3');
 
-                let rating = ea_item[key].author_details.rating;
+                let rating;
+                    if (ea_item[key].author_details.rating === null) {
+                        rating = 'No Rating';
+                    } else {
+                        rating = ea_item[key].author_details.rating;
+                    }
                 // Trim the review to 250 chars, then add ellipses
                 let content = ea_item[key].content;
                 let length = 500;

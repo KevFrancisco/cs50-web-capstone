@@ -1,5 +1,4 @@
 function detail(api_key, req_type, req_id) {
-    
     let tmdb_url = `https://api.themoviedb.org/3/${req_type}/${req_id}?api_key=${api_key}&language=en-US`;
 
     fetch(tmdb_url, {
@@ -7,7 +6,7 @@ function detail(api_key, req_type, req_id) {
     })
     .then(Response => Response.json())
     .then(r =>{
-        console.log(r);
+        // console.log(r);
         // document.getElementById('response').innerText = JSON.stringify(r, null, 4);
 
         
@@ -33,7 +32,13 @@ function detail(api_key, req_type, req_id) {
                      rgb(11,11,11) url(${backdrop_img_url}) no-repeat scroll center/cover`);
         let details = document.getElementById('details');
             details.classList.add('d-flex', 'container', 'py-5');
-            details.innerHTML= ` 
+            let more_text;
+        if (req_type === "movie") {
+            more_text = 'Movies';
+        } else {
+            more_text = 'TV Shows';
+        }
+            let tmp_str = ` 
                     <div class="row">
                         <div class="col-md-auto mx-auto py-md-5 pr-md-5 py-3 px-0">
                             <div class="mx-auto"> 
@@ -42,14 +47,22 @@ function detail(api_key, req_type, req_id) {
                         </div>
                         <div class="col-md my-5 text-shadow-1">
                             <div class="display-3 pb-3 font-alt-title">${title}</div>
-                            <div class="pb-5 h5">${r.overview}</div>
-                            <div id="hero-genres" class="pb-1"></div>
+                            <div class="h5 mb-4">${r.overview}</div>
+                            <button class="btn btn-amber btn-sm mb-5 mx-0" type="button" data-toggle="collapse" data-target="#reccomendations_section"
+                                    aria-expanded="false" aria-controls="reccomendations_section"
+                                    onClick="get_recommendations('${api_key}','${req_type}','${req_id}')"
+                                    id="more_like_this"
+                                    >
+                                See more ${more_text} like this
+                            </button>
+                            <div id="hero-genres" class="pb-1 mt-3"></div>
                             <div class="pt-3 small opacity-80 grey-text">Rating: ${r.vote_average} from ${r.vote_count} votes</div>
                             <div class="small opacity-80 grey-text">Popularity: ${r.popularity}</div>
                             <div class="pb-3 small opacity-80 grey-text">${r.status}: ${r.release_date}</div>
                         </div>
-            </div>
+                    </div>
                 `;
+                details.insertAdjacentHTML('afterbegin', tmp_str);
                 r.genres.forEach( (genre, index) => {
                         function toPipe(i) {
                             if (i != 0) {

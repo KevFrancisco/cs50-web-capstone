@@ -7,7 +7,7 @@ function get_cast(api_key, req_type, req_id) {
     })
     .then(Response => Response.json())
     .then(r =>{
-        console.log(r);
+        // console.log(r);
         // el = document.getElementById('response');
         // el.innerText = JSON.stringify(r, undefined, 2);
         // console.log(r.results);
@@ -29,12 +29,12 @@ function get_cast(api_key, req_type, req_id) {
                     img_url = 'http://via.placeholder.com/300x450'
                     profile_picture = `
                                 <div class="w-100 h-auto bg-primary position-relative" >
-                                    <div class="w-100 h-100 stylish-color position-absolute">
+                                    <div class="w-100 h-100 stylish-color-dark position-absolute">
                                         <div class="position-absolute top-50 left-50 translate-middle">
                                             <i class="far fa-user fa-5x text-light"></i>
                                         </div>
                                     </div>
-                                    <img src="${img_url}" class="img-fluid" alt="">
+                                    <img src="${img_url}" class="img-fluid opacity-0" alt="">
                                 </div>
                                     `;
                 } else {
@@ -44,7 +44,7 @@ function get_cast(api_key, req_type, req_id) {
 
                 img_div.classList.add('w-10','m-3','h-100','img-thumbnail','bg-darker','border-dark');
                 img_div.innerHTML = `
-                                    <a href='/credits/person/${ea_item[key].id}' class="text-decoration-none">
+                                    <a href='/credits/${req_type}/${ea_item[key].id}' class="text-decoration-none">
                                         ${profile_picture}
                                         <div class='small text-center text-white pt-3 h-100 mb-0'>${cast_name}</div>
                                     </a>

@@ -159,6 +159,9 @@
     right: 0%;
 }
 
+.opacity-0 {
+    opacity: 0;
+}
 .opacity-30 {
     opacity: 0.3;
 }
