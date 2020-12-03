@@ -23,13 +23,13 @@ function get_reviews(api_key, req_type, req_id) {
         for (var key in ea_item) {
             if (ea_item.hasOwnProperty(key)) {
                 let trailer_div = document.createElement('div');
-                trailer_div.classList.add('mx-3', 'p-3');
+                trailer_div.classList.add('light-blue', 'darken-4', 'mb-3', 'card');
 
                 let rating;
                     if (ea_item[key].author_details.rating === null) {
-                        rating = 'No Rating';
+                        rating = '';
                     } else {
-                        rating = ea_item[key].author_details.rating;
+                        rating = `<div class="h6 my-auto">Rating: ${ea_item[key].author_details.rating}</div>`;
                     }
                 // Trim the review to 250 chars, then add ellipses
                 let content = ea_item[key].content;
@@ -39,21 +39,28 @@ function get_reviews(api_key, req_type, req_id) {
                 let author = ea_item[key].author;
                 let rev_url = ea_item[key].url;
                 trailer_div.innerHTML = `
-                                    <div class="border border-light p-3">
-                                        <div>
-                                            ${trimmedString}
-                                            <a href="${rev_url}" class="badge badge-primary">
-                                                <span>
-                                                    Read More
-                                                </span>
-                                            </a>
+                                    <div class="card-body">
+                                        <div class="light-blue darken-4">
+                                            <div>
+                                                ${trimmedString}
+                                                <br>
+                                                
+                                                <a href="${rev_url}" class="mt-2 badge badge-primary">
+                                                    <span>
+                                                        Read More
+                                                    </span>
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="bg-darker d-flex">
-                                        <div class="p-2">Rating: ${rating}</div>
-                                        <div class="p-2 ml-auto">${author}</div>
+
+                                    <div class="card-footer">
+                                        <div class="d-flex justify-content-between">
+                                            ${rating}
+                                            <div class="h6 my-auto">${author}</div>
+                                            <div><a class="btn btn-orange btn-sm m-0" href="${rev_url}">View in TMDB</a></div>
+                                        </div>
                                     </div>
-                                    <a class="btn btn-orange btn-sm" href="${rev_url}">View in TMDB</a>
                                 `;
                 reviews.append(trailer_div);
             }

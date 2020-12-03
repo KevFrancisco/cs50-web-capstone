@@ -29,8 +29,14 @@ function get_credits(api_key, req_type, req_id) {
         // el = document.getElementById('response');
         // el.innerText = JSON.stringify(r, undefined, 2);
         // console.log(r.results);
-        let rs = r.cast.sort(dynamicSort("release_date")).reverse();
-        // console.log(rs);
+        let sort_field;
+            if (req_type === "movie") {
+                sort_field = "release_date";
+            } else {
+                sort_field = "first_air_date";
+            };
+        let rs = r.cast.sort(dynamicSort(sort_field)).reverse();
+        console.log(rs);
 
         let credits_parent = document.getElementById('credits');
         let credits_counter = 0;
@@ -42,8 +48,13 @@ function get_credits(api_key, req_type, req_id) {
                     credits_counter++;
                 }
                 // Sane Names
-                let character = rs[key].character;
-                let poster_path = rs[key].poster_path;
+                let character;
+                    if (rs[key].character === "") {
+                        character = "";
+                    } else {
+                        character = ` as <span class="deep-orange-text">${rs[key].character}</span>`;
+                    }
+                let backdrop_path = rs[key].backdrop_path;
                 let title;
                     if (req_type === "movie") {
                         title = rs[key].title;
@@ -69,10 +80,14 @@ function get_credits(api_key, req_type, req_id) {
                 // Get it, Card div... of credits... credit.. card.
                 // Okay i'll let myself out
                 let credit_card = document.createElement('div');
-                    credit_card.classList.add('elegant-color', 'z-depth-2', 'my-4', 'p-3', 'row');
+                    credit_card.classList.add('col-md-6', 'col-lg-4', 'col-xl-3', 'grid-item', 'my-4');
+                    credit_card.dataset.aos = 'fade-up';
                 let img_url;
                 let poster_img;
-                    if (rs[key].poster_path === null) {
+                    if (rs[key].backdrop_path !== null) {
+                            img_url = `https://image.tmdb.org/t/p/w780${backdrop_path}`;
+                            poster_img = `<img class="card-img-top" src="${img_url}" alt="${title}">`; 
+                    } else {
                             img_url = 'http://via.placeholder.com/154x231'
                             poster_img = `
                                 <div class="w-100 h-auto bg-primary position-relative" >
@@ -84,24 +99,39 @@ function get_credits(api_key, req_type, req_id) {
                                     <img src="${img_url}" class="img-fluid opacity-0" alt="">
                                 </div>
                                         `;
-                    } else {
-                            img_url = `https://image.tmdb.org/t/p/w154${poster_path}`;
-                            poster_img = `<img class="" src="${img_url}" alt="${title}">`; 
+                            //             `;
                     }
 
-                    credit_card.innerHTML = `
-                            <div class="col-auto">
-                                ${poster_img}
-                            </div>
-                            <div class="col">
-                                    <div class="h3">${title} as <span class="deep-orange-text">${character}</span></div>
+                    let tmp_str = `
+                        <div class="elegant-color z-depth-2 grid-item-content card">
+                            ${poster_img}
+                            <div class="card-body">
+                                    <div class="h3">${title}${character}</div>
                                     <div class="grey-text">${watch_date}</div>
-                                    <div class="pt-5 my-3">${overview}</div>
+                                    <div class="my-3">${overview}</div>
                             </div>
+                        </div>
                                     `;
+                    credit_card.insertAdjacentHTML('beforeend', tmp_str)
                 credits_parent.append(credit_card);
         };
 
+        // Images Loaded
+        imagesLoaded( document.querySelectorAll('.grid-item'), function() {
+            // console.log('all images are loaded');
+            // Masonry Layout
+            var elem = document.querySelector('.grid');
+            new Masonry( elem, {
+              // options
+                itemSelector: '.grid-item',
+                columnWidth: '.grid-sizer',
+                percentPosition: true
+                });
+            //Refresh viewport after load?
+            AOS.refresh();
+        });
+
+        // Animate on scroll
         AOS.refresh();
 
     })

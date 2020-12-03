@@ -13,19 +13,24 @@ function get_bio(api_key, req_type, req_id) {
         // console.log(r.results);
 
         let cast_details = document.getElementById('cast_details');
-            let img_url = `https://image.tmdb.org/t/p/w185${r.profile_path}`;
-            let profile_picture = `<img src="${img_url}" class="img-fluid" alt="${r.name}">`
+        let img_url = `https://image.tmdb.org/t/p/w185${r.profile_path}`;
+        let profile_picture = `<img src="${img_url}" class="img-fluid" alt="${r.name}">`
+        let bio; 
+        if (r.biography === "") {
+            bio = `No biography available :(`;
+        } else {
+            bio = r.biography;
+        }
         let cast_details_contents = `
-                    <div class="container elegant-color-dark z-depth-3 mb-5">
+                    <div class="container elegant-color z-depth-3 mb-5">
                         <div class="row py-3">
                             <div class="col-auto">
                                 ${profile_picture}
                             </div>
                             <div class="col">
                                 <div class="">
-                                    <div class="deep-orange-text h2">${r.name}</div>
-                                    <div class="opacity-80">${r.biography}</div>
-                                    <div class="small">Lorem</div>
+                                    <div class="deep-orange-text h1">${r.name}</div>
+                                    <div class="opacity-80 mt-3">${bio}</div>
                                     <p></p>
                                 </div>
                             </div>
@@ -33,7 +38,7 @@ function get_bio(api_key, req_type, req_id) {
                     </div>
             `;
         cast_details.insertAdjacentHTML('beforeend', cast_details_contents);
-
+        document.title = `ShowBox: ${r.name}`;
         });
 
         AOS.refresh();

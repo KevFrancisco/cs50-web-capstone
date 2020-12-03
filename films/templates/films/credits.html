@@ -1,7 +1,17 @@
 {% extends "films/layout.html" %} {% load static %}
 
 {% block script %}
-
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        {# Fetch Combined Credits #}
+        get_credits('{{api_key}}', '{{req_type}}', '{{req_id}}');
+        get_bio('{{api_key}}', '{{req_type}}', '{{req_id}}');
+    });
+</script>
+<script src="{% static 'films/js/get_credits.js' %}"></script>
+<script src="{% static 'films/js/get_bio.js' %}"></script>
+<script src="{% static 'films/js/masonry.pkgd.min.js' %}"></script>
+<script src="{% static 'films/js/imagesloaded.pkgd.min.js' %}"></script>
 {% endblock %}
 
 {% block title %}  {% endblock %}
@@ -12,21 +22,21 @@
 <div id="cast_details">
 </div>
 
-<div class="container">
-    <div id="credits">
+<div class="container-fluid">
+    <div id="section_header">
+        <div class="p-2 font-body-el h3 letter-space-5 text-center mt-3 text-shadow-1 text-uppercase"
+         data-aos="zoom-up"
+         data-aos-duration="1500"
+        >
+                {{req_type}} CREDITS
+        </div>
+    </div>
+    <div id="credits" class="grid">
+        <div class="grid-sizer w-100 col-md-6 col-lg-4 col-xl-3"></div>
         {# <pre id="response" class="small text-white"></pre> #}
     </div>
 </div>
 
 
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-        {# Fetch Combined Credits #}
-        get_credits('{{api_key}}', '{{req_type}}', '{{req_id}}');
-        get_bio('{{api_key}}', '{{req_type}}', '{{req_id}}');
-    });
-</script>
-<script src="{% static 'films/js/get_credits.js' %}"></script>
-<script src="{% static 'films/js/get_bio.js' %}"></script>
 
 {% endblock %}
