@@ -82,7 +82,7 @@ def login_view(request):
                 "message": "Invalid username and/or password."
             })
     else:
-        return render(request, "films/login.html")
+        return render(request, "films/login.html", { 'req_type': request.session["req_type"] })
 
 
 def logout_view(request):
@@ -114,4 +114,4 @@ def register(request):
         login(request, user)
         return HttpResponseRedirect(reverse("index"))
     else:
-        return render(request, "films/register.html")
+        return render(request, "films/register.html", { 'req_type': request.session["req_type"] })
