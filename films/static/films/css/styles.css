@@ -20,7 +20,7 @@
 }
 
 .border-darker {
-    border: solid 1px rgba(0, 0, 0, 0.8);
+    border: solid 1px rgba(0, 0, 0, 0.5);
 }
 
 .bgs-100 {
@@ -275,4 +275,8 @@
     .card-columns {
         column-count: 3;
     }
+}
+
+.ws-pre-line {
+    white-space: pre-line;
 }

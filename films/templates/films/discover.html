@@ -1,0 +1,50 @@
+{% extends "films/layout.html" %} {% load static %}
+
+{% block script %}
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        {# Fetch Combined Credits #}
+        get_discover_page('{{api_key}}', '{{req_type}}');
+    });
+</script>
+<script src="{% static 'films/js/get_discover_page.js' %}"></script>
+<script src="{% static 'films/js/masonry.pkgd.min.js' %}"></script>
+<script src="{% static 'films/js/imagesloaded.pkgd.min.js' %}"></script>
+{% endblock %}
+
+{% block title %}  {% endblock %}
+
+{% block body %}
+<div id="spacer" class="pt-5 m-4"></div>
+
+
+<div class="container-fluid">
+    <div id="section_header">
+        <div class="p-2 font-body-el h3 letter-space-5 text-center mt-3 text-shadow-1 text-uppercase"
+         data-aos="zoom-up"
+         data-aos-duration="1500"
+        >
+        DISCOVER {{req_type}}{% if req_type == "movie" %}S{% else %} SHOWS{% endif %}
+        </div>
+    </div>
+    <div id="discover" class="grid">
+        <div class="grid-sizer w-100 col-sm-6 col-md-4 col-lg-3 col-xl-2"></div>
+        {# <pre id="response" class="small text-white"></pre> #}
+    </div>
+</div>
+
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function() {
+    $(window).scroll(function() {
+       if($(window).scrollTop() + $(window).height() > $(document).height() - 1500) {
+            console.log('Fetch new page!');
+            discover_page_number++;
+            get_discover_page('{{api_key}}', '{{req_type}}');
+       }
+    });
+});
+
+</script>
+{% endblock %}

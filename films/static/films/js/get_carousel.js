@@ -131,6 +131,7 @@ function get_carousel(api_key, req_type, section) {
                 },
             ]
         });
+
         AOS.refresh();
 
     })

@@ -13,8 +13,8 @@ function get_bio(api_key, req_type, req_id) {
         // console.log(r.results);
 
         let cast_details = document.getElementById('cast_details');
-        let img_url = `https://image.tmdb.org/t/p/w185${r.profile_path}`;
-        let profile_picture = `<img src="${img_url}" class="img-fluid" alt="${r.name}">`
+        let img_url = `https://image.tmdb.org/t/p/original${r.profile_path}`;
+        let profile_picture = `<img src="${img_url}" class="img-fluid z-depth-1-half" alt="${r.name}">`
         let bio; 
         if (r.biography === "") {
             bio = `No biography available :(`;
@@ -22,15 +22,21 @@ function get_bio(api_key, req_type, req_id) {
             bio = r.biography;
         }
         let cast_details_contents = `
-                    <div class="container elegant-color z-depth-3 mb-5">
-                        <div class="row py-3">
-                            <div class="col-auto">
+                    <div class="container p-3 elegant-color z-depth-3 mb-5">
+                        <div class="row no-gutters p-3">
+                            <div class="col-4 mr-3">
                                 ${profile_picture}
                             </div>
-                            <div class="col">
+                            <div class="col ml-3">
                                 <div class="">
-                                    <div class="deep-orange-text h1">${r.name}</div>
-                                    <div class="opacity-80 mt-3">${bio}</div>
+                                    <div class="deep-orange-text mb-1">
+                                        <span class="h1 text-shadow-1">
+                                            ${r.name}
+                                        </span>
+                                        <a href="https://www.imdb.com/name/${r.imdb_id}" class="mb-1 badge badge-info align-text-bottom">View in IMDB</a>
+                                    </div>
+                                    <div class="grey-text">Birth: ${r.birthday} | Popularity: ${r.popularity}</div>
+                                    <div class="opacity-80 mt-3 ws-pre-line">${bio}</div>
                                     <p></p>
                                 </div>
                             </div>

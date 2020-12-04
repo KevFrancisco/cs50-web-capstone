@@ -11,7 +11,7 @@ function get_trailers(api_key, req_type, req_id) {
         // console.log(r);
         // el = document.getElementById('response');
         // el.innerText = JSON.stringify(r, undefined, 2);
-        console.log(r.results);
+        // console.log(r.results);
 
         let trailers = document.getElementById('trailers');
         let ea_item = r.results;

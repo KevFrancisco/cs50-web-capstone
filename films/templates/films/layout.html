@@ -58,16 +58,22 @@
                                 <input id="nav-search" class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
                           </div>
                     </form>
-                    <a href="{% url 'req_type' 'movie' %}" class="btn btn-purple btn-sm">Movies</a>
-                    <a href="{% url 'req_type' 'tv' %}" class="btn btn-cyan btn-sm mr-auto">TV Shows</a>
+                    <a href="{% url 'req_type' 'movie' %}"
+                        id="nav_movies"
+                        class="btn btn-cyan btn-sm {% if req_type == 'movie' %}border{% endif %}"
+                    >Movies</a>
+                    <a href="{% url 'req_type' 'tv' %}"
+                        id="nav_tv"
+                        class="btn btn-purple btn-sm {% if req_type == 'tv' %}border{% endif %} mr-auto"
+                    >TV Shows</a>
                     <ul class="navbar-nav nav-flex-icons">
-                        <li class="nav-item active">
+                        <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="{% url 'index' %}">
                                 <i class="fas fa-home fa-lg"></i>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{% url 'index' %}">
+                            <a class="nav-link" aria-current="page" href="{% url 'discover' req_type %}">
                                 <i class="fas fa-compass fa-lg"></i>
                             </a>
                         </li>
