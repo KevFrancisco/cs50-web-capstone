@@ -171,6 +171,9 @@
 .opacity-80 {
     opacity: 0.8;
 }
+.opacity-100 {
+    opacity: 1;
+}
 .z-index-1 {
     z-index: 1;
 }
@@ -279,4 +282,9 @@
 
 .ws-pre-line {
     white-space: pre-line;
+}
+
+.login-bg {
+    background: transparent url('/static/films/images/login.jpg') no-repeat scroll center/cover;
+    background-attachment: fixed;
 }

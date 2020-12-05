@@ -48,6 +48,7 @@ function detail(api_key, req_type, req_id) {
                         <div class="col-md my-5 text-shadow-1">
                             <div class="display-3 pb-3 font-alt-title">${title}</div>
                             <div class="h5 mb-4">${r.overview}</div>
+
                             <button class="btn btn-amber btn-sm mb-5 mx-0" type="button" data-toggle="collapse" data-target="#reccomendations_section"
                                     aria-expanded="false" aria-controls="reccomendations_section"
                                     onClick="get_recommendations('${api_key}','${req_type}','${req_id}')"
@@ -55,6 +56,7 @@ function detail(api_key, req_type, req_id) {
                                     >
                                 See more ${more_text} like this
                             </button>
+
                             <div id="hero-genres" class="pb-1 mt-3"></div>
                             <div class="pt-3 small opacity-80 grey-text">Rating: ${r.vote_average} from ${r.vote_count} votes</div>
                             <div class="small opacity-80 grey-text">Popularity: ${r.popularity}</div>

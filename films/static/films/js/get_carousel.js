@@ -61,9 +61,8 @@ function get_carousel(api_key, req_type, section) {
                             <div class="view overlay hoverable z-depth-1">
                                 <img src="${img_url}" class="mx-auto img-fluid" alt="${title}">
                             </div>
-                            <div class='text-white font-body-b pt-3'>${title}</div>
-                            <div class='text-white font-body-el mb-4'>${addtl_detail}</div>
-
+                            <div class='text-white font-body-b h5 pt-3'>${title}</div>
+                            <div class='text-white font-body-el mb-4'></div>
                         </div>
                     </a>
                         `;

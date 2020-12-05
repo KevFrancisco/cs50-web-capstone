@@ -54,6 +54,7 @@ function get_discover_page(api_key, req_type) {
                 let discover_card = document.createElement('div');
                     discover_card.classList.add('col-sm-6','col-md-4', 'col-lg-3', 'col-xl-2', 'grid-item', 'my-4');
                     discover_card.dataset.aos = 'fade-up';
+                let rating = `<i class="fas fa-star"></i> ${rs[key].vote_average}`;
                 let img_url;
                 let poster_img;
                     if (rs[key].poster_path !== null) {
@@ -82,7 +83,10 @@ function get_discover_page(api_key, req_type) {
 
                     let tmp_str = `
                         <div class="elegant-color z-depth-2 grid-item-content card">
-                            ${poster_img}
+                            <div class="position-relative">
+                                ${poster_img}
+                                <div class="position-absolute h5 top-0 right-0 text-white mt-5 px-2 py-1 rgba-stylish-strong opacity-90 z-index-1">${rating}</div>
+                            </div>
                             <div class="card-body">
                                 <a href="/detail/${req_type}/${rs[key].id}" class="text-white">
                                     <div class="h3">${title}</div>

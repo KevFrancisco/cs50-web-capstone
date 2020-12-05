@@ -48,9 +48,9 @@ function get_main_hero(api_key, req_type) {
                                             'text-shadow-1', 'no-gutters');
                     let temp_str = `
                             <a href='detail/${req_type}/${ea_item[key].id}' class="text-decoration-none text-white">
-                                <div class="display-2 mb-3 font-title-b w-100">${title}</div>
+                                <div class="display-2 font-title-b w-100">${title}</div>
                             </a>
-                            <div class="font-body mb-3 col-xl-6">${overview}</div>
+                            <div class="lead font-body mb-4 col-xl-6">${overview}</div>
                             <div class="grey-text opacity-50 small">Rating: ${vote_average} from ${vote_count} votes | Popularity: ${parseInt(popularity)}</div>
                             <div class="blue-grey-text opacity-50 small ">Released: ${release_date}</div>
                                    `; 
