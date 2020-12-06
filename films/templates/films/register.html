@@ -4,47 +4,24 @@
 
 {# Header #}
 
-{# <div class="position-relative vh-100"> #}
-{#     <div class="position-absolute translate-middle left-50 top-50"> #}
-{#         <div class="container p-3"> #}
-
-{#             <h1 class="font-title">Register</h1> #}
-
-{#             {% if message %} #}
-{#             <div>{{ message }}</div> #}
-{#             {% endif %} #}
-
-{#             <form action="{% url 'register' %}" method="post"> #}
-{#                 {% csrf_token %} #}
-{#                 <div class="form-group"> #}
-{#                     <input class="form-control" autofocus type="text" name="username" placeholder="Username"> #}
-{#                 </div> #}
-{#                 <div class="form-group"> #}
-{#                     <input class="form-control" type="email" name="email" placeholder="Email Address"> #}
-{#                 </div> #}
-{#                 <div class="form-group"> #}
-{#                     <input class="form-control" type="password" name="password" placeholder="Password"> #}
-{#                 </div> #}
-{#                 <div class="form-group"> #}
-{#                     <input class="form-control" type="password" name="confirmation" placeholder="Confirm Password"> #}
-{#                 </div> #}
-{#                 <input class="btn btn-success w-100 mt-3" type="submit" value="Register"> #}
-{#             </form> #}
-
-{#             <div class="text-center mt-2"> #}
-{#                 Already have an account? <a href="{% url 'login' %}">Log In here.</a> #}
-{#             </div> #}
-{#         </div> #}
-{#     </div> #}
-{# </div> #}
-
 <div class="position-relative vh-100 overflow-hidden">
     <div class="login-bg opacity-30 vh-100 vw-100 overflow-hidden"></div>
-    <div class="position-absolute translate-middle left-50 top-50">
+    <div class="position-absolute translate-middle left-50 top-50 bg-darker">
         {# Default form register #}
-        <form class="text-center border border-light p-5" action="{% url 'register' %}">
+        <form class="text-center border border-light p-5" action="{% url 'register' %}" method="POST">
+            {% csrf_token %}
 
             <p class="h4 mb-4">Sign up</p>
+
+            {# ##############################      Alert      ############################## #}
+            {% if message_error is not None %}
+                <div class="alert alert-danger alert-dismissible fade show text-wrap" role="alert">
+                    {{message_error}}
+                  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+            {% endif %}
 
             <div class="form-row mb-4">
                 <div class="col">
@@ -58,7 +35,7 @@
             </div>
 
             {# E-mail #}
-            <input type="email" id="RegisterFormEmail" class="form-control mb-4" placeholder="E-mail" name="email">
+            <input type="email" id="RegisterFormEmail" class="form-control mb-4" placeholder="E-mail" name="username">
 
             {# Password #}
             <input type="password" id="RegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="PasswordHelpBlock" name="password">

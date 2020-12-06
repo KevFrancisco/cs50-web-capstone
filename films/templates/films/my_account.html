@@ -1,0 +1,63 @@
+{% extends "films/layout.html" %}
+{% load widget_tweaks %}
+
+{% block body %}
+
+{# Header #}
+
+<div class="position-relative vh-100 overflow-hidden">
+    <div class="login-bg opacity-30 vh-100 vw-100 overflow-hidden"></div>
+    <div class="position-absolute translate-middle left-50 top-50 bg-darker p-4 border">
+
+        {# ##############################      Alert      ############################## #}
+        {% if message_error is not None %}
+            <div class="alert alert-danger alert-dismissible fade show text-wrap" role="alert">
+                {{message_error}}
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+        {% endif %}
+
+        <p class="h4 mb-4">Account Settings: {{ request.user.username }}</p>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            {{ form.non_field_errors }}
+            <div class="form-group text-left row">
+                <div class="col">
+                    {{ form.first_name.errors }}
+                    {{ form.first_name | add_label_class:"small" }}
+                    {% render_field form.first_name class+="form-control rounded-0" %}
+                </div>
+                <div class="col">
+                    {{ form.last_name.errors }}
+                    {{ form.last_name | add_label_class:"small" }}
+                    {% render_field form.last_name class+="form-control rounded-0" %}
+                </div>
+            </div>
+            <div class="form-group text-left row">
+                <div class="col">
+                    {{ form.api_key.errors }}
+                    {{ form.api_key | add_label_class:"small" }}
+                    {% render_field form.api_key class+="form-control rounded-0" %}
+                </div>
+                <div class="col">
+                    {{ form.locale.errors }}
+                    {{ form.locale | add_label_class:"small" }}
+                    {% render_field form.locale class+="form-control rounded-0" %}
+                </div>
+            </div>
+            <div class="form-group text-left">
+                {{ form.profile_img.errors }}
+                {{ form.profile_img | add_label_class:"small" }}
+                {% render_field form.profile_img class+="form-control rounded-0" %}
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

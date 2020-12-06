@@ -7,6 +7,7 @@ from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 
 from films.models import User
+from films.forms import MyAccountForm
 
 TMDB_REQ_URL = "https://api.themoviedb.org/3/"
 
@@ -79,7 +80,8 @@ def login_view(request):
             return HttpResponseRedirect(reverse("index"))
         else:
             return render(request, "films/login.html", {
-                "message": "Invalid username and/or password."
+                "message_error": "Invalid username and/or password.",
+                "req_type": request.session["req_type"],
             })
     else:
         return render(request, "films/login.html", { 'req_type': request.session["req_type"] })
@@ -93,25 +95,42 @@ def logout_view(request):
 def register(request):
     if request.method == "POST":
         username = request.POST["username"]
-        email = request.POST["email"]
 
         # Ensure password matches confirmation
         password = request.POST["password"]
         confirmation = request.POST["confirmation"]
         if password != confirmation:
             return render(request, "films/register.html", {
-                "message": "Passwords must match."
+                "message_error": "Passwords must match.",
+                "req_type": request.session["req_type"],
             })
 
         # Attempt to create new user
         try:
-            user = User.objects.create_user(username, email, password)
+            user = User.objects.create_user(username=username,
+                                            password=password)
             user.save()
         except IntegrityError:
             return render(request, "films/register.html", {
-                "message": "Username already taken."
+                "message_error": "Username already taken.",
+                "req_type": request.session["req_type"],
             })
         login(request, user)
         return HttpResponseRedirect(reverse("index"))
     else:
         return render(request, "films/register.html", { 'req_type': request.session["req_type"] })
+
+def my_account(request):
+    myuser = request.user
+    form = MyAccountForm(instance=myuser)
+
+    context = {
+        'myuser': myuser,
+        'form': form
+    }
+
+    return render(request, "films/my_account.html", context)
+
+
+
+
