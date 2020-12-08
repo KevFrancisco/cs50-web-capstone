@@ -121,6 +121,23 @@ def register(request):
         return render(request, "films/register.html", { 'req_type': request.session["req_type"] })
 
 def my_account(request):
+    if request.method == "POST":
+        form = MyAccountForm(request.POST, instance=request.user)
+        print(form)
+        if form.is_valid():
+            form.save()
+            context = {
+                'message_success': 'Changes Saved!'
+            }
+            print('valid form')
+            return HttpResponseRedirect(reverse("my_account"))
+        else:
+            context = {
+                'message_error': 'Error: Invalid Changes'
+            }
+            print('not valid form')
+            return HttpResponseRedirect(reverse("my_account"))
+
     myuser = request.user
     form = MyAccountForm(instance=myuser)
 

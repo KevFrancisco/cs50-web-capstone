@@ -27,6 +27,11 @@ function get_main_hero(api_key, req_type) {
                 let vote_average = ea_item[key].vote_average;
                 let vote_count = ea_item[key].vote_count;
                 let release_date = ea_item[key].release_date;
+                if (req_type === "movie") {
+                    release_date = `Released: ${ea_item[key].release_date}`;
+                } else {
+                    release_date = `First Air Date: ${ea_item[key].first_air_date}`;
+                }
                 let popularity = ea_item[key].popularity;
                 let img_url = `https://image.tmdb.org/t/p/original${ea_item[key].backdrop_path}`;
 
@@ -52,7 +57,7 @@ function get_main_hero(api_key, req_type) {
                             </a>
                             <div class="lead font-body mb-4 col-xl-6">${overview}</div>
                             <div class="grey-text opacity-50 small">Rating: ${vote_average} from ${vote_count} votes | Popularity: ${parseInt(popularity)}</div>
-                            <div class="blue-grey-text opacity-50 small ">Released: ${release_date}</div>
+                            <div class="blue-grey-text opacity-50 small ">${release_date}</div>
                                    `; 
                     hero_text.insertAdjacentHTML('beforeend', temp_str);
                 let carousel_indicator = document.getElementById('hero-indicators');

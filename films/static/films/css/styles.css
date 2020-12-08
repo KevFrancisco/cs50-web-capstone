@@ -5,6 +5,10 @@
     max-height: 50vh;
 }
 
+.min-vh-100 {
+    min-height: 100vh;
+}
+
 .bottom-fade {
     background: linear-gradient(to bottom,
                                 rgba(0, 0, 0, 0.5) 45%,
@@ -83,10 +87,10 @@
     z-index: 1;
 }
 .slick-custom-prev {
-    left: -20px;
+    left: 0px;
 }
 .slick-custom-next {
-    right: -20px;
+    right: 0px;
 }
 .slick-cast-prev {
     left: -60px;
@@ -287,4 +291,10 @@
 .login-bg {
     background: transparent url('/static/films/images/login.jpg') no-repeat scroll center/cover;
     background-attachment: fixed;
+}
+
+.user_icon_list_item {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
 }

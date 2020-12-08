@@ -8,8 +8,8 @@ TMDB_LOCALES = [
 # Create your models here.
 class User(AbstractUser):
     api_key = models.CharField(max_length=50)
-    profile_img = models.ImageField(
-                        upload_to='films/',
+    profile_img = models.CharField(
+                        max_length=50,
                         blank=True,
                         )
     locale = models.CharField(

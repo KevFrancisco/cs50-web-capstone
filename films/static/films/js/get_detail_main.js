@@ -6,7 +6,7 @@ function detail(api_key, req_type, req_id) {
     })
     .then(Response => Response.json())
     .then(r =>{
-        // console.log(r);
+        console.log(r);
         // document.getElementById('response').innerText = JSON.stringify(r, null, 4);
 
         
@@ -32,11 +32,17 @@ function detail(api_key, req_type, req_id) {
                      rgb(11,11,11) url(${backdrop_img_url}) no-repeat scroll center/cover`);
         let details = document.getElementById('details');
             details.classList.add('d-flex', 'container', 'py-5');
-            let more_text;
+        let more_text
+                if (req_type === "movie") {
+                more_text = 'Movies';
+            } else {
+                more_text = 'TV Shows';
+            }
+        let release_date;
         if (req_type === "movie") {
-            more_text = 'Movies';
+            release_date = `${r.status}: ${r.release_date}`
         } else {
-            more_text = 'TV Shows';
+            release_date = `Last Aired Episode: ${r.last_air_date}`
         }
             let tmp_str = ` 
                     <div class="row">
@@ -60,7 +66,7 @@ function detail(api_key, req_type, req_id) {
                             <div id="hero-genres" class="pb-1 mt-3"></div>
                             <div class="pt-3 small opacity-80 grey-text">Rating: ${r.vote_average} from ${r.vote_count} votes</div>
                             <div class="small opacity-80 grey-text">Popularity: ${r.popularity}</div>
-                            <div class="pb-3 small opacity-80 grey-text">${r.status}: ${r.release_date}</div>
+                            <div class="pb-3 small opacity-80 grey-text">${release_date}</div>
                         </div>
                     </div>
                 `;
