@@ -1,4 +1,4 @@
-function detail(api_key, req_type, req_id) {
+function detail(api_key, req_type, req_id, usr_locale) {
     let tmdb_url = `https://api.themoviedb.org/3/${req_type}/${req_id}?api_key=${api_key}&language=en-US`;
 
     fetch(tmdb_url, {
@@ -6,7 +6,7 @@ function detail(api_key, req_type, req_id) {
     })
     .then(Response => Response.json())
     .then(r =>{
-        console.log(r);
+        // console.log(r);
         // document.getElementById('response').innerText = JSON.stringify(r, null, 4);
 
         
@@ -39,6 +39,7 @@ function detail(api_key, req_type, req_id) {
                 more_text = 'TV Shows';
             }
         let release_date;
+        let rating = `<i class="fas fa-star"></i> ${r.vote_average}`;
         if (req_type === "movie") {
             release_date = `${r.status}: ${r.release_date}`
         } else {
@@ -52,18 +53,26 @@ function detail(api_key, req_type, req_id) {
                             </div>
                         </div>
                         <div class="col-md my-5 text-shadow-1">
-                            <div class="display-3 pb-3 font-alt-title">${title}</div>
-                            <div class="h5 mb-4">${r.overview}</div>
+                            <div class="display-3 font-alt-title">${title}</div>
+                            <div class="h5 mb-4 mt-2">${r.overview}</div>
 
-                            <button class="btn btn-amber btn-sm mb-5 mx-0" type="button" data-toggle="collapse" data-target="#reccomendations_section"
+                            <button class="btn btn-amber btn-sm mb-5 mx-0" type="button" data-toggle="collapse" data-target="#recommendations_section"
                                     aria-expanded="false" aria-controls="reccomendations_section"
                                     onClick="get_recommendations('${api_key}','${req_type}','${req_id}')"
                                     id="more_like_this"
                                     >
                                 See more ${more_text} like this
                             </button>
+                            <button class="btn btn-amber btn-sm mb-5 mr-0 ml-2" type="button" data-toggle="collapse" data-target="#watch_providers_section"
+                                    aria-expanded="false" aria-controls="reccomendations_section"
+                                    onClick="get_watch_providers('${api_key}','${req_type}','${req_id}', '${usr_locale}')"
+                                    id="where_to_watch"
+                                    >
+                                Where to watch ${title}
+                            </button>
 
-                            <div id="hero-genres" class="pb-1 mt-3"></div>
+                            <div class="h1 mt-3">${rating}</div>
+                            <div id="hero-genres" class="pb-1"></div>
                             <div class="pt-3 small opacity-80 grey-text">Rating: ${r.vote_average} from ${r.vote_count} votes</div>
                             <div class="small opacity-80 grey-text">Popularity: ${r.popularity}</div>
                             <div class="pb-3 small opacity-80 grey-text">${release_date}</div>

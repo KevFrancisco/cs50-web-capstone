@@ -34,7 +34,7 @@ def index(request):
 def detail(request, req_type, req_id):
     api_key = os.environ.get("TMDB_API_KEY")
     
-    req_type = request.session["req_type"]
+    # req_type = request.session["req_type"]
 
     context = {
             'req_type': req_type,
@@ -61,6 +61,18 @@ def discover(request, req_type):
             'api_key': api_key,
     }
     return render(request, "films/discover.html", context)
+
+def search(request):
+    if request.method == "POST":
+        query_str = request.POST['query_str']
+        api_key = os.environ.get("TMDB_API_KEY")
+        context = {
+                'api_key': api_key,
+                'query_str': query_str,
+        }
+        return render(request, "films/search.html", context)
+
+    return HttpResponseRedirect(reverse('index'))
 
 def req_type(request, new_req_type):
     request.session["req_type"] = new_req_type

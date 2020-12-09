@@ -1,14 +1,15 @@
-{% extends "films/layout.html" %} {% load static %}
+{% extends "films/layout.html" %}
+{% load static %}
 
 {% block script %}
 <script>
-    var discover_page_number = 1;
+    var search_page_number = 1;
     document.addEventListener("DOMContentLoaded", function() {
-        {# Fetch Combined Credits #}
-        get_discover_page('{{api_key}}', '{{req_type}}');
+        // Fetch Combined Credits
+            get_search_results('{{api_key}}', '{{query_str}}');
     });
 </script>
-<script src="{% static 'films/js/get_discover_page.js' %}"></script>
+<script src="{% static 'films/js/get_search_results.js' %}"></script>
 <script src="{% static 'films/js/masonry.pkgd.min.js' %}"></script>
 <script src="{% static 'films/js/imagesloaded.pkgd.min.js' %}"></script>
 {% endblock %}
@@ -25,10 +26,10 @@
          data-aos="zoom-up"
          data-aos-duration="1500"
         >
-        DISCOVER {{req_type}}{% if req_type == "movie" %}S{% else %} SHOWS{% endif %}
+            SEARCH RESULTS FOR {{ query_str }}:
         </div>
     </div>
-    <div id="discover" class="grid">
+    <div id="search_results" class="grid">
         <div class="grid-sizer w-100 col-sm-6 col-md-4 col-lg-3 col-xl-2"></div>
         {# <pre id="response" class="small text-white"></pre> #}
     </div>
@@ -40,9 +41,9 @@
 document.addEventListener("DOMContentLoaded", function() {
     $(window).scroll(function() {
        if($(window).scrollTop() + $(window).height() > $(document).height() - 1500) {
-            discover_page_number++;
-            console.log(`Fetch new page! ${discover_page_number}`);
-            get_discover_page('{{api_key}}', '{{req_type}}');
+            search_page_number++;
+            console.log(`Fetch new page! ${search_page_number}`);
+            get_search_results('{{api_key}}', '{{query_str}}');
        }
     });
 });

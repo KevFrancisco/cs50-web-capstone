@@ -10,7 +10,7 @@ function get_reviews(api_key, req_type, req_id) {
     .then(Response => Response.json())
     .then(r =>{
         // ### DEBUGGING ### //
-        console.log(r);
+        // console.log(r);
         // el = document.getElementById('response');
         // el.innerText = JSON.stringify(r, undefined, 2);
 

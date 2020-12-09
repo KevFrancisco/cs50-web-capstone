@@ -1,6 +1,8 @@
 function get_recommendations(api_key, req_type, req_id) {
-    // API Url from test documentation
+    // Fetch recommendations only once
     if (recommendations_loaded === true) { return; }
+
+    // Request URL from TMDB Documentation
     let url = `https://api.themoviedb.org/3/${req_type}/${req_id}/recommendations?api_key=${api_key}&language=en-US&page=1`
     
     fetch(url, {
@@ -129,6 +131,8 @@ function get_recommendations(api_key, req_type, req_id) {
                 },
             ]
         });
+        AOS.refresh();
+
     })
 
 }

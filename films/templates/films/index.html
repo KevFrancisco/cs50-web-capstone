@@ -5,7 +5,7 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
         get_main_hero('{{api_key}}','{{req_type}}');
-        get_carousel('{{api_key}}', '{{req_type}}', 'discover');
+        // get_carousel('{{api_key}}', '{{req_type}}', 'discover');
         if ('{{req_type}}' === 'movie') {
             get_carousel('{{api_key}}', '{{req_type}}', 'now_playing');
         } else {
@@ -69,21 +69,21 @@
 
 
 {# ########## DISCOVER SECTION ########## #}
-<div class="mx-5 my-3">
-    <div class="p-2 font-body-el h3 letter-space-5 text-center mt-3 text-shadow-1"
-     data-aos="zoom-up"
-     data-aos-duration="1500"
-    >
-        DISCOVER
-    </div>
+{# <div class="mx-5 my-3"> #}
+{#     <div class="p-2 font-body-el h3 letter-space-5 text-center mt-3 text-shadow-1" #}
+{#      data-aos="zoom-up" #}
+{#      data-aos-duration="1500" #}
+{#     > #}
+{#         DISCOVER #}
+{#     </div> #}
 
-    <div class="px-5" data-aos="fade-up">
-        <div class="sc-container position-relative" id="discover">
-        </div>
-    </div>   
-</div>
+{#     <div class="px-5" data-aos="fade-up"> #}
+{#         <div class="sc-container position-relative" id="discover"> #}
+{#         </div> #}
+{#     </div> #}   
+{# </div> #}
 
-<hr class="carousel-hr">
+{# <hr class="carousel-hr"> #}
 
 {# ########## NOW PLAYING SECTION ########## #}
 <div class="mx-5 my-3">

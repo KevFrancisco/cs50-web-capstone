@@ -1,6 +1,3 @@
-var discover_page_number = 1;
-// Manipulate the navbar links
-
 function get_discover_page(api_key, req_type) {
     let title_text;
     if (req_type === "movie") {
@@ -9,16 +6,16 @@ function get_discover_page(api_key, req_type) {
         title_text = "TV Shows";
     };
     document.title = `ShowBox: Discover ${title_text}`;
+
     // API Url from test documentation
     let url =`https://api.themoviedb.org/3/discover/${req_type}?api_key=${api_key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${discover_page_number}`
-    console.log(url);
     
     fetch(url, {
         method: "GET",
     })
     .then(Response => Response.json())
     .then(r =>{
-        console.log(r);
+        // console.log(r);
         // el = document.getElementById('response');
         // el.innerText = JSON.stringify(r, undefined, 2);
         // console.log(r.results);

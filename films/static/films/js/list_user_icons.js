@@ -16,7 +16,7 @@ function select_user_icon(name) {
 }
 
 function list_user_icons(selected) {
-    console.log(selected);
+    // console.log(selected);
     let elem = document.getElementById('profile_images');
     
     for (var i = 1; i <= 30; i++) {
@@ -29,6 +29,7 @@ function list_user_icons(selected) {
 
                 if (selected === i) {
                     tmp_div.classList.add('border')
+                    // console.log(`User has selected Profile num: i= ${i}, selected=${selected}`)
                 }
 
             tmp_div.onclick = function () {

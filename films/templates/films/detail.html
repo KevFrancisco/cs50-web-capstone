@@ -4,19 +4,29 @@
 
 <script>
     var recommendations_loaded = false;
+    var watch_providers_loaded = false;
     document.addEventListener("DOMContentLoaded", function() {
         {# Fetch the Hero section #}
-        detail('{{api_key}}', '{{req_type}}', '{{req_id}}');
+        detail('{{api_key}}', '{{req_type}}', '{{req_id}}', '{{request.user.locale}}');
         {# Fetch the Cast #}
         get_cast('{{api_key}}', '{{req_type}}', '{{req_id}}');
         {# Fetch Trailers #}
         get_trailers('{{api_key}}', '{{req_type}}', '{{req_id}}');
         {# Fetch Reviews #}
         get_reviews('{{api_key}}', '{{req_type}}', '{{req_id}}');
+
+        // Refresh AOS after bootstrap collapse
+        $('#recommendations_section').on('hidden.bs.collapse', function () {
+            AOS.refresh();
+        })
+        $('#watch_providers_section').on('hidden.bs.collapse', function () {
+            AOS.refresh();
+        })
     });
 </script>
 <script src="{% static 'films/js/get_detail_main.js' %}"></script>
 <script src="{% static 'films/js/get_recommendations.js' %}"></script>
+<script src="{% static 'films/js/get_watch_providers.js' %}"></script>
 <script src="{% static 'films/js/get_cast.js' %}"></script>
 <script src="{% static 'films/js/get_trailers.js' %}"></script>
 <script src="{% static 'films/js/get_reviews.js' %}"></script>
@@ -31,7 +41,7 @@
 <div id="reviews_full"></div>
 
 {# ############### HERO SECTION ############### #}
-<div class="bg-darker position-relative container-fluid hero-main mb-5 z-depth-1" id="hero-main">
+<div class="bg-darker position-relative container-fluid hero-main mb-3 z-depth-1" id="hero-main">
     <div class="position-absolute left-50 top-50 hide-loader">
         <div class="spinner-border" style="width: 3rem; height: 3rem;" role="status">
             <span class="sr-only">Loading...</span>
@@ -42,7 +52,7 @@
 </div>
 
 {# ############### RECCOMENDATIONS SECTION ############### #}
-<div id="reccomendations_section" class="collapse">
+<div id="recommendations_section" class="collapse mb-3">
     <div class="card card-body elegant-color">
 
         <div class="px-2 font-body-el h5 letter-space-5 text-uppercase"
@@ -53,6 +63,32 @@
 
         <div id="recommendations" class="px-5 d-flex justify-content-center">
             <div class="spinner-border text-light" id="loader_recommendations" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+{# ############### WATCH PROVIDERS SECTION ############### #}
+<div id="watch_providers_section" class="collapse">
+    <div class="card card-body elegant-color">
+
+        <div class="px-2 font-body-el h5 letter-space-5 text-uppercase mb-4"
+            data-aos="fade-right"
+        >
+            <a id="tmdb_watch_provider_link" class="d-flex">
+                <span class="text-white">
+                    Watch Providers by
+                </span>
+                <div class="col-sm-6 col-md-4 col-lg-3 col-xl-2 text-right d-flex">
+                    <img src="{% static 'films/images/tmdb_logo_inline.svg' %}" alt="Watch Providers by TMDB" class="img-fluid">
+                </div>
+            </a>
+        </div>
+
+        <div id="watch_providers" class="px-5 d-flex justify-content-center">
+            <div class="spinner-border text-light" id="loader_watch_providers" role="status">
                 <span class="sr-only">Loading...</span>
             </div>
         </div>
