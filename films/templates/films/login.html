@@ -24,28 +24,36 @@
                 </div>
             {% endif %}
 
-            {# Email #}
-            <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail" name="username">
-
-            {# Password #}
-            <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password" name="password">
-
-            <div class="d-flex justify-content-around">
-                <div class="mr-3">
-                    {# Remember me #}
-                    <div class="custom-control custom-checkbox">
-                        <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember">
-                        <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
-                    </div>
-                </div>
-                <div>
-                    {# Forgot password #}
-                    <a class="deep-orange-text" href="">Forgot password?</a>
-                </div>
+            {# Username #}
+            <div class="form-group text-left">
+                <label for="LoginFormUsername" class="small text-muted">Username</label>
+                <input type="text" id="LoginFormUsername" class="form-control mb-4" placeholder="Username" name="username">
             </div>
 
+            {# Password #}
+            <div class="form-group text-left">
+                <label for="LoginFormPassword" class="small text-muted">Password</label>
+            <input type="password" id="LoginFormPassword" class="form-control mb-4" placeholder="Password" name="password">
+            </div>
+
+            {# <div class="d-flex justify-content-around"> #}
+            {#     <div class="mr-3"> #}
+            {#         {1# Remember me #1} #}
+            {#         <div class="custom-control custom-checkbox"> #}
+            {#             <input type="checkbox" class="custom-control-input" id="defaultLoginFormRemember"> #}
+            {#             <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label> #}
+            {#         </div> #}
+            {#     </div> #}
+            {#     <div> #}
+            {#         {1# Forgot password #1} #}
+            {#         {1# <a class="deep-orange-text" href="">Forgot password?</a> #1} #}
+            {#     </div> #}
+            {# </div> #}
+
             {# Sign in button #}
-            <button class="btn btn-light-green btn-block my-4" type="submit">Sign in</button>
+            <div class="form-group my-5">
+                <button class="btn btn-light-green btn-block" type="submit">Sign in</button>
+            </div>
 
             {# Register #}
             <p>Not a member?
@@ -53,12 +61,12 @@
             </p>
 
             {# Social login #}
-            <p>or sign in with:</p>
+            {# <p>or sign in with:</p> #}
 
-            <a href="#" class="mx-3" role="button"><i class="fab fa-facebook-f deep-orange-text"></i></a>
-            <a href="#" class="mx-3" role="button"><i class="fab fa-twitter deep-orange-text"></i></a>
-            <a href="#" class="mx-3" role="button"><i class="fab fa-linkedin-in deep-orange-text"></i></a>
-            <a href="#" class="mx-3" role="button"><i class="fab fa-github deep-orange-text"></i></a>
+            {# <a href="#" class="mx-3" role="button"><i class="fab fa-facebook-f deep-orange-text"></i></a> #}
+            {# <a href="#" class="mx-3" role="button"><i class="fab fa-twitter deep-orange-text"></i></a> #}
+            {# <a href="#" class="mx-3" role="button"><i class="fab fa-linkedin-in deep-orange-text"></i></a> #}
+            {# <a href="#" class="mx-3" role="button"><i class="fab fa-github deep-orange-text"></i></a> #}
 
         </form>
     </div>

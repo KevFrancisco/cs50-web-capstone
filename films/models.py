@@ -262,7 +262,7 @@ class User(AbstractUser):
                         )
     profile_img = models.CharField(
                         max_length=50,
-                        blank=True,
+                        default='003',
                         )
     locale = models.CharField(
                         max_length=2,
