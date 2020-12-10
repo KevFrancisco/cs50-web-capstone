@@ -49,7 +49,7 @@ function detail(api_key, req_type, req_id, usr_locale) {
                     <div class="row">
                         <div class="col-md-auto mx-auto py-md-5 pr-md-5 py-3 px-0">
                             <div class="mx-auto"> 
-                                <img src="${poster_img_url}" class="z-depth-3 d-block mx-auto w-auto mvh-50" alt="${title}">
+                                <img src="${poster_img_url}" class="z-depth-3 d-block mx-auto w-auto mvh-50" alt="">
                             </div>
                         </div>
                         <div class="col-md my-5 text-shadow-1">
