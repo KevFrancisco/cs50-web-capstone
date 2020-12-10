@@ -298,3 +298,12 @@
     width: 50px;
     height: 50px;
 }
+
+.border-2-white {
+    border: 2px solid white;
+}
+
+.unique-color-and-blue-gradient {
+	/* background: #1c2331 linear-gradient(40deg, rgba(69, 202, 252, 0.5), rgba(48,63,159, 0.5)) !important; */
+	background: #1c2331 linear-gradient(130deg, rgba(69, 202, 252, 0.3) 5%, rgba(48,63,159, 0.0) 35%, rgba(48,63,159, 0.0) 55%, rgba(0,0,0,0.35)) no-repeat fixed center/cover !important;
+}

@@ -1,7 +1,13 @@
 function get_watch_providers(api_key, req_type, req_id, usr_locale) {
 
     // Fetch Watch Providers Only Once
-    if (watch_providers_loaded === true) { return; }
+    if (watch_providers_loaded === true) { 
+        document.querySelector('#hero-main').scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+        return;
+    }
     
     // Request URL from TMDB Documentation
     let url = `https://api.themoviedb.org/3/${req_type}/${req_id}/watch/providers?api_key=${api_key}`
@@ -47,7 +53,7 @@ function get_watch_providers(api_key, req_type, req_id, usr_locale) {
         }
 
         // Let's constant the base url so we can call it over and over per provider
-        let provider_logo_base_url = `https://image.tmdb.org/t/p/w185`;
+        let provider_logo_base_url = `https://image.tmdb.org/t/p/w300`;
 
         // Set the link at the Watch Provider Section Header
         let tmdb_watch_providers = watch_providers['link'];
@@ -61,7 +67,6 @@ function get_watch_providers(api_key, req_type, req_id, usr_locale) {
 
             for (var key of Object.keys(watch_providers[watch_type])) {
                 let watch_entry = watch_providers[watch_type][key];
-                console.log(`key: [${key}] + watch_entry: ${watch_entry.provider_name}`);
                 let entry_label;
                 if (watch_type === "buy") {
                     entry_label = "Buy"
@@ -148,6 +153,10 @@ function get_watch_providers(api_key, req_type, req_id, usr_locale) {
         });
 
         AOS.refresh();
+        document.querySelector('#watch_providers').scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+        });
 
     })
 

@@ -38,7 +38,7 @@
         <title>{% block title %} ShowBox: Loading {% endblock %}</title>
 
     </head>
-    <body class="overlayscrollbar text-white unique-color-dark font-body">
+    <body class="overlayscrollbar text-white unique-color-and-blue-gradient font-body">
 
         {# ##############################      NAVBAR      ############################## #}
         <nav class="navbar navbar-expand-md navbar-dark fixed-top deep-orange darken-1">
@@ -90,13 +90,14 @@
                             </a>
                         </li>
                          {% if user.is_authenticated %}  
-                            <li class="nav-item dropdown mr-2">
-                                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
-                                    aria-haspopup="true" aria-expanded="false">
-                                        {# <i class="fas fa-user"></i> #}
-                                        Hi, {{request.user.first_name}}
+                            <li class="nav-item dropdown avatar ml-2">
+                                <a class="nav-link dropdown-toggle p-0" id="navbarDropdownMenuLink-4"
+                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img src="/static/films/images/user_icons/{{ request.user.profile_img }}.png"
+                                    class="p-1 border-2-white rounded-circle" alt="avatar image" height="35">
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+                                <div class="dropdown-menu pt-0 dropdown-menu-right dropdown-info text-center" aria-labelledby="navbarDropdownMenuLink-4">
+                                    <div class="dropdown-item disabled unique-color darken-3 text-white py-2">Hi, {{ request.user.first_name }}</div>
                                     <a class="dropdown-item" href="{% url 'my_account' %}">My account</a>
                                     <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
                                 </div>
@@ -109,13 +110,6 @@
                                 <a class="nav-link" href="{% url 'register' %}">Register</a>
                             </li>
                         {% endif %}
-                        <li class="nav-item disabled avatar rounded-circle bg-darker z-depth-1-half">
-                            <a class="nav-link p-0" href="#">
-                                <img src="/static/films/images/user_icons/{{ request.user.profile_img }}.png"
-                                class="rounded-circle p-1"
-                                alt="avatar image" height="35">
-                            </a>
-                        </li>
                     </ul>
                   </div>
               </div>
@@ -151,7 +145,7 @@
                     Made with passion by John Kevin Francisco <br>
                     If you like my work, see more at my portfolio <a href="kevfrancisco.dev">KevFrancisco.Dev</a>
                 </div>
-                <div class="card deep-purple darken-3 mt-3">
+                <div class="card amber darken-3 mt-3">
                     <div class="card-body d-flex justify-content-around">
                         <div class="h5 font-body-b m-0">
                             <i class="fab fa-github"></i>

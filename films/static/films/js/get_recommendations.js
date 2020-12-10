@@ -1,6 +1,12 @@
 function get_recommendations(api_key, req_type, req_id) {
     // Fetch recommendations only once
-    if (recommendations_loaded === true) { return; }
+    if (recommendations_loaded === true) {
+        document.querySelector('#hero-main').scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+        return;
+    }
 
     // Request URL from TMDB Documentation
     let url = `https://api.themoviedb.org/3/${req_type}/${req_id}/recommendations?api_key=${api_key}&language=en-US&page=1`
@@ -131,7 +137,12 @@ function get_recommendations(api_key, req_type, req_id) {
                 },
             ]
         });
+
         AOS.refresh();
+        document.querySelector('#recommendations').scrollIntoView({
+            behavior: 'smooth',
+            block: 'center'
+        });
 
     })
 

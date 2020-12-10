@@ -30,13 +30,13 @@ function get_bio(api_key, req_type, req_id) {
                             <div class="col ml-3">
                                 <div class="">
                                     <div class="deep-orange-text mb-1">
-                                        <span class="h1 text-shadow-1">
+                                        <span class="display-4 font-alt-title text-shadow-1">
                                             ${r.name}
                                         </span>
-                                        <a href="https://www.imdb.com/name/${r.imdb_id}" class="mb-1 badge badge-info align-text-bottom">View in IMDB</a>
                                     </div>
-                                    <div class="grey-text">Birth: ${r.birthday} | Popularity: ${r.popularity}</div>
-                                    <div class="opacity-80 mt-3 ws-pre-line">${bio}</div>
+                                    <div class="grey-text mb-2">Birth: ${r.birthday} | Popularity: ${r.popularity}</div>
+                                    <a href="https://www.imdb.com/name/${r.imdb_id}" class="mb-1 badge blue px-2 py-1 align-text-bottom">View in IMDB</a>
+                                    <div class="opacity-80 mt-4 ws-pre-line">${bio}</div>
                                     <p></p>
                                 </div>
                             </div>
