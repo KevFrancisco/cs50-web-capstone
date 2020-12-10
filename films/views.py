@@ -34,13 +34,28 @@ def index(request):
 
 def detail(request, req_type, req_id):
     api_key = os.environ.get("TMDB_API_KEY")
-    
-    # req_type = request.session["req_type"]
+    myuser = request.user
+
+    favorite = Favorite.objects.filter(
+                                owner=myuser,
+                                media_type=req_type,
+                                media_id=req_id
+                                ).first()
+
+    watchlist = WatchList.objects.filter(
+                                owner=myuser,
+                                media_type=req_type,
+                                media_id=req_id
+                                ).first()
+    is_favorite = (True if favorite else False)
+    is_watchlist = (True if watchlist else False)
 
     context = {
             'req_type': req_type,
             'req_id': req_id,
             'api_key': api_key,
+            'is_favorite': is_favorite,
+            'is_watchlist': is_watchlist,
     }
     
     return render(request, "films/detail.html", context)
@@ -79,18 +94,20 @@ def req_type(request, new_req_type):
     request.session["req_type"] = new_req_type
     return HttpResponseRedirect(reverse('index'))
 
-def toggle_favorite_item(request, media_type, media_id):
+def toggle_favorite_item(request, req_type, req_id):
     if request.method == "PUT":
         # Check if the fave already exists
+        myuser = request.user
         fave = Favorite.objects.filter(
-                                media_id = media_id,
-                                media_type = media_type
+                                owner = myuser,
+                                media_type = req_type,
+                                media_id = req_id,
                                 ).first()
         if not fave:
             new_fave = Favorite.objects.create(
-                owner = request.user,
-                media_type = media_type,
-                media_id = media_id
+                owner = myuser,
+                media_type = req_type,
+                media_id = req_id
             )
             new_fave.save()
 
@@ -98,37 +115,38 @@ def toggle_favorite_item(request, media_type, media_id):
 
             return JsonResponse({
                             "status": status_str,
-                            "media_type": media_type,
-                            "media_id": media_id
+                            "media_type": req_type,
+                            "media_id": req_id,
+                            "do": "add"
             }, status=200)
 
         else:
-            if fave.owner != request.user:
-                return JsonResponse({
-                    "Error": "Forbidden"
-                }, status=403)
-
             fave.delete()
             status_str = "Removed from Favorites"
 
             return JsonResponse({
                             "status": status_str,
-                            "media_type": media_type,
-                            "media_id": media_id
+                            "media_type": req_type,
+                            "media_id": req_id,
+                            "do": "remove"
             }, status=200)
+    return HttpResponse("Error")
 
-def toggle_watchlist_item(request, media_type, media_id):
+def toggle_watchlist_item(request, req_type, req_id):
     if request.method == "PUT":
+        myuser = request.user
         # Check if the fave already exists
         watchme = WatchList.objects.filter(
-                                media_id = media_id,
-                                media_type = media_type
+                                owner = myuser,
+                                media_id = req_id,
+                                media_type = req_type
                                 ).first()
+        print(watchme)
         if not watchme:
-            new_watchme = Favorite.objects.create(
-                owner = request.user,
-                media_type = media_type,
-                media_id = media_id
+            new_watchme = WatchList.objects.create(
+                owner = myuser,
+                media_type = req_type,
+                media_id = req_id
             )
             new_watchme.save()
 
@@ -136,24 +154,22 @@ def toggle_watchlist_item(request, media_type, media_id):
 
             return JsonResponse({
                             "status": status_str,
-                            "media_type": media_type,
-                            "media_id": media_id
+                            "media_type": req_type,
+                            "media_id": req_id,
+                            "do": "add",
             }, status=200)
 
         else:
-            if watchme.owner != request.user:
-                return JsonResponse({
-                    "Error": "Forbidden"
-                }, status=403)
-
             watchme.delete()
             status_str = "Removed from WatchList"
 
             return JsonResponse({
                             "status": status_str,
-                            "media_type": media_type,
-                            "media_id": media_id
+                            "media_type": req_type,
+                            "media_id": req_id,
+                            "do": "remove",
             }, status=200)
+    return HttpResponse("Error")
 
 
 ##########################################################################

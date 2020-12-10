@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from .models import User
+from .models import User, Favorite, WatchList
 
 
 # Custom User Admin Form
@@ -22,3 +22,5 @@ class CustomUserAdmin(UserAdmin):
 
 # Register your models here.
 admin.site.register(User, CustomUserAdmin)
+admin.site.register(Favorite)
+admin.site.register(WatchList)

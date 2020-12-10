@@ -5,7 +5,7 @@
     document.addEventListener("DOMContentLoaded", function() {
         {# Fetch Combined Credits #}
         get_credits('{{api_key}}', '{{req_type}}', '{{req_id}}');
-        get_bio('{{api_key}}', '{{req_type}}', '{{req_id}}');
+        get_bio('{{api_key}}', '{{req_id}}');
     });
 </script>
 <script src="{% static 'films/js/get_credits.js' %}"></script>

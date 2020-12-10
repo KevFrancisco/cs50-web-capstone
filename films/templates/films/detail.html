@@ -6,13 +6,13 @@
     var recommendations_loaded = false;
     var watch_providers_loaded = false;
     document.addEventListener("DOMContentLoaded", function() {
-        {# Fetch the Hero section #}
-        detail('{{api_key}}', '{{req_type}}', '{{req_id}}', '{{request.user.locale}}');
-        {# Fetch the Cast #}
+        // Fetch the Hero section
+        detail('{{api_key}}', '{{req_type}}', '{{req_id}}', '{{request.user.locale}}', '{{user.is_authenticated}}', '{{is_favorite}}', '{{is_watchlist}}');
+        // Fetch the Cast
         get_cast('{{api_key}}', '{{req_type}}', '{{req_id}}');
-        {# Fetch Trailers #}
+        // Fetch Trailers
         get_trailers('{{api_key}}', '{{req_type}}', '{{req_id}}');
-        {# Fetch Reviews #}
+        // Fetch Reviews
         get_reviews('{{api_key}}', '{{req_type}}', '{{req_id}}');
 
         // Refresh AOS after bootstrap collapse
@@ -30,6 +30,8 @@
 <script src="{% static 'films/js/get_cast.js' %}"></script>
 <script src="{% static 'films/js/get_trailers.js' %}"></script>
 <script src="{% static 'films/js/get_reviews.js' %}"></script>
+<script src="{% static 'films/js/put_favorites.js' %}"></script>
+<script src="{% static 'films/js/put_watchlist.js' %}"></script>
 
 {% endblock %}
 

@@ -1,4 +1,4 @@
-function get_bio(api_key, req_type, req_id) {
+function get_bio(api_key, req_id) {
     // API Url from test documentation
     let url = `https://api.themoviedb.org/3/person/${req_id}?api_key=${api_key}&language=en-US`
     
