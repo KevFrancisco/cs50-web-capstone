@@ -4,9 +4,10 @@ import os, json, urllib
 from django.contrib.auth import authenticate, login, logout
 from django.db import IntegrityError
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect
+from django.http import JsonResponse
 from django.urls import reverse
 
-from films.models import User
+from films.models import User, Favorite, WatchList
 from films.forms import MyAccountForm
 
 TMDB_REQ_URL = "https://api.themoviedb.org/3/"
@@ -78,6 +79,86 @@ def req_type(request, new_req_type):
     request.session["req_type"] = new_req_type
     return HttpResponseRedirect(reverse('index'))
 
+def toggle_favorite_item(request, media_type, media_id):
+    if request.method == "PUT":
+        # Check if the fave already exists
+        fave = Favorite.objects.filter(
+                                media_id = media_id,
+                                media_type = media_type
+                                ).first()
+        if not fave:
+            new_fave = Favorite.objects.create(
+                owner = request.user,
+                media_type = media_type,
+                media_id = media_id
+            )
+            new_fave.save()
+
+            status_str = "Added to Favorites"
+
+            return JsonResponse({
+                            "status": status_str,
+                            "media_type": media_type,
+                            "media_id": media_id
+            }, status=200)
+
+        else:
+            if fave.owner != request.user:
+                return JsonResponse({
+                    "Error": "Forbidden"
+                }, status=403)
+
+            fave.delete()
+            status_str = "Removed from Favorites"
+
+            return JsonResponse({
+                            "status": status_str,
+                            "media_type": media_type,
+                            "media_id": media_id
+            }, status=200)
+
+def toggle_watchlist_item(request, media_type, media_id):
+    if request.method == "PUT":
+        # Check if the fave already exists
+        watchme = WatchList.objects.filter(
+                                media_id = media_id,
+                                media_type = media_type
+                                ).first()
+        if not watchme:
+            new_watchme = Favorite.objects.create(
+                owner = request.user,
+                media_type = media_type,
+                media_id = media_id
+            )
+            new_watchme.save()
+
+            status_str = "Added to Watch List"
+
+            return JsonResponse({
+                            "status": status_str,
+                            "media_type": media_type,
+                            "media_id": media_id
+            }, status=200)
+
+        else:
+            if watchme.owner != request.user:
+                return JsonResponse({
+                    "Error": "Forbidden"
+                }, status=403)
+
+            watchme.delete()
+            status_str = "Removed from WatchList"
+
+            return JsonResponse({
+                            "status": status_str,
+                            "media_type": media_type,
+                            "media_id": media_id
+            }, status=200)
+
+
+##########################################################################
+#                            AUTHENTICATION                              #
+##########################################################################
 def login_view(request):
     if request.method == "POST":
 
@@ -159,7 +240,4 @@ def my_account(request):
     }
 
     return render(request, "films/my_account.html", context)
-
-
-
 

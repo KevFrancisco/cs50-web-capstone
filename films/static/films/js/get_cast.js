@@ -42,11 +42,11 @@ function get_cast(api_key, req_type, req_id) {
                     profile_picture = `<img src="${img_url}" class="img-fluid" alt="${cast_name}">`
                 };
 
-                img_div.classList.add('w-10','m-3','h-100','img-thumbnail','bg-darker','border-dark');
+                img_div.classList.add('w-10','my-3', 'mx-1','h-100','img-thumbnail','bg-darker','border-dark');
                 img_div.innerHTML = `
                                     <a href='/credits/${req_type}/${ea_item[key].id}' class="text-decoration-none">
                                         ${profile_picture}
-                                        <div class='small text-center text-white pt-3 h-100 mb-0'>${cast_name}</div>
+                                        <div class='small text-center text-white pt-3 h-100 mb-2'>${cast_name}</div>
                                     </a>
                                     `;
                 cast.append(img_div);

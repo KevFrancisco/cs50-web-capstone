@@ -53,10 +53,25 @@ function detail(api_key, req_type, req_id, usr_locale) {
                             </div>
                         </div>
                         <div class="col-md my-5 text-shadow-1">
-                            <div class="display-3 mb-3 font-alt-title">${title}</div>
+
+                            <div class="d-flex align-items-center">
+                                <div class="display-3 mb-0 font-alt-title">${title}</div>
+                            </div>
+
+                            <div class="d-flex mb-3 text-shadow-2">
+                                <a class="badge indigo darken-2 py-1 px-3 mx-2" href="#">
+                                    <i class="fas fa-heart mr-1"></i>
+                                    Add to Favorites
+                                </a>
+                                <a class="badge indigo darken-2 py-1 px-3 mx-2" href="#">
+                                    <i class="fas fa-plus mr-1"></i>
+                                    Add to Watchlist
+                                </a>
+                            </div>
+
                             <div class="h5 mb-4 mt-2">${r.overview}</div>
 
-                            <div class="mb-4">
+                            <div class="mb-4 text-shadow-2">
                                 <a href="#reccomendations_section"
                                 class="btn btn-amber btn-sm" type="button" data-toggle="collapse" data-target="#recommendations_section"
                                 aria-expanded="false" aria-controls="reccomendations_section"

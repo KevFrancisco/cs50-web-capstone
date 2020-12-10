@@ -19,6 +19,10 @@
     text-shadow: 1px 1px 2px black, 3px 3px 5px rgba(0, 0, 0, 0.5);
 }
 
+.text-shadow-2 {
+    text-shadow: 1px 1px 1px black;
+}
+
 .bg-darker {
     background: rgba(0, 0, 0, 0.3);
 }
