@@ -7,10 +7,18 @@ from django.shortcuts import render, HttpResponse, HttpResponseRedirect
 from django.http import JsonResponse
 from django.urls import reverse
 
+from django.contrib.auth.decorators import login_required
+
 from films.models import User, Favorite, WatchList
 from films.forms import MyAccountForm
 
+
 TMDB_REQ_URL = "https://api.themoviedb.org/3/"
+
+
+############################################################
+#                        BASE SITE                         #
+############################################################
 
 def index(request):
     heading_title = "ShowPot!"
@@ -94,84 +102,6 @@ def req_type(request, new_req_type):
     request.session["req_type"] = new_req_type
     return HttpResponseRedirect(reverse('index'))
 
-def toggle_favorite_item(request, req_type, req_id):
-    if request.method == "PUT":
-        # Check if the fave already exists
-        myuser = request.user
-        fave = Favorite.objects.filter(
-                                owner = myuser,
-                                media_type = req_type,
-                                media_id = req_id,
-                                ).first()
-        if not fave:
-            new_fave = Favorite.objects.create(
-                owner = myuser,
-                media_type = req_type,
-                media_id = req_id
-            )
-            new_fave.save()
-
-            status_str = "Added to Favorites"
-
-            return JsonResponse({
-                            "status": status_str,
-                            "media_type": req_type,
-                            "media_id": req_id,
-                            "do": "add"
-            }, status=200)
-
-        else:
-            fave.delete()
-            status_str = "Removed from Favorites"
-
-            return JsonResponse({
-                            "status": status_str,
-                            "media_type": req_type,
-                            "media_id": req_id,
-                            "do": "remove"
-            }, status=200)
-    return HttpResponse("Error")
-
-def toggle_watchlist_item(request, req_type, req_id):
-    if request.method == "PUT":
-        myuser = request.user
-        # Check if the fave already exists
-        watchme = WatchList.objects.filter(
-                                owner = myuser,
-                                media_id = req_id,
-                                media_type = req_type
-                                ).first()
-        print(watchme)
-        if not watchme:
-            new_watchme = WatchList.objects.create(
-                owner = myuser,
-                media_type = req_type,
-                media_id = req_id
-            )
-            new_watchme.save()
-
-            status_str = "Added to Watch List"
-
-            return JsonResponse({
-                            "status": status_str,
-                            "media_type": req_type,
-                            "media_id": req_id,
-                            "do": "add",
-            }, status=200)
-
-        else:
-            watchme.delete()
-            status_str = "Removed from WatchList"
-
-            return JsonResponse({
-                            "status": status_str,
-                            "media_type": req_type,
-                            "media_id": req_id,
-                            "do": "remove",
-            }, status=200)
-    return HttpResponse("Error")
-
-
 ##########################################################################
 #                            AUTHENTICATION                              #
 ##########################################################################
@@ -229,6 +159,7 @@ def register(request):
     else:
         return render(request, "films/register.html", { 'req_type': request.session["req_type"] })
 
+@login_required
 def my_account(request):
     if request.method == "POST":
         form = MyAccountForm(request.POST, instance=request.user)
@@ -257,3 +188,108 @@ def my_account(request):
 
     return render(request, "films/my_account.html", context)
 
+#############################################################################
+#                            USER OWNED MODELS                              #
+#############################################################################
+@login_required
+def user_items(request, user_item_type):
+    api_key = os.environ.get("TMDB_API_KEY")
+    context = {
+            'api_key': api_key,
+            'item_type': user_item_type,
+    }
+    return render(request, "films/user_items.html", context)
+
+@login_required
+def list_user_items(request, user_item_type):
+    myuser = request.user
+    if user_item_type == "favorites":
+        myuser_items = Favorite.objects.filter(owner=myuser).all()
+    elif user_item_type == "watchlist":
+        myuser_items = WatchList.objects.filter(owner=myuser).all()
+
+    data = list(myuser_items.values())
+
+    return JsonResponse({
+        'status': f'Listing favorites for {request.user}',
+        'results': data,
+    })
+
+@login_required
+def toggle_favorite_item(request, req_type, req_id):
+    if request.method == "PUT":
+        # Check if the fave already exists
+        myuser = request.user
+        fave = Favorite.objects.filter(
+                                owner = myuser,
+                                media_type = req_type,
+                                media_id = req_id,
+                                ).first()
+        if not fave:
+            new_fave = Favorite.objects.create(
+                owner = myuser,
+                media_type = req_type,
+                media_id = req_id
+            )
+            new_fave.save()
+
+            status_str = "Added to Favorites"
+
+            return JsonResponse({
+                            "status": status_str,
+                            "media_type": req_type,
+                            "media_id": req_id,
+                            "do": "add"
+            }, status=200)
+
+        else:
+            fave.delete()
+            status_str = "Removed from Favorites"
+
+            return JsonResponse({
+                            "status": status_str,
+                            "media_type": req_type,
+                            "media_id": req_id,
+                            "do": "remove"
+            }, status=200)
+    return HttpResponse("Error")
+
+@login_required
+def toggle_watchlist_item(request, req_type, req_id):
+    if request.method == "PUT":
+        myuser = request.user
+        # Check if the fave already exists
+        watchme = WatchList.objects.filter(
+                                owner = myuser,
+                                media_id = req_id,
+                                media_type = req_type
+                                ).first()
+        print(watchme)
+        if not watchme:
+            new_watchme = WatchList.objects.create(
+                owner = myuser,
+                media_type = req_type,
+                media_id = req_id
+            )
+            new_watchme.save()
+
+            status_str = "Added to Watch List"
+
+            return JsonResponse({
+                            "status": status_str,
+                            "media_type": req_type,
+                            "media_id": req_id,
+                            "do": "add",
+            }, status=200)
+
+        else:
+            watchme.delete()
+            status_str = "Removed from WatchList"
+
+            return JsonResponse({
+                            "status": status_str,
+                            "media_type": req_type,
+                            "media_id": req_id,
+                            "do": "remove",
+            }, status=200)
+    return HttpResponse("Error")

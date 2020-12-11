@@ -1,0 +1,34 @@
+{% extends "films/layout.html" %}
+{% load static %}
+
+{% block script %}
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        list_user_items('{{api_key}}', '{{item_type}}');
+    });
+</script>
+
+<script src="{% static 'films/js/list_user_items.js' %}"></script>
+
+{% endblock %}
+
+{% block body %}
+
+<div id="spacer" class="pt-5 m-4"></div>
+
+<div class="container">
+    <div id="section_header">
+        <div class="p-2 font-body-el h3 letter-space-5 text-center mt-3 text-shadow-1 text-uppercase"
+         data-aos="zoom-up"
+         data-aos-duration="1500"
+        >
+        {{ user_item_type }}
+        </div>
+    </div>
+    <div id="parent_favorites" class="grid">
+
+    </div>
+</div>
+
+{% endblock %}
