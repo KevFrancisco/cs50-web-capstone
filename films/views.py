@@ -196,7 +196,7 @@ def user_items(request, user_item_type):
     api_key = os.environ.get("TMDB_API_KEY")
     context = {
             'api_key': api_key,
-            'item_type': user_item_type,
+            'user_item_type': user_item_type,
     }
     return render(request, "films/user_items.html", context)
 

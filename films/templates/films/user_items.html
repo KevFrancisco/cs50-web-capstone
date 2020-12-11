@@ -5,7 +5,7 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        list_user_items('{{api_key}}', '{{item_type}}');
+        list_user_items('{{api_key}}', '{{user_item_type}}');
     });
 </script>
 
@@ -17,7 +17,7 @@
 
 <div id="spacer" class="pt-5 m-4"></div>
 
-<div class="container">
+<div class="container mb-5">
     <div id="section_header">
         <div class="p-2 font-body-el h3 letter-space-5 text-center mt-3 text-shadow-1 text-uppercase"
          data-aos="zoom-up"
@@ -26,7 +26,7 @@
         {{ user_item_type }}
         </div>
     </div>
-    <div id="parent_favorites" class="grid">
+    <div id="parent_{{user_item_type}}" class="grid">
 
     </div>
 </div>
