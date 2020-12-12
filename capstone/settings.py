@@ -33,7 +33,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'films',
+    'showbox',
     'livereload',
     'widget_tweaks',
     'django.contrib.admin',
@@ -85,7 +85,8 @@ DATABASES = {
     }
 }
 
-AUTH_USER_MODEL = "films.User"
+AUTH_USER_MODEL = "showbox.User"
+LOGIN_URL = '/showbox/login'
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

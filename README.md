@@ -1,5 +1,5 @@
 # ShowBox
-[Beta Release v0.01 is here!](https://kevfrancisco.dev/apps/showbox)
+[Beta Release v0.01 is here!](https://kevfrancisco.dev/showbox)
 
 This is a Movie and TV Show searching Web App.
 

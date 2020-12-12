@@ -1,0 +1,237 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head#>
+        {# Favicon #}
+        <link rel="shortcut icon" href="{% static 'films/favicon.ico' %}">
+
+        {# Bootstrap V5! #}
+        <link rel="stylesheet" href="{% static 'films/css/bootstrap.min.css' %}">
+        {# <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous"> #}
+        
+        {# Font Awesome #}
+        <link rel="stylesheet" href="{% static 'films/css/fontawesome-all.min.css' %}">
+
+        {# Overlay Scrollbars #}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.0/css/OverlayScrollbars.min.css">
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/overlayscrollbars/1.13.0/js/OverlayScrollbars.min.js"></script>
+        
+        {# Slick Carousel CSS #}
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+        <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+
+        <link rel="stylesheet" href="{% static 'films/css/mdb.min.css' %}">
+        <link rel="stylesheet" href="{% static 'films/css/aos.css' %}">
+
+        {# Styles #}
+        <link rel="stylesheet" href="{% static 'films/css/fonts.css' %}">
+        <link rel="stylesheet" href="{% static 'films/css/styles.css' %}">
+
+        {% block script %}
+        {% endblock %}
+
+        {# TITLE #}
+        <title>{% block title %} ShowBox: Loading {% endblock %}</title>
+
+    </head>
+    <body class="overlayscrollbar text-white unique-color-and-blue-gradient font-body">
+
+        {# ##############################      NAVBAR      ############################## #}
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top deep-orange darken-1">
+          <div class="container-fluid justify-content-center">
+              <div class="col-xl-9 d-flex align-items-center">
+                  <a class="navbar-brand" href="{% url 'index' %}">
+                      <i class="fas fa-box-open ml-3 mr-1 showbox-b"></i>
+                      <span class="font-brand h1 mb-0">ShowBox</span>
+                  </a>
+                  <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarCollapse">
+                      <form class="form-inline ml-auto mr-2" action="{% url 'search' %}" method="POST">
+                          {% csrf_token %}
+                           <div class="md-form my-0 mr-0">
+                               <input id="nav-search" class="form-control mr-0" type="text" placeholder="Search" name="query_str" aria-label="Search">
+                            </div>
+                            <div class="ml-2 z-depth-0">
+                                <button class="btn btn-sm btn-light-green px-lg-3 px-md-2" type="submit">
+                                    <i class="fas fa-search fa-xl text-white"></i>
+                                </button>
+                            </div>
+                    </form>
+                    <a href="{% url 'req_type' 'movie' %}"
+                        id="nav_movies"
+                        class="btn btn-cyan btn-sm px-md-1 px-lg-3 {% if req_type == 'movie' %}border{% endif %}"
+                    >Movies</a>
+                    <a href="{% url 'req_type' 'tv' %}"
+                        id="nav_tv"
+                        class="btn btn-purple btn-sm px-md-1 px-lg-3 {% if req_type == 'tv' %}border{% endif %} mr-auto"
+                    >TV Shows</a>
+                    <ul class="navbar-nav nav-flex-icons">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{% url 'index' %}">
+                                <i class="fas fa-home fa-lg"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" 
+                            {% if not req_type %}
+                                href="{% url 'discover' 'movie' %}"
+                            {% else %}
+                                href="{% url 'discover' req_type %}"
+                            {% endif %}">
+
+                                <i class="fas fa-compass fa-lg"></i>
+
+                            </a>
+                        </li>
+                         {% if user.is_authenticated %}  
+                            <li class="nav-item dropdown avatar ml-2">
+                                <a class="nav-link dropdown-toggle p-0" id="navbarDropdownMenuLink-4"
+                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img src="/static/films/images/user_icons/{{ request.user.profile_img }}.png"
+                                    class="p-1 border-2-white rounded-circle" alt="avatar image" height="35">
+                                </a>
+                                <div class="dropdown-menu pt-0 dropdown-menu-right dropdown-info text-left" aria-labelledby="navbarDropdownMenuLink-4">
+                                    <div class="dropdown-item disabled unique-color darken-3 text-white text-center py-2 font-alt-title mb-2">Hi, {{ request.user.first_name }}!</div>
+                                    <a class="dropdown-item px-3" href="{% url 'user_items' 'favorites' %}">
+                                        <i class="fas fa-heart mr-2"></i>
+                                        Favorites
+                                    </a>
+                                    <a class="dropdown-item px-3" href="{% url 'user_items' 'watchlist' %}">
+                                        <i class="fas fa-list mr-2"></i>
+                                        Watch List
+                                    </a>
+                                    <a class="dropdown-item px-3" href="{% url 'my_account' %}">
+                                        <i class="fas fa-cog mr-2"></i>
+                                        My account
+                                    </a>
+                                    <a class="dropdown-item px-3" href="{% url 'logout' %}">
+                                        <i class="fas fa-sign-out-alt mr-2"></i>
+                                        Log out
+                                    </a>
+                                </div>
+                            </li>
+                        {% else %}
+                            <li class="nav-item ml-2">
+                                <a class="nav-link" href="{% url 'login' %}">Log In</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'register' %}">Register</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                  </div>
+              </div>
+          </div>
+        </nav>
+
+
+        {# {1# ##############################      Alert      ############################## #1} #}
+        {# <div class="mt-5 pt-5 alert alert-warning alert-dismissible fade show" role="alert"> #}
+        {#   <strong>Holy guacamole!</strong> You should check in on some of those fields below. #}
+        {#   <button type="button" class="close" data-dismiss="alert" aria-label="Close"> #}
+        {#     <span aria-hidden="true">&times;</span> #}
+        {#   </button> #}
+        {# </div> #}
+
+
+        {# ##############################      BODY      ############################## #}
+        {% block body %}
+        {% endblock %}
+
+        {# ##############################      FOOTER      ############################## #}
+        <!-- Footer -->
+        <footer class="page-footer font-small deep-purple darken-4 z-depth-1-half">
+          <div class="container text-center text-md-left p-5">
+            <div class="row">
+              <div class="col-md-6 mt-md-0 mt-3">
+                <!-- Content -->
+                <div class="mb-3">
+                    <i class="fas fa-box-open mr-2 fa-3x"></i>
+                    <span class="font-brand mb-3 display-4">ShowBox</span>
+                </div>
+                <div class="mb-3">
+                    Made with passion by John Kevin Francisco <br>
+                    If you like my work, see more at my portfolio <a href="https://kevfrancisco.dev">KevFrancisco.Dev</a>
+                </div>
+                <div class="card amber darken-3 mt-3">
+                    <div class="card-body d-flex justify-content-around">
+                        <div class="h5 font-body-b m-0">
+                            <i class="fab fa-github"></i>
+                            Github
+                        </div>
+                        <div class="h5 font-body-b m-0">
+                            <i class="fab fa-linkedin"></i>
+                            LinkedIn
+                        </div>
+                    </div>
+                </div>
+
+              </div>
+              <hr class="clearfix w-100 d-md-none pb-3">
+              <div class="col-md-3 mb-md-0 mb-3">
+                <!-- Content -->
+                <h5 class="text-uppercase font-weight-bold">Special Thanks:</h5>
+                <div class="pt-3">
+                    Login and Register Photo by
+                    <a href="https://unsplash.com/@levi_stute_cinematography?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
+                        Levi Stute
+                    </a>
+                    on
+                    <a href="https://unsplash.com/s/photos/display?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
+                        Unsplash
+                    </a>
+                </div>
+                <div class="pt-3">
+                    User Avatar Icons made by
+                    <a href="https://www.flaticon.com/authors/vitaly-gorbachev"
+                        title="Vitaly Gorbachev">
+                        Vitaly Gorbachev
+                    </a>
+                    from
+                    <a href="https://www.flaticon.com/" title="Flaticon">
+                        www.flaticon.com
+                    </a>
+                </div>
+              </div>
+              <hr class="clearfix w-100 d-md-none pb-3">
+              <div class="col-md-3 mb-md-0 mb-3">
+                  <div class="px-5">
+                      <div class="h5 font-weight-bold text-uppercase">
+                          Powered by:
+                      </div>
+                      <div class="py-3">
+                          <img src="{% static 'films/images/tmdb_logo.svg' %}" class="img-fluid" alt="Powered by TMDB">
+                      </div>
+                      Without their generous support this WebApp would not be possible
+                  </div>
+              </div>
+            </div>
+          </div>
+          <div class="footer-copyright text-center py-3">© 2020 Copyright:
+            <a href="https://kevfrancisco.dev/">John Kevin Francisco</a>
+          </div>
+        </footer>
+        <!-- Footer -->
+
+
+        {# SCRIPTS #}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+        <script src="{% static 'films/js/bootstrap.bundle.min.js' %}"></script>
+        <script type="text/javascript" src="{% static 'films/js/aos.js' %}"></script>
+        <script type="text/javascript" src="{% static 'films/js/mdb.min.js' %}"></script>
+        {# js-cookie: for sending the csrf token (for likes) in the fetch request #}
+        <script src="https://cdn.jsdelivr.net/npm/js-cookie@rc/dist/js.cookie.min.js"></script>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // OverlayScrollbars(document.querySelectorAll(".overlayscrollbar"), { }); #}
+                AOS.init();
+            });
+        </script>
+
+    </body>
+</html>
