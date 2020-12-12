@@ -92,7 +92,7 @@ function detail(api_key, req_type, req_id, usr_locale, is_authenticated, is_favo
         let user_toggles = '';
         if (is_authenticated === "True") {
             user_toggles = `
-                            <div class="d-flex mb-3 text-shadow-2">
+                            <div class="d-flex my-3 text-shadow-2">
                                 ${is_favorite_link}
                                 ${is_watchlist_link}
                             </div>

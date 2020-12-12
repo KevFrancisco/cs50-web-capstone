@@ -36,23 +36,23 @@ function get_carousel(api_key, req_type, section) {
                 let img_div = document.createElement('div');
                     img_div.classList.add('p-3', 'h-100', 'mx-xl-4');
                 let rating = `<i class="fas fa-star"></i> ${ea_item[key].vote_average}`;
-                let addtl_detail;
-                switch (section) { 
-                    case "discover":
-                        addtl_detail = `Lorem Ipsum Dolor Sit Amet`;
-                        break;
-                    case "popular":
-                        addtl_detail = parseInt(ea_item[key].popularity);
-                        break;
-                    case "upcoming":
-                        addtl_detail = ea_item[key].release_date;
-                        break;
-                    case "top_rated":
-                        // addtl_detail = `<i class="fas fa-star"></i> ${ea_item[key].vote_average}`;
-                        addtl_detail = '';
-                        break;
+                // let addtl_detail;
+                // switch (section) { 
+                //     case "discover":
+                //         addtl_detail = `Lorem Ipsum Dolor Sit Amet`;
+                //         break;
+                //     case "popular":
+                //         addtl_detail = parseInt(ea_item[key].popularity);
+                //         break;
+                //     case "upcoming":
+                //         addtl_detail = ea_item[key].release_date;
+                //         break;
+                //     case "top_rated":
+                //         // addtl_detail = `<i class="fas fa-star"></i> ${ea_item[key].vote_average}`;
+                //         addtl_detail = '';
+                //         break;
 
-                }
+                // }
 
                 let temp_str = `
                     <a href='detail/${req_type}/${ea_item[key].id}' class="zoom text-decoration-none">
