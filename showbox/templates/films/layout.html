@@ -144,7 +144,7 @@
         {# ##############################      FOOTER      ############################## #}
         <!-- Footer -->
         <footer class="page-footer font-small deep-purple darken-4 z-depth-1-half">
-          <div class="container text-center text-md-left p-5">
+          <div class="container text-center text-md-left px-5 py-4">
             <div class="row">
               <div class="col-md-6 mt-md-0 mt-3">
                 <!-- Content -->
@@ -171,10 +171,20 @@
 
               </div>
               <hr class="clearfix w-100 d-md-none pb-3">
-              <div class="col-md-3 mb-md-0 mb-3">
+              <div class="col-md mb-md-0 mb-3 text-center text-md-right">
                 <!-- Content -->
-                <h5 class="text-uppercase font-weight-bold">Special Thanks:</h5>
-                <div class="pt-3">
+
+                  <div class="">
+                      <div class="h5 font-weight-bold text-uppercase">
+                          Powered by:
+                      </div>
+                      <div class="pt-1 pb-3">
+                          <img src="{% static 'films/images/tmdb_logo_inline.svg' %}" class="img-fluid" alt="Powered by TMDB">
+                      </div>
+                      Without their generous API this WebApp would not be possible
+                  </div>
+
+                <div class="pt-1">
                     Login and Register Photo by
                     <a href="https://unsplash.com/@levi_stute_cinematography?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">
                         Levi Stute
@@ -184,7 +194,7 @@
                         Unsplash
                     </a>
                 </div>
-                <div class="pt-3">
+                <div class="pt-1">
                     User Avatar Icons made by
                     <a href="https://www.flaticon.com/authors/vitaly-gorbachev"
                         title="Vitaly Gorbachev">
@@ -195,18 +205,7 @@
                         www.flaticon.com
                     </a>
                 </div>
-              </div>
-              <hr class="clearfix w-100 d-md-none pb-3">
-              <div class="col-md-3 mb-md-0 mb-3">
-                  <div class="px-5">
-                      <div class="h5 font-weight-bold text-uppercase">
-                          Powered by:
-                      </div>
-                      <div class="py-3">
-                          <img src="{% static 'films/images/tmdb_logo.svg' %}" class="img-fluid" alt="Powered by TMDB">
-                      </div>
-                      Without their generous support this WebApp would not be possible
-                  </div>
+
               </div>
             </div>
           </div>

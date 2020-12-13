@@ -33,7 +33,7 @@ function get_main_hero(api_key, req_type) {
                     release_date = `First Air Date: ${ea_item[key].first_air_date}`;
                 }
                 let popularity = ea_item[key].popularity;
-                let img_url = `https://image.tmdb.org/t/p/original${ea_item[key].backdrop_path}`;
+                let img_url = `https://image.tmdb.org/t/p/w1280${ea_item[key].backdrop_path}`;
 
                 // HERO
                 let hero_img = document.createElement('div');

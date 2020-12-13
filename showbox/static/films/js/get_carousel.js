@@ -34,25 +34,8 @@ function get_carousel(api_key, req_type, section) {
                     }
                 let img_url = `https://image.tmdb.org/t/p/w342${ea_item[key].poster_path}`;
                 let img_div = document.createElement('div');
-                    img_div.classList.add('p-3', 'h-100', 'mx-xl-4');
+                    img_div.classList.add('h-100', 'mx-xl-4', 'mx-lg-3', 'mx-md-3', 'mx-2');
                 let rating = `<i class="fas fa-star"></i> ${ea_item[key].vote_average}`;
-                // let addtl_detail;
-                // switch (section) { 
-                //     case "discover":
-                //         addtl_detail = `Lorem Ipsum Dolor Sit Amet`;
-                //         break;
-                //     case "popular":
-                //         addtl_detail = parseInt(ea_item[key].popularity);
-                //         break;
-                //     case "upcoming":
-                //         addtl_detail = ea_item[key].release_date;
-                //         break;
-                //     case "top_rated":
-                //         // addtl_detail = `<i class="fas fa-star"></i> ${ea_item[key].vote_average}`;
-                //         addtl_detail = '';
-                //         break;
-
-                // }
 
                 let temp_str = `
                     <a href='/showbox/detail/${req_type}/${ea_item[key].id}' class="zoom text-decoration-none">
@@ -61,7 +44,7 @@ function get_carousel(api_key, req_type, section) {
                             <div class="view overlay hoverable z-depth-1">
                                 <img src="${img_url}" class="mx-auto img-fluid" alt="${title}">
                             </div>
-                            <div class='text-white font-body-b lead pt-3'>${title}</div>
+                            <div class='text-white font-body pt-3 text-center'>${title}</div>
                             <div class='text-white font-body-el mb-4'></div>
                         </div>
                     </a>
