@@ -57,14 +57,14 @@ function get_search_results(api_key, query_str) {
             let poster_img;
                 if (rs.poster_path !== null) {
                         poster_img = `
-                        <a href="/detail/${req_type}/${rs.id}" class="text-white">
+                        <a href="/showbox/detail/${req_type}/${rs.id}" class="text-white">
                             <img class="card-img-top" src="${poster_img_url}" alt="${title}">
                         </a>
                         `;
                 } else {
                         img_url = 'http://via.placeholder.com/154x231'
                         poster_img = `
-                        <a href="/detail/${req_type}/${rs.id}" class="text-white">
+                        <a href="/showbox/detail/${req_type}/${rs.id}" class="text-white">
                             <div class="w-100 h-auto bg-primary position-relative" >
                                 <div class="w-100 h-100 stylish-color-dark position-absolute">
                                     <div class="position-absolute top-50 left-50 translate-middle">
@@ -85,7 +85,7 @@ function get_search_results(api_key, query_str) {
                         <div class="position-absolute h5 top-0 right-0 text-white mt-5 px-2 py-1 rgba-stylish-strong opacity-90 z-index-1">${rating}</div>
                     </div>
                     <div class="card-body">
-                        <a href="/detail/${req_type}/${rs.id}" class="text-white">
+                        <a href="/showbox/detail/${req_type}/${rs.id}" class="text-white">
                             <div class="h3">${title}</div>
                             <div class="small">${more_text}</div>
                         </a>
