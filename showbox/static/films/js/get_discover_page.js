@@ -9,6 +9,7 @@ function get_discover_page(api_key, req_type) {
 
     // API Url from test documentation
     let url =`https://api.themoviedb.org/3/discover/${req_type}?api_key=${api_key}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${discover_page_number}`
+    let loader_ids = [];
     
     fetch(url, {
         method: "GET",
@@ -26,6 +27,7 @@ function get_discover_page(api_key, req_type) {
 
         for (var key in rs) {
                 // Sane Names
+                let id = rs[key].id;
                 let poster_path = rs[key].poster_path;
                 let title;
                     if (req_type === "movie") {
@@ -49,7 +51,8 @@ function get_discover_page(api_key, req_type) {
             }
                 
                 let discover_card = document.createElement('div');
-                    discover_card.classList.add('col-sm-6','col-md-4', 'col-lg-3', 'col-xl-2', 'grid-item', 'my-4');
+                    discover_card.classList.add('col-sm-6','col-md-4', 'col-lg-3', 'col-xl-2', 'grid-item', 'my-4', 'd-none');
+                    discover_card.id = `loader_${rs[key].id}`;
                     discover_card.dataset.aos = 'fade-up';
                 let rating = `<i class="fas fa-star"></i> ${rs[key].vote_average}`;
                 let img_url;
@@ -93,14 +96,21 @@ function get_discover_page(api_key, req_type) {
                             </div>
                         </div>
                                     `;
-                    discover_card.insertAdjacentHTML('beforeend', tmp_str)
+                discover_card.insertAdjacentHTML('beforeend', tmp_str)
                 discover_parent.append(discover_card);
+
+                loader_ids.push(`loader_${id}`);
         };
 
         // Images Loaded
         imagesLoaded( document.querySelectorAll('.grid-item'), function() {
             // console.log('all images are loaded');
             // Masonry Layout
+            loader_ids.forEach( (l_id) => {
+                console.log('rem loader:' + l_id)
+                document.getElementById(`${l_id}`).classList.remove('d-none');
+            } )
+
             var elem = document.querySelector('.grid');
             new Masonry( elem, {
               // options
