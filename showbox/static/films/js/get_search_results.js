@@ -3,13 +3,14 @@ function get_search_results(api_key, query_str) {
     document.title = `ShowBox: Search for ${query_str}`
 
     let tmdb_url = `https://api.themoviedb.org/3/search/multi?api_key=${api_key}&language=en-US&query=${query_str}&page=${search_page_number}&include_adult=false`;
+    let loader_ids = [];
 
     fetch(tmdb_url, {
         method: "GET",
     })
     .then(Response => Response.json())
     .then(r =>{
-        console.log(r);
+        // console.log(r);
         
         // Hide the Loader
         document.querySelectorAll('.hide-loader').forEach( (el) => {
@@ -21,7 +22,7 @@ function get_search_results(api_key, query_str) {
         for (var key of Object.keys(items)) {
             // sr for Search Result
             let rs = items[key];
-            console.log(key);
+            // console.log(key);
             let req_type = rs.media_type;
                 if (req_type === "person") { continue; }
 
@@ -38,7 +39,7 @@ function get_search_results(api_key, query_str) {
             let trimmed_length = 350;
             let content = rs.overview;
             let trimmed_overview = content.length > trimmed_length ? content.substring(0, trimmed_length) + "..." + read_more_button : content.substring(0, trimmed_length);
-            console.log(trimmed_overview);
+            // console.log(trimmed_overview);
 
             let title;
             let release_date;
@@ -73,12 +74,12 @@ function get_search_results(api_key, query_str) {
                                     <img src="${img_url}" class="img-fluid opacity-0" alt="">
                             </div>
                         </a>
-                                    `;
+                            `;
                         //             `;
                 }
 
             let tmp_str = `
-                <div class="stylish-color z-depth-2 grid-item-content card">
+                <div id="loader_${rs.id}" class="stylish-color z-depth-2 grid-item-content card d-none">
                     <div class="position-relative">
                         ${poster_img}
                         <div class="position-absolute h5 top-0 right-0 text-white mt-5 px-2 py-1 rgba-stylish-strong opacity-90 z-index-1">${rating}</div>
@@ -101,11 +102,19 @@ function get_search_results(api_key, query_str) {
 
             let search_results_parent = document.getElementById('search_results');
                 search_results_parent.append(search_result_card);
+
+            loader_ids.push(`loader_${rs.id}`);
         }
 
         // Images Loaded
         imagesLoaded( document.querySelectorAll('.grid-item'), function() {
             // console.log('all images are loaded');
+            
+            loader_ids.forEach( (l_id) => {
+                document.getElementById(`${l_id}`).classList.remove('d-none');
+            });
+
+
             // Masonry Layout
             var elem = document.querySelector('.grid');
             new Masonry( elem, {

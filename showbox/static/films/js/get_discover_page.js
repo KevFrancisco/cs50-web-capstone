@@ -21,7 +21,7 @@ function get_discover_page(api_key, req_type) {
         // el.innerText = JSON.stringify(r, undefined, 2);
         // console.log(r.results);
         let rs = r.results;
-        console.log(rs);
+        // console.log(rs);
 
         let discover_parent = document.getElementById('discover');
 
@@ -107,7 +107,6 @@ function get_discover_page(api_key, req_type) {
             // console.log('all images are loaded');
             // Masonry Layout
             loader_ids.forEach( (l_id) => {
-                console.log('rem loader:' + l_id)
                 document.getElementById(`${l_id}`).classList.remove('d-none');
             } )
 
