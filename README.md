@@ -5,7 +5,7 @@ This is a Movie and TV Show searching Web App.
 
 Perfect for avid consumers of entertainment media.
 
-Whether you want to keep track of a future release (AHEM Evangelion, it's been more than a decade), or just lookin' for your next weekend series binge, give ShowBox a try.
+Whether you want to keep track of a future release (*AHEM Evangelion, it's been more than a decade*), or just lookin' for your next weekend series binge, give ShowBox a try.
 
 ---
 ### External libraries
@@ -76,6 +76,10 @@ Let me walk you through the basic flow of the app by examing the templates.
         - Click the header to go to TMDB.
   - `get_cast.js` get's list (similar to `get_carousel.js`) of the item's cast.
     - In case there is no profile image for the actor/actress, a placeholder is displayed instead (using a fontawesome icon).
+    - Clicking on a cast member takes you to the credits page (as in acting credits by an actor/actress).
+      - `get_bio` will retrieve an actor's/actress' basic info, and display them in a prominent div at the top of the page.
+      - `get_credits.js` get's a list of an actor's/actress' credits depending on the request type (movies or tv shows). In case the movie/tv show does not have an image, a placeholder is used.
+      - I personally love this feature, because sometimes an actor/actress can have an incredible performance (like Alicia Vikander in The Danish Girl, or Michael Fassbender in Shame) that I follow all of their work afterwards.
   - `get_trailers.js` displays all the related trailers, it is youtube embed displayed in slick carousel. I decided against displaying it in a user modal dialog since I think it disrupts user experience.
   - `get_reviews.js` lists all user reviews in TMDB together with a rating and a user name, with the review content respecting whitespace as the original review.
     - Displayed in a card column layout, made responsive with css overrides in `styles.css`.
@@ -110,6 +114,15 @@ Let me walk you through the basic flow of the app by examing the templates.
       - Built with a simple border display onClick handwritten in js.
       - the onClick event sets the `profile_img` hidden form field.
     - There are a set number of presets, I think it is unnecessary to allow user image uploads in this use case. The validation and extra libraries would make the app bloated.
+
+---
+### Justification
+I believe this meets and exceeds CS50's complexity requirements as each page needs several calls to an external API, and requires data to be formatted for the user.
+I have done my absolute best to structure the app as cleanly as my ability permits.
+I have also put incredible effort to make the app as visually appealing, and as simple as much as possible.
+A lot of work and problem solving has been poured to this project over the past two months.
+
+I am very happy at the final product and use it to find the next media to binge if time permits.
 
 ---
 ### Thank You!
