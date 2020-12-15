@@ -45,7 +45,7 @@ Aside from data handling, these files also contain the template for the HTML to 
 
 ---
 ### Structure
-- index.html
+- # index.html - The Main Homepage
   - `get_main_hero.js` loads the Discover API from TMDB. This defaults to movies, but can switch to TV shows once the user opts to in the main navbar.
     - The carousel was initially built with slick, but I changed it to a native bootstrap carousel for ease of maintenance (less js code).
     - Has a simple spinner loader to avoid the dreaded unstyled content flash.
