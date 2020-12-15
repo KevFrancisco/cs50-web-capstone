@@ -62,7 +62,7 @@ function get_search_results(api_key, query_str) {
                         </a>
                         `;
                 } else {
-                        img_url = 'http://via.placeholder.com/154x231'
+                        img_url = 'https://via.placeholder.com/154x231'
                         poster_img = `
                         <a href="/showbox/detail/${req_type}/${rs.id}" class="text-white">
                             <div class="w-100 h-auto bg-primary position-relative" >

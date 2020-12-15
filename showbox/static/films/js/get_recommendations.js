@@ -38,7 +38,7 @@ function get_recommendations(api_key, req_type, req_id) {
                 let img_url;
                 let backdrop_img;
                 if (items[key].backdrop_path === null) {
-                    img_url = 'http://via.placeholder.com/342x192'
+                    img_url = 'https://via.placeholder.com/342x192'
                     backdrop_img = `
                                 <div class="w-100 h-auto bg-primary position-relative" >
                                     <div class="w-100 h-100 stylish-color-dark position-absolute">

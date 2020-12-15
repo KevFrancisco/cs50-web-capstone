@@ -27,12 +27,10 @@ function list_user_items(api_key, item_type) {
 
             //Add a loader
             let loader_div = `
-                <div id="loader_${li_i}" class="position-absolute w-100 aspect-1">
-                    <div id="hero-loader" class="position-relative aspect-1">
-                        <div class="loader-center">
-                            <div class="spinner-border" role="status">
-                                <span class="sr-only">Loading...</span>
-                            </div>
+                <div id="loader_${li_i}" class="position-relative w-100">
+                    <div class="position-absolute translate-middle left-50">
+                        <div class="spinner-border" role="status">
+                            <span class="sr-only">Loading...</span>
                         </div>
                     </div>
                 </div>
